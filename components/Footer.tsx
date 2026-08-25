@@ -37,7 +37,7 @@ export default function Footer() {
           <a
             href={VILLA_DATA.social.bookingCom}
             target="_blank"
-            rel="noreferrer"
+            rel="noopener noreferrer"
             aria-label="Booking.com Official Listing"
             title="Book on Booking.com"
             className="h-10 px-3.5 rounded-full bg-[#003580] hover:bg-[#00224f] text-white flex items-center justify-center gap-1.5 transition-all shadow-xs group"
@@ -50,7 +50,7 @@ export default function Footer() {
           <a
             href={VILLA_DATA.social.airbnb}
             target="_blank"
-            rel="noreferrer"
+            rel="noopener noreferrer"
             aria-label="Airbnb Official Listing"
             title="Book on Airbnb"
             className="h-10 px-3.5 rounded-full bg-[#FF5A5F] hover:bg-[#e0484d] text-white flex items-center justify-center gap-1.5 transition-all shadow-xs group"
@@ -65,7 +65,7 @@ export default function Footer() {
           <a
             href={VILLA_DATA.social.googleMaps}
             target="_blank"
-            rel="noreferrer"
+            rel="noopener noreferrer"
             aria-label="Google Maps Location"
             title="Find on Google Maps"
             className="w-10 h-10 rounded-full bg-sand-50 border border-sand-300 text-charcoal-700 hover:text-emerald-700 hover:border-emerald-400 flex items-center justify-center transition-all shadow-xs"
@@ -77,7 +77,7 @@ export default function Footer() {
           <a
             href={VILLA_DATA.social.facebook}
             target="_blank"
-            rel="noreferrer"
+            rel="noopener noreferrer"
             aria-label="Facebook Page"
             title="Follow on Facebook"
             className="w-10 h-10 rounded-full bg-sand-50 border border-sand-300 text-charcoal-700 hover:text-blue-600 hover:border-blue-400 flex items-center justify-center transition-all shadow-xs"
@@ -89,7 +89,7 @@ export default function Footer() {
           <a
             href={VILLA_DATA.social.tiktok}
             target="_blank"
-            rel="noreferrer"
+            rel="noopener noreferrer"
             aria-label="TikTok"
             title="Watch on TikTok"
             className="w-10 h-10 rounded-full bg-sand-50 border border-sand-300 text-charcoal-700 hover:text-charcoal-950 hover:border-charcoal-400 flex items-center justify-center transition-all shadow-xs"
@@ -103,7 +103,7 @@ export default function Footer() {
           <a
             href={`https://wa.me/${VILLA_DATA.whatsappNumber}`}
             target="_blank"
-            rel="noreferrer"
+            rel="noopener noreferrer"
             aria-label="WhatsApp Direct Concierge"
             title="Chat on WhatsApp"
             className="w-10 h-10 rounded-full bg-sand-50 border border-sand-300 text-[#25D366] hover:bg-emerald-50 flex items-center justify-center transition-all shadow-xs"

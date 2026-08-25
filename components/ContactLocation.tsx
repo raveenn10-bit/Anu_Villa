@@ -99,7 +99,7 @@ export default function ContactLocation() {
                         <a
                           href={`https://wa.me/${rawNum}`}
                           target="_blank"
-                          rel="noreferrer"
+                          rel="noopener noreferrer"
                           className="px-2.5 py-1 rounded-lg bg-[#25D366] text-white text-xs font-semibold hover:bg-[#20ba59] transition-colors font-ui"
                         >
                           WhatsApp
@@ -147,7 +147,7 @@ export default function ContactLocation() {
                   <a
                     href={VILLA_DATA.social.airbnb}
                     target="_blank"
-                    rel="noreferrer"
+                    rel="noopener noreferrer"
                     className="px-3 py-1.5 bg-white border border-sand-300 hover:border-[#FF5A5F] rounded-lg text-xs font-bold text-charcoal-800 hover:text-[#FF5A5F] shadow-2xs transition-colors"
                   >
                     Airbnb
@@ -155,7 +155,7 @@ export default function ContactLocation() {
                   <a
                     href={VILLA_DATA.social.bookingCom}
                     target="_blank"
-                    rel="noreferrer"
+                    rel="noopener noreferrer"
                     className="px-3 py-1.5 bg-white border border-sand-300 hover:border-[#003580] rounded-lg text-xs font-bold text-charcoal-800 hover:text-[#003580] shadow-2xs transition-colors"
                   >
                     Booking.com
@@ -186,7 +186,7 @@ export default function ContactLocation() {
                 <a
                   href={VILLA_DATA.social.googleMaps}
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noopener noreferrer"
                   className="inline-flex items-center gap-1.5 text-xs font-semibold text-gold-600 hover:text-gold-700"
                 >
                   <Navigation className="w-3.5 h-3.5" />
