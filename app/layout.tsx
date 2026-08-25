@@ -1,21 +1,32 @@
 import type { Metadata } from "next";
-import { Playfair_Display, Plus_Jakarta_Sans } from "next/font/google";
+import { Cormorant_Garamond, Plus_Jakarta_Sans, Playfair_Display } from "next/font/google";
 import "./globals.css";
+
+const cormorant = Cormorant_Garamond({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  style: ["normal", "italic"],
+  variable: "--font-cormorant",
+  display: "swap",
+});
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800"],
+  style: ["normal", "italic"],
   variable: "--font-playfair",
   display: "swap",
 });
 
 const jakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700", "800"],
   variable: "--font-jakarta",
   display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "M.S.A Anu Villa | 6-Bedroom Private Villa in Thalpe North, Unawatuna, Galle",
+  title: "M.S.A Anu Villa | 6-Bedroom Private Luxury Villa in Thalpe North, Unawatuna, Galle",
   description:
     "Escape the busy city life at M.S.A Anu Villa in Samagiya, Thalpe North, Unawatuna. 6 A/C en-suite bedrooms, private swimming pool, kitchen, BBQ, up to 12 guests, just 1.5 km to beach. $140/night.",
   keywords: [
@@ -61,7 +72,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body className={`${playfair.variable} ${jakarta.variable} font-sans bg-sand-50 text-charcoal-800 antialiased selection:bg-gold-500 selection:text-white`}>
+      <body className={`${cormorant.variable} ${playfair.variable} ${jakarta.variable} font-sans bg-sand-50 text-charcoal-800 antialiased selection:bg-gold-500 selection:text-white`}>
         {children}
       </body>
     </html>

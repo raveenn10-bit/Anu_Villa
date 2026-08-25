@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { Check, Clock, Calendar, ShieldCheck, Award, ArrowRight, X, Sparkles, MapPin, Coffee, Utensils, Wifi, Car } from "lucide-react";
+import { Check, Clock, Calendar, ShieldCheck, Award, ArrowRight, X, Sparkles, MapPin, Coffee, Utensils, Wifi, Car, Waves, BedDouble, Trees } from "lucide-react";
 import { VILLA_DATA } from "@/data/villaData";
 
 interface AboutProps {
@@ -14,11 +14,23 @@ export default function About({ onOpenBooking }: AboutProps) {
   const [showStoryModal, setShowStoryModal] = useState(false);
 
   return (
-    <section id="about" className="py-16 lg:py-24 relative overflow-hidden bg-sand-50">
+    <section id="about" className="py-20 lg:py-28 relative overflow-hidden bg-sand-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        {/* Chapter Eyebrow Header */}
+        <div className="flex items-center gap-3 mb-10 sm:mb-14">
+          <span className="font-serif text-sm font-semibold tracking-[0.2em] text-gold-600 uppercase font-sans">
+            01 / THE SANCTUARY
+          </span>
+          <div className="flex-1 h-[1px] bg-sand-300/80" />
+          <span className="text-xs text-charcoal-400 font-sans hidden sm:inline">
+            Samagiya, Thalpe North
+          </span>
+        </div>
+
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           
-          {/* Left Column: Image with Floating "Best Villa in Galle" Badge */}
+          {/* Left Column: Asymmetrical Editorial Photography Plate */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -26,40 +38,38 @@ export default function About({ onOpenBooking }: AboutProps) {
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="lg:col-span-5 relative"
           >
-            <div className="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-sand-100 aspect-[4/5] sm:aspect-[4/4.5] group">
+            <div className="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-sand-200 aspect-[4/5] group">
               <Image
-                src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1000&q=80"
-                alt="Anu Villa al fresco patio and lush tropical garden"
+                src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1200&q=85"
+                alt="Anu Villa tropical alfresco patio and private garden"
                 fill
                 className="object-cover transition-transform duration-700 group-hover:scale-105"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-60" />
+              <div className="absolute inset-0 bg-gradient-to-t from-noir-950/60 via-transparent to-transparent opacity-70" />
 
-              {/* Floating "Best Villa in Galle" Seal Badge (Exact match to mockup) */}
-              <motion.div
-                animate={{ y: [0, -6, 0] }}
-                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute bottom-6 right-6 z-10"
-              >
-                <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-white/95 backdrop-blur-md shadow-xl border-2 border-gold-300 p-2 flex flex-col items-center justify-center text-center">
-                  <div className="w-8 h-8 rounded-full bg-gold-50 flex items-center justify-center text-gold-600 mb-1">
-                    <Award className="w-5 h-5" />
+              {/* Floating Architectural Badge */}
+              <div className="absolute bottom-6 left-6 right-6 p-4 rounded-2xl bg-white/95 backdrop-blur-md border border-white/40 shadow-lg">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <span className="text-[10px] uppercase font-bold tracking-widest text-gold-600 block">
+                      PRIVATE PROPERTY
+                    </span>
+                    <h4 className="font-serif text-sm sm:text-base font-bold text-charcoal-900">
+                      6 Suites • 12 Guests Max
+                    </h4>
                   </div>
-                  <span className="text-[10px] sm:text-[11px] font-bold text-charcoal-900 leading-tight uppercase tracking-wider">
-                    Best Villa
-                  </span>
-                  <span className="text-[9px] text-gold-600 font-semibold uppercase tracking-widest">
-                    in Galle
+                  <span className="text-xs font-bold text-gold-700 bg-gold-50 px-2.5 py-1 rounded-lg border border-gold-200">
+                    $140 / nt
                   </span>
                 </div>
-              </motion.div>
+              </div>
             </div>
 
-            {/* Decorative subtle background element */}
-            <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-gold-200/40 rounded-full blur-2xl -z-10" />
+            {/* Subtle atmospheric glow */}
+            <div className="absolute -bottom-6 -left-6 w-40 h-40 bg-gold-200/30 rounded-full blur-3xl -z-10" />
           </motion.div>
 
-          {/* Right Column: About Content + Policy Card */}
+          {/* Right Column: Editorial Narrative & Stay Parameters */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -67,106 +77,81 @@ export default function About({ onOpenBooking }: AboutProps) {
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="lg:col-span-7 space-y-6 sm:space-y-8"
           >
-            {/* Section Heading */}
+            {/* Section Headline */}
             <div className="space-y-3">
-              <span className="text-xs font-bold tracking-[0.25em] text-gold-600 uppercase">
-                ABOUT ANU VILLA
-              </span>
-              <h2 className="font-serif text-2xl sm:text-4xl text-charcoal-900 font-bold leading-tight">
-                Experience Comfort, <br />
-                Privacy & Luxury
+              <h2 className="font-editorial text-3xl sm:text-5xl lg:text-[54px] text-charcoal-950 font-normal leading-[1.05] tracking-[-0.02em]">
+                Immerse in Quiet Coastal Luxury
               </h2>
+              <p className="font-editorial italic text-lg sm:text-xl text-gold-700">
+                &ldquo;Where tropical birdsong and cool pool breezes replace city noise.&rdquo;
+              </p>
             </div>
 
-            {/* Narrative text */}
-            <p className="text-charcoal-600 text-sm sm:text-base leading-relaxed">
-              {VILLA_DATA.description.about}
+            {/* Narrative Prose */}
+            <p className="text-charcoal-600 text-sm sm:text-base leading-relaxed font-sans font-normal">
+              Located in the peaceful residential cul-de-sac of Samagiya, Thalpe North, <strong className="text-charcoal-900 font-semibold">{VILLA_DATA.officialName}</strong> was designed as a tranquil home away from home. Offering six fully independent air-conditioned suites with private en-suite bathrooms, an outdoor swimming pool, fully equipped kitchen, and lush coconut palm gardens, our property is tailored for multi-generational families and travel groups seeking complete privacy.
             </p>
 
-            {/* Key Grid Layout: Checklist + Floating Stay Times Box */}
-            <div className="grid grid-cols-1 sm:grid-cols-12 gap-6 pt-2">
-              {/* Checklist Column */}
-              <div className="sm:col-span-7 space-y-3.5">
-                {VILLA_DATA.aboutChecklist.map((item, index) => (
-                  <div key={index} className="flex items-center gap-3">
-                    <div className="w-5 h-5 rounded-full bg-gold-100 border border-gold-300 text-gold-700 flex items-center justify-center shrink-0">
-                      <Check className="w-3.5 h-3.5 stroke-[2.5]" />
-                    </div>
-                    <span className="text-sm sm:text-base font-medium text-charcoal-800">
-                      {item}
-                    </span>
+            {/* Key Features Checklist */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1 font-sans">
+              {VILLA_DATA.aboutChecklist.map((item, index) => (
+                <div key={index} className="flex items-center gap-2.5">
+                  <div className="w-5 h-5 rounded-full bg-gold-100 border border-gold-300 text-gold-700 flex items-center justify-center shrink-0">
+                    <Check className="w-3.5 h-3.5 stroke-[2.5]" />
                   </div>
-                ))}
-
-                {/* Learn More Button */}
-                <div className="pt-4">
-                  <motion.button
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                    onClick={() => setShowStoryModal(true)}
-                    className="bg-gold-500 hover:bg-gold-600 text-white px-6 py-3 rounded-xl font-medium text-sm shadow-sm transition-all inline-flex items-center gap-2 group"
-                  >
-                    <span>Learn More About Us</span>
-                    <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-                  </motion.button>
+                  <span className="text-xs sm:text-sm font-medium text-charcoal-800">
+                    {item}
+                  </span>
                 </div>
-              </div>
-
-              {/* Right Side: Stay Information Card (Matches mockup exactly) */}
-              <div className="sm:col-span-5">
-                <div className="bg-white rounded-2xl p-5 shadow-md border border-sand-200 space-y-4">
-                  {/* Check-in */}
-                  <div className="flex items-start gap-3 pb-3 border-b border-sand-100">
-                    <div className="w-9 h-9 rounded-lg bg-gold-50 text-gold-600 flex items-center justify-center shrink-0">
-                      <Calendar className="w-4 h-4" />
-                    </div>
-                    <div>
-                      <span className="text-[11px] uppercase tracking-wider text-charcoal-400 font-semibold block">
-                        Check-in
-                      </span>
-                      <span className="text-sm font-bold text-charcoal-900">
-                        {VILLA_DATA.checkInTime}
-                      </span>
-                    </div>
-                  </div>
-
-                  {/* Check-out */}
-                  <div className="flex items-start gap-3 pb-3 border-b border-sand-100">
-                    <div className="w-9 h-9 rounded-lg bg-gold-50 text-gold-600 flex items-center justify-center shrink-0">
-                      <Clock className="w-4 h-4" />
-                    </div>
-                    <div>
-                      <span className="text-[11px] uppercase tracking-wider text-charcoal-400 font-semibold block">
-                        Check-out
-                      </span>
-                      <span className="text-sm font-bold text-charcoal-900">
-                        {VILLA_DATA.checkOutTime}
-                      </span>
-                    </div>
-                  </div>
-
-                  {/* Minimum Stay */}
-                  <div className="flex items-start gap-3">
-                    <div className="w-9 h-9 rounded-lg bg-gold-50 text-gold-600 flex items-center justify-center shrink-0">
-                      <ShieldCheck className="w-4 h-4" />
-                    </div>
-                    <div>
-                      <span className="text-[11px] uppercase tracking-wider text-charcoal-400 font-semibold block">
-                        Minimum Stay
-                      </span>
-                      <span className="text-sm font-bold text-charcoal-900">
-                        {VILLA_DATA.minimumStay}
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              ))}
             </div>
+
+            {/* Stay Parameters Strip (Check-in, Check-out, Rate) */}
+            <div className="p-4 sm:p-5 rounded-2xl bg-white border border-sand-200 shadow-sm flex flex-wrap items-center justify-between gap-4 font-sans">
+              <div className="flex items-center gap-3">
+                <div className="w-9 h-9 rounded-xl bg-sand-50 text-gold-600 flex items-center justify-center">
+                  <Calendar className="w-4 h-4" />
+                </div>
+                <div>
+                  <span className="text-[10px] uppercase font-bold text-charcoal-400 block">Check-in</span>
+                  <span className="text-xs sm:text-sm font-bold text-charcoal-900">{VILLA_DATA.checkInTime}</span>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-3">
+                <div className="w-9 h-9 rounded-xl bg-sand-50 text-gold-600 flex items-center justify-center">
+                  <Clock className="w-4 h-4" />
+                </div>
+                <div>
+                  <span className="text-[10px] uppercase font-bold text-charcoal-400 block">Check-out</span>
+                  <span className="text-xs sm:text-sm font-bold text-charcoal-900">{VILLA_DATA.checkOutTime}</span>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-3">
+                <div className="w-9 h-9 rounded-xl bg-sand-50 text-gold-600 flex items-center justify-center">
+                  <ShieldCheck className="w-4 h-4" />
+                </div>
+                <div>
+                  <span className="text-[10px] uppercase font-bold text-charcoal-400 block">Direct Rate</span>
+                  <span className="text-xs sm:text-sm font-bold text-gold-600">$140 / Night</span>
+                </div>
+              </div>
+
+              <button
+                onClick={() => setShowStoryModal(true)}
+                className="inline-flex items-center gap-1.5 text-xs font-semibold text-gold-700 hover:text-gold-800 transition-colors ml-auto sm:ml-0"
+              >
+                <span>Read Story</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </button>
+            </div>
+
           </motion.div>
         </div>
       </div>
 
-      {/* Learn More Modal */}
+      {/* Story Modal */}
       <AnimatePresence>
         {showStoryModal && (
           <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
@@ -186,7 +171,7 @@ export default function About({ onOpenBooking }: AboutProps) {
               <div className="flex items-center justify-between pb-4 border-b border-sand-200">
                 <div className="flex items-center gap-2">
                   <Sparkles className="w-5 h-5 text-gold-600" />
-                  <h3 className="font-serif text-xl font-bold text-charcoal-900">The Story of Anu Villa</h3>
+                  <h3 className="font-serif text-xl font-bold text-charcoal-900">The Story of M.S.A Anu Villa</h3>
                 </div>
                 <button
                   onClick={() => setShowStoryModal(false)}
@@ -196,15 +181,15 @@ export default function About({ onOpenBooking }: AboutProps) {
                 </button>
               </div>
 
-              <div className="py-6 space-y-4 text-charcoal-700 text-sm sm:text-base leading-relaxed">
+              <div className="py-6 space-y-4 text-charcoal-700 text-sm sm:text-base leading-relaxed font-sans">
                 <p>{VILLA_DATA.description.longAbout}</p>
                 <div className="p-4 bg-sand-50 rounded-2xl border border-sand-200 space-y-2">
                   <h4 className="font-semibold text-charcoal-900 text-sm flex items-center gap-2">
                     <MapPin className="w-4 h-4 text-gold-600" />
-                    Prime Unawatuna Location
+                    Samagiya, Thalpe North, Unawatuna
                   </h4>
                   <p className="text-xs sm:text-sm text-charcoal-600">
-                    Located in a tranquil residential cul-de-sac away from traffic noise, yet only 5 minutes from Unawatuna Beach and 12 minutes from historic Galle Fort.
+                    Just 1.5 km to Turtle Beach and Thalpe Rock Pools, 7.5 km to UNESCO Galle Fort. Host M. Mangala is readily on hand to assist with airport pickup, scooters, and local itineraries.
                   </p>
                 </div>
                 <div className="grid grid-cols-2 gap-3 pt-2">
@@ -215,18 +200,18 @@ export default function About({ onOpenBooking }: AboutProps) {
                     <Car className="w-4 h-4 text-gold-600" /> Free Private Secure Parking
                   </div>
                   <div className="flex items-center gap-2 text-xs font-medium text-charcoal-800">
-                    <Utensils className="w-4 h-4 text-gold-600" /> 2 Fully Equipped Kitchens
+                    <Utensils className="w-4 h-4 text-gold-600" /> Fully Equipped Kitchen
                   </div>
                   <div className="flex items-center gap-2 text-xs font-medium text-charcoal-800">
-                    <Coffee className="w-4 h-4 text-gold-600" /> Ceylon Tea & Coffee Provided
+                    <Coffee className="w-4 h-4 text-gold-600" /> Ceylon Tea Station
                   </div>
                 </div>
               </div>
 
-              <div className="pt-4 border-t border-sand-200 flex items-center justify-end gap-3">
+              <div className="pt-4 border-t border-sand-200 flex items-center justify-end gap-3 font-sans">
                 <button
                   onClick={() => setShowStoryModal(false)}
-                  className="px-5 py-2.5 rounded-xl border border-sand-300 text-charcoal-700 text-sm font-medium hover:bg-sand-50"
+                  className="px-5 py-2.5 rounded-xl border border-sand-300 text-charcoal-700 text-xs sm:text-sm font-medium hover:bg-sand-50"
                 >
                   Close
                 </button>
@@ -235,9 +220,9 @@ export default function About({ onOpenBooking }: AboutProps) {
                     setShowStoryModal(false);
                     onOpenBooking();
                   }}
-                  className="px-6 py-2.5 rounded-xl bg-gold-500 hover:bg-gold-600 text-white text-sm font-medium shadow-sm"
+                  className="px-6 py-2.5 rounded-xl bg-gold-500 hover:bg-gold-600 text-white text-xs sm:text-sm font-medium shadow-sm"
                 >
-                  Book Your Stay
+                  Reserve Entire Villa
                 </button>
               </div>
             </motion.div>

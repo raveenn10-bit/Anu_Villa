@@ -1,40 +1,54 @@
 "use client";
 
-import React from "react";
+import React, { useRef } from "react";
 import { motion } from "framer-motion";
-import { Star, Quote } from "lucide-react";
+import { Star, Quote, ChevronLeft, ChevronRight, Sparkles } from "lucide-react";
 import { VILLA_DATA } from "@/data/villaData";
 
 export default function Reviews() {
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  const handleScroll = (dir: "left" | "right") => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollBy({
+        left: dir === "left" ? -300 : 300,
+        behavior: "smooth",
+      });
+    }
+  };
+
   return (
-    <section className="py-16 lg:py-24 bg-white relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="py-20 lg:py-28 bg-sand-50 relative overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         
         {/* Header */}
-        <div className="text-center max-w-2xl mx-auto mb-12 sm:mb-16 space-y-3">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-gold-50 border border-gold-200 text-gold-700 text-xs font-semibold">
+        <div className="text-center max-w-2xl mx-auto space-y-3">
+          <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-gold-100/80 border border-gold-200 text-gold-800 text-xs font-semibold tracking-wider uppercase font-sans">
             <Star className="w-3.5 h-3.5 fill-gold-500 text-gold-500" />
-            <span>5.0 / 5.0 Guest Satisfaction</span>
+            <span>5.0 / 5.0 GUEST SATISFACTION</span>
           </div>
-          <h2 className="font-serif text-2xl sm:text-4xl text-charcoal-900 font-bold">
-            Loved by Guests Worldwide
+          <h2 className="font-editorial text-3xl sm:text-5xl lg:text-[52px] text-charcoal-950 font-normal leading-[1.05] tracking-[-0.02em]">
+            Cherished Guest Moments
           </h2>
-          <p className="text-xs sm:text-sm text-charcoal-600">
-            Read real feedback from families, couples, and groups of friends who made Anu Villa their holiday home in Sri Lanka.
+          <p className="text-xs sm:text-sm text-charcoal-600 font-sans font-normal">
+            Real experiences from families and groups who made M.S.A Anu Villa their peaceful home in Unawatuna.
           </p>
         </div>
 
-        {/* Reviews Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+        {/* Mobile Horizontal Snap-Scroll / Desktop 3-col Grid */}
+        <div
+          ref={scrollRef}
+          className="flex md:grid md:grid-cols-3 gap-6 sm:gap-8 overflow-x-auto md:overflow-x-visible pb-4 md:pb-0 snap-x snap-mandatory scrollbar-none -mx-4 px-4 md:mx-0 md:px-0"
+        >
           {VILLA_DATA.testimonials.map((review, index) => (
             <motion.div
               key={review.id}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 25 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              whileHover={{ y: -5 }}
-              className="bg-sand-50/80 rounded-3xl p-6 sm:p-7 border border-sand-200 shadow-sm hover:shadow-lg transition-all flex flex-col justify-between relative group"
+              viewport={{ once: true, margin: "-40px" }}
+              transition={{ duration: 0.6, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
+              whileHover={{ y: -6 }}
+              className="min-w-[290px] sm:min-w-[320px] md:min-w-0 flex-shrink-0 snap-center bg-white rounded-3xl p-6 sm:p-7 border border-sand-200 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between relative group"
             >
               <div className="space-y-4">
                 {/* Stars and Quote */}
@@ -48,17 +62,17 @@ export default function Reviews() {
                 </div>
 
                 {/* Review Text */}
-                <p className="text-xs sm:text-sm text-charcoal-700 leading-relaxed italic">
+                <p className="text-xs sm:text-sm text-charcoal-700 leading-relaxed italic font-serif font-normal">
                   &ldquo;{review.review}&rdquo;
                 </p>
               </div>
 
-              {/* Author & Country Info */}
-              <div className="pt-5 mt-4 border-t border-sand-200/80 flex items-center justify-between">
+              {/* Author Info */}
+              <div className="pt-5 mt-4 border-t border-sand-100 flex items-center justify-between font-sans">
                 <div>
                   <div className="flex items-center gap-2">
                     <span className="text-base">{review.flag}</span>
-                    <h4 className="font-bold text-xs sm:text-sm text-charcoal-900 leading-tight">
+                    <h4 className="font-semibold text-xs sm:text-sm text-charcoal-900 leading-tight">
                       {review.name}
                     </h4>
                   </div>
@@ -74,6 +88,7 @@ export default function Reviews() {
             </motion.div>
           ))}
         </div>
+
       </div>
     </section>
   );

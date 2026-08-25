@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   Calendar,
   MessageCircle,
@@ -9,7 +9,17 @@ import {
   Check,
   Phone,
   ShieldCheck,
-  Coins
+  Coins,
+  Sparkles,
+  Award,
+  Clock,
+  Waves,
+  Utensils,
+  Flame,
+  Wifi,
+  ArrowRight,
+  Info,
+  BadgePercent
 } from "lucide-react";
 import { VILLA_DATA } from "@/data/villaData";
 
@@ -21,7 +31,7 @@ export default function RatesBooking({ onOpenBookingModal }: RatesBookingProps) 
   const [currency, setCurrency] = useState<"USD" | "LKR" | "EUR" | "GBP" | "AUD">("USD");
   const [checkIn, setCheckIn] = useState("");
   const [checkOut, setCheckOut] = useState("");
-  const [guests, setGuests] = useState(4);
+  const [guests, setGuests] = useState(6);
   const [nights, setNights] = useState(2);
 
   const currInfo = VILLA_DATA.pricing.currencies[currency];
@@ -43,7 +53,7 @@ export default function RatesBooking({ onOpenBookingModal }: RatesBookingProps) 
   };
 
   const handleWhatsAppBooking = () => {
-    const text = `Hello Anu Villa! 🏡\nI would like to enquire about booking Anu Villa, Unawatuna.\n\n📅 Check-in: ${checkIn || "Flexible"}\n📅 Check-out: ${checkOut || "Flexible"}\n🌙 Nights: ${nights}\n👥 Guests: ${guests}\n💰 Currency: ${currency}\n\nPlease confirm availability and total rate. Thank you!`;
+    const text = `Hello M. Mangala! 🏡\nI'm inquiring to book ${VILLA_DATA.officialName} in Thalpe, Unawatuna.\n\n📅 Check-in: ${checkIn || "Flexible"}\n📅 Check-out: ${checkOut || "Flexible"}\n🌙 Duration: ${nights} ${nights === 1 ? "Night" : "Nights"}\n👥 Guests: ${guests} Guests (Whole 6-Room Villa)\n💰 Rate: ${currInfo.symbol}${totalPrice.toLocaleString()} (${currency})\n\nPlease confirm availability and payment details. Thank you!`;
     const encoded = encodeURIComponent(text);
     window.open(`https://wa.me/${VILLA_DATA.whatsappNumber}?text=${encoded}`, "_blank");
   };
@@ -52,228 +62,274 @@ export default function RatesBooking({ onOpenBookingModal }: RatesBookingProps) 
     window.open(`tel:${phone.replace(/\s+/g, "")}`, "_self");
   };
 
+  const directPerks = [
+    {
+      icon: BadgePercent,
+      title: "Guaranteed Best Price ($140/nt)",
+      desc: "Save up to 20% compared to third-party OTA commission markups.",
+    },
+    {
+      icon: Users,
+      title: "Entire 6-Room Villa (Up to 12 Guests)",
+      desc: "Zero extra person fees — exclusive private property access.",
+    },
+    {
+      icon: Flame,
+      title: "Complimentary BBQ & Pool Access",
+      desc: "Full private swimming pool & garden barbecue grill equipment.",
+    },
+    {
+      icon: ShieldCheck,
+      title: "Direct Host Support with M. Mangala",
+      desc: "Instant assistance for scooter rentals, airport transfers & tours.",
+    },
+  ];
+
   return (
-    <section id="rates" className="py-16 lg:py-24 bg-white relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+    <section id="rates" className="py-20 lg:py-28 bg-gradient-to-b from-white via-sand-50/60 to-white relative overflow-hidden">
+      
+      {/* Background Subtle Luxury Glows */}
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[700px] h-[500px] bg-gold-200/20 blur-[130px] rounded-full pointer-events-none -z-10" />
+      
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12 sm:space-y-16">
         
-        {/* Mockup Match: Ready to Enjoy Your Stay Banner */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="bg-sand-50 rounded-2xl sm:rounded-3xl border border-sand-200 p-6 sm:p-8 shadow-sm flex flex-col md:flex-row items-center justify-between gap-6"
-        >
-          <div className="flex items-center gap-4 sm:gap-5">
-            <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-gold-100 text-gold-600 flex items-center justify-center shrink-0 border border-gold-200">
-              <Calendar className="w-6 h-6 sm:w-7 sm:h-7" />
-            </div>
-            <div>
-              <h3 className="font-serif text-xl sm:text-2xl font-bold text-charcoal-900 leading-snug">
-                Ready to Enjoy Your Stay?
-              </h3>
-              <p className="text-xs sm:text-sm text-charcoal-500 mt-0.5">
-                Book your stay at Anu Villa and create unforgettable memories.
-              </p>
-            </div>
+        {/* Section Header */}
+        <div className="text-center max-w-3xl mx-auto space-y-3">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-gold-100/70 border border-gold-200 text-gold-800 text-xs font-semibold tracking-widest uppercase font-sans">
+            <Sparkles className="w-3.5 h-3.5 text-gold-600" />
+            <span>TRANSPARENT DIRECT VILLA RATES</span>
           </div>
-
-          <div className="flex flex-wrap items-center gap-3 w-full md:w-auto">
-            <motion.button
-              whileHover={{ scale: 1.03 }}
-              whileTap={{ scale: 0.97 }}
-              onClick={onOpenBookingModal}
-              className="flex-1 md:flex-initial bg-gold-500 hover:bg-gold-600 text-white px-6 py-3 rounded-xl font-medium text-sm shadow-sm transition-all flex items-center justify-center gap-2"
-            >
-              <Calendar className="w-4 h-4" />
-              <span>Book Now</span>
-            </motion.button>
-
-            <motion.button
-              whileHover={{ scale: 1.03 }}
-              whileTap={{ scale: 0.97 }}
-              onClick={handleWhatsAppBooking}
-              className="flex-1 md:flex-initial border border-emerald-600 bg-white hover:bg-emerald-50 text-emerald-700 px-6 py-3 rounded-xl font-medium text-sm transition-all flex items-center justify-center gap-2"
-            >
-              <MessageCircle className="w-4 h-4 fill-emerald-600 text-emerald-600" />
-              <span>WhatsApp Us</span>
-            </motion.button>
-          </div>
-        </motion.div>
-
-        {/* Live Interactive Pricing & Booking Calculator */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
           
-          {/* Left Column: Direct Rates Table & Benefits */}
-          <div className="lg:col-span-6 space-y-6">
-            <div className="space-y-2">
-              <span className="text-xs font-bold tracking-[0.25em] text-gold-600 uppercase">
-                DIRECT VILLA RATES
-              </span>
-              <h2 className="font-serif text-2xl sm:text-3xl text-charcoal-900 font-bold">
-                Exclusive Direct Booking Rates
-              </h2>
-              <p className="text-xs sm:text-sm text-charcoal-600 leading-relaxed">
-                Book direct with Anu Villa management to enjoy guaranteed best price, no booking platform commissions, and complimentary personalized host services.
-              </p>
-            </div>
+          <h2 className="font-editorial text-3xl sm:text-5xl lg:text-[52px] text-charcoal-950 font-normal leading-[1.08] tracking-[-0.02em]">
+            Luxury Stay Without <span className="font-editorial italic text-gold-600">Hidden Fees</span>
+          </h2>
+          
+          <p className="text-charcoal-600 text-sm sm:text-base leading-relaxed font-sans max-w-2xl mx-auto font-normal">
+            Enjoy the entire 6-bedroom villa with private pool, kitchen, and garden in Thalpe North for a fixed direct rate of <strong className="text-charcoal-900 font-semibold">$140 USD per night</strong> for up to 12 guests.
+          </p>
+        </div>
 
-            {/* Currency Switcher */}
-            <div className="p-4 bg-sand-50 rounded-2xl border border-sand-200 space-y-2">
+        {/* Main Bento Layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
+          
+          {/* Left Column: Direct Booking Benefits & Currency Selector */}
+          <div className="lg:col-span-6 space-y-6 sm:space-y-8">
+            
+            {/* Currency Pill Bar */}
+            <div className="bg-white rounded-3xl p-5 sm:p-6 border border-sand-200 shadow-sm space-y-3">
               <div className="flex items-center justify-between">
-                <span className="text-xs font-bold text-charcoal-600 uppercase tracking-wider flex items-center gap-1.5">
-                  <Coins className="w-3.5 h-3.5 text-gold-600" /> Select Currency
+                <span className="text-xs font-bold text-charcoal-800 uppercase tracking-wider flex items-center gap-2">
+                  <Coins className="w-4 h-4 text-gold-600" /> Choose Preferred Currency
                 </span>
-                <span className="text-[11px] text-charcoal-400">Live exchange estimate</span>
+                <span className="text-[11px] text-charcoal-400 font-sans">Updated live exchange</span>
               </div>
-              <div className="grid grid-cols-5 gap-2">
-                {(["USD", "LKR", "EUR", "GBP", "AUD"] as const).map((curr) => (
-                  <button
-                    key={curr}
-                    onClick={() => setCurrency(curr)}
-                    className={`py-2 px-1 rounded-xl text-xs font-bold transition-all ${
-                      currency === curr
-                        ? "bg-gold-500 text-white shadow-sm"
-                        : "bg-white text-charcoal-700 hover:bg-sand-200 border border-sand-200"
-                    }`}
-                  >
-                    {curr}
-                  </button>
-                ))}
+
+              <div className="grid grid-cols-5 gap-2 pt-1">
+                {(["USD", "LKR", "EUR", "GBP", "AUD"] as const).map((curr) => {
+                  const isSelected = currency === curr;
+                  const info = VILLA_DATA.pricing.currencies[curr];
+                  return (
+                    <button
+                      key={curr}
+                      onClick={() => setCurrency(curr)}
+                      className={`py-2.5 px-2 rounded-2xl text-xs font-bold transition-all duration-200 flex flex-col items-center gap-0.5 ${
+                        isSelected
+                          ? "bg-gold-500 text-white shadow-md shadow-gold-500/25 scale-[1.03]"
+                          : "bg-sand-50 hover:bg-sand-100 text-charcoal-700 border border-sand-200/80"
+                      }`}
+                    >
+                      <span className="text-xs font-bold">{curr}</span>
+                      <span className={`text-[10px] font-normal ${isSelected ? "text-gold-100" : "text-charcoal-400"}`}>
+                        {info.symbol}
+                      </span>
+                    </button>
+                  );
+                })}
               </div>
             </div>
 
-            {/* Inclusions checklist */}
-            <div className="space-y-3 pt-2">
-              <h4 className="text-xs font-bold uppercase tracking-wider text-charcoal-400">
-                What’s Included in Your Villa Stay:
-              </h4>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                {[
-                  "Exclusive Use of Whole 4-Bedroom Villa",
-                  "Private Outdoor Swimming Pool",
-                  "2 Fully Equipped Kitchens",
-                  "Air Conditioned Suites with Attached Baths",
-                  "Daily Housekeeping & Pool Cleaning",
-                  "High-speed 100Mbps Wi-Fi",
-                  "Complimentary Tea & Coffee",
-                  "24/7 On-Call Villa Concierge"
-                ].map((inc, i) => (
-                  <div key={i} className="flex items-center gap-2 text-xs text-charcoal-700">
-                    <Check className="w-4 h-4 text-emerald-600 shrink-0" />
-                    <span>{inc}</span>
+            {/* Direct Booking Perks Bento Cards */}
+            <div className="space-y-3">
+              <h3 className="text-xs font-bold tracking-[0.2em] text-charcoal-400 uppercase font-sans">
+                WHY BOOK DIRECT WITH ANU VILLA:
+              </h3>
+              
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                {directPerks.map((perk, idx) => {
+                  const Icon = perk.icon;
+                  return (
+                    <motion.div
+                      key={idx}
+                      whileHover={{ y: -3 }}
+                      className="p-4 rounded-2xl bg-white border border-sand-200/80 shadow-2xs hover:border-gold-300 hover:shadow-md transition-all flex items-start gap-3"
+                    >
+                      <div className="w-9 h-9 rounded-xl bg-gold-50 border border-gold-200/80 text-gold-600 flex items-center justify-center shrink-0 mt-0.5">
+                        <Icon className="w-4 h-4" />
+                      </div>
+                      <div className="space-y-0.5">
+                        <h4 className="font-semibold text-xs sm:text-sm text-charcoal-900 leading-snug">
+                          {perk.title}
+                        </h4>
+                        <p className="text-[11px] text-charcoal-500 leading-relaxed font-sans">
+                          {perk.desc}
+                        </p>
+                      </div>
+                    </motion.div>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Host Direct Contact Banner */}
+            <div className="bg-gradient-to-br from-gold-50/90 via-sand-50 to-white rounded-3xl p-6 border border-gold-200/70 shadow-xs space-y-4">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                <div className="flex items-center gap-3">
+                  <div className="w-12 h-12 rounded-2xl bg-gold-500 text-white font-serif font-bold text-lg flex items-center justify-center shadow-sm shrink-0">
+                    MM
                   </div>
-                ))}
-              </div>
-            </div>
+                  <div>
+                    <span className="text-[10px] font-bold uppercase tracking-widest text-gold-700 block">
+                      VILLA HOST
+                    </span>
+                    <h4 className="font-serif text-lg font-bold text-charcoal-900 leading-tight">
+                      M. Mangala
+                    </h4>
+                    <p className="text-xs text-charcoal-500 font-sans">
+                      Available 24/7 for booking inquiries &amp; special arrangements
+                    </p>
+                  </div>
+                </div>
 
-            {/* Phone Direct Contact Numbers */}
-            <div className="p-4 rounded-2xl bg-gold-50/70 border border-gold-200/80 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-              <div>
-                <span className="text-xs font-bold text-gold-800 uppercase tracking-wider block">
-                  Prefer to call us directly?
-                </span>
-                <p className="text-xs text-charcoal-600 mt-0.5">
-                  Available 24/7 for booking inquiries & special requests
-                </p>
+                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 text-[11px] font-bold self-start sm:self-auto">
+                  <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                  <span>Direct Host Rates</span>
+                </div>
               </div>
-              <div className="flex flex-wrap gap-2">
+
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 pt-1">
                 {VILLA_DATA.phones.map((phone, i) => (
                   <button
                     key={i}
                     onClick={() => handleDirectCall(phone)}
-                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white border border-gold-300 text-xs font-semibold text-charcoal-800 hover:text-gold-600 hover:border-gold-400 shadow-xs"
+                    className="flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl bg-white border border-gold-200/90 text-xs font-semibold text-charcoal-800 hover:text-gold-700 hover:border-gold-400 hover:bg-gold-50/40 shadow-2xs transition-all"
                   >
-                    <Phone className="w-3.5 h-3.5 text-gold-600" />
-                    <span>{phone}</span>
+                    <Phone className="w-3.5 h-3.5 text-gold-600 shrink-0" />
+                    <span className="whitespace-nowrap">{phone}</span>
                   </button>
                 ))}
               </div>
             </div>
+
           </div>
 
-          {/* Right Column: Interactive Instant WhatsApp Booking Engine Card */}
+          {/* Right Column: High-End Live Interactive Booking Engine Card */}
           <div className="lg:col-span-6">
-            <div className="bg-sand-50/80 border border-sand-200 rounded-3xl p-6 sm:p-8 shadow-xl relative">
-              <div className="flex items-center justify-between pb-4 border-b border-sand-200">
-                <div>
-                  <span className="text-xs font-semibold text-gold-600 uppercase tracking-wider">
-                    Whole Villa Booking
+            <div className="bg-white rounded-3xl p-6 sm:p-8 border border-sand-300/80 shadow-2xl shadow-charcoal-900/8 relative overflow-hidden">
+              
+              {/* Top Accent Strip */}
+              <div className="absolute top-0 inset-x-0 h-1.5 bg-gradient-to-r from-gold-400 via-gold-500 to-gold-600" />
+
+              {/* Card Header */}
+              <div className="flex flex-col sm:flex-row sm:items-end justify-between pb-6 border-b border-sand-200 gap-3">
+                <div className="space-y-1">
+                  <span className="text-[10px] font-bold uppercase tracking-[0.22em] text-gold-600 font-sans block">
+                    EXCLUSIVE WHOLE PROPERTY HIRE
                   </span>
-                  <h3 className="font-serif text-xl font-bold text-charcoal-900">
-                    Calculate & Reserve
+                  <h3 className="font-editorial text-2xl sm:text-3xl font-normal text-charcoal-950">
+                    Reserve Entire Villa
                   </h3>
+                  <p className="text-xs text-charcoal-500 font-sans">
+                    6 en-suite A/C bedrooms • Private swimming pool • Kitchen &amp; BBQ
+                  </p>
                 </div>
-                <div className="text-right">
-                  <span className="text-2xl font-bold text-gold-600 font-serif">
-                    {currInfo.symbol} {nightlyRate.toLocaleString()}
+
+                <div className="sm:text-right bg-sand-50 sm:bg-transparent p-3 sm:p-0 rounded-2xl border sm:border-0 border-sand-200">
+                  <div className="flex items-baseline sm:justify-end gap-1.5">
+                    <span className="font-serif text-3xl sm:text-4xl font-semibold text-charcoal-950 tracking-tight">
+                      {currInfo.symbol}{nightlyRate.toLocaleString()}
+                    </span>
+                    <span className="text-xs text-charcoal-500 font-sans font-medium">/ night</span>
+                  </div>
+                  <span className="text-[11px] text-emerald-700 font-semibold block mt-0.5">
+                    ✓ Up to 12 Guests Included
                   </span>
-                  <span className="text-xs text-charcoal-400 block font-normal">/ night</span>
                 </div>
               </div>
 
-              {/* Form Controls */}
-              <div className="py-6 space-y-4">
-                {/* Dates */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  <div>
-                    <label className="block text-xs font-semibold text-charcoal-700 mb-1">
-                      Check-in Date
-                    </label>
-                    <input
-                      type="date"
-                      value={checkIn}
-                      onChange={(e) => handleDateChange(e.target.value, checkOut)}
-                      className="w-full px-3 py-2.5 rounded-xl bg-white border border-sand-300 text-xs text-charcoal-800 focus:outline-none focus:border-gold-500 shadow-xs"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-xs font-semibold text-charcoal-700 mb-1">
-                      Check-out Date
-                    </label>
-                    <input
-                      type="date"
-                      value={checkOut}
-                      onChange={(e) => handleDateChange(checkIn, e.target.value)}
-                      className="w-full px-3 py-2.5 rounded-xl bg-white border border-sand-300 text-xs text-charcoal-800 focus:outline-none focus:border-gold-500 shadow-xs"
-                    />
+              {/* Interactive Form Controls */}
+              <div className="py-6 space-y-5">
+                
+                {/* Connected Date Range Picker Box */}
+                <div className="space-y-1.5">
+                  <label className="block text-xs font-bold text-charcoal-800 uppercase tracking-wider font-sans">
+                    Select Stay Dates
+                  </label>
+                  <div className="grid grid-cols-2 rounded-2xl border border-sand-300 bg-sand-50/50 overflow-hidden divide-x divide-sand-300 shadow-2xs">
+                    <div className="p-3">
+                      <span className="text-[10px] font-bold text-charcoal-400 uppercase tracking-wider block">
+                        CHECK-IN (12:00 PM)
+                      </span>
+                      <input
+                        type="date"
+                        value={checkIn}
+                        onChange={(e) => handleDateChange(e.target.value, checkOut)}
+                        className="w-full mt-1 bg-transparent text-xs sm:text-sm font-semibold text-charcoal-900 focus:outline-none cursor-pointer"
+                      />
+                    </div>
+                    <div className="p-3">
+                      <span className="text-[10px] font-bold text-charcoal-400 uppercase tracking-wider block">
+                        CHECK-OUT (10:00 AM)
+                      </span>
+                      <input
+                        type="date"
+                        value={checkOut}
+                        onChange={(e) => handleDateChange(checkIn, e.target.value)}
+                        className="w-full mt-1 bg-transparent text-xs sm:text-sm font-semibold text-charcoal-900 focus:outline-none cursor-pointer"
+                      />
+                    </div>
                   </div>
                 </div>
 
-                {/* Guests & Nights Slider */}
-                <div className="grid grid-cols-2 gap-3">
-                  <div>
-                    <label className="block text-xs font-semibold text-charcoal-700 mb-1">
-                      Number of Guests
+                {/* Guests & Nights Selector Row */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {/* Guests */}
+                  <div className="space-y-1.5">
+                    <label className="block text-xs font-bold text-charcoal-800 uppercase tracking-wider font-sans">
+                      Guests (Max 12)
                     </label>
                     <select
                       value={guests}
                       onChange={(e) => setGuests(Number(e.target.value))}
-                      className="w-full px-3 py-2.5 rounded-xl bg-white border border-sand-300 text-xs text-charcoal-800 focus:outline-none focus:border-gold-500 shadow-xs"
+                      className="w-full px-3.5 py-3 rounded-2xl bg-sand-50 border border-sand-300 text-xs sm:text-sm font-medium text-charcoal-900 focus:outline-none focus:border-gold-500 cursor-pointer shadow-2xs"
                     >
-                      {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((num) => (
+                      {[2, 4, 6, 8, 10, 12].map((num) => (
                         <option key={num} value={num}>
-                          {num} {num === 1 ? "Guest" : "Guests"}
+                          {num} Guests ({num <= 2 ? "1-2 Rooms" : num <= 6 ? "3-4 Rooms" : "All 6 Rooms"})
                         </option>
                       ))}
                     </select>
                   </div>
-                  <div>
-                    <label className="block text-xs font-semibold text-charcoal-700 mb-1">
-                      Total Nights
+
+                  {/* Nights Stepper */}
+                  <div className="space-y-1.5">
+                    <label className="block text-xs font-bold text-charcoal-800 uppercase tracking-wider font-sans">
+                      Duration
                     </label>
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center rounded-2xl border border-sand-300 bg-sand-50 p-1 shadow-2xs">
                       <button
+                        type="button"
                         onClick={() => setNights(Math.max(1, nights - 1))}
-                        className="w-9 h-9 rounded-lg bg-white border border-sand-300 text-charcoal-700 font-bold hover:bg-sand-100 flex items-center justify-center text-sm"
+                        className="w-10 h-10 rounded-xl bg-white hover:bg-sand-100 text-charcoal-800 font-bold border border-sand-200 shadow-2xs flex items-center justify-center text-base transition-colors"
                       >
                         -
                       </button>
-                      <span className="flex-1 text-center font-bold text-charcoal-900 text-sm">
+                      <span className="flex-1 text-center font-serif font-bold text-charcoal-950 text-sm sm:text-base">
                         {nights} {nights === 1 ? "Night" : "Nights"}
                       </span>
                       <button
+                        type="button"
                         onClick={() => setNights(nights + 1)}
-                        className="w-9 h-9 rounded-lg bg-white border border-sand-300 text-charcoal-700 font-bold hover:bg-sand-100 flex items-center justify-center text-sm"
+                        className="w-10 h-10 rounded-xl bg-white hover:bg-sand-100 text-charcoal-800 font-bold border border-sand-200 shadow-2xs flex items-center justify-center text-base transition-colors"
                       >
                         +
                       </button>
@@ -281,44 +337,75 @@ export default function RatesBooking({ onOpenBookingModal }: RatesBookingProps) 
                   </div>
                 </div>
 
-                {/* Price Breakdown Box */}
-                <div className="p-4 bg-white rounded-2xl border border-sand-200 space-y-2 mt-4">
-                  <div className="flex justify-between text-xs text-charcoal-600">
+                {/* Transparent Price Summary Ledger */}
+                <div className="rounded-2xl bg-sand-50 border border-sand-200 p-4 space-y-2.5 font-sans">
+                  <div className="flex justify-between text-xs text-charcoal-700">
                     <span>
-                      {currInfo.symbol} {nightlyRate.toLocaleString()} × {nights} {nights === 1 ? "night" : "nights"}
+                      {currInfo.symbol}{nightlyRate.toLocaleString()} × {nights} {nights === 1 ? "night" : "nights"}
                     </span>
-                    <span>{currInfo.symbol} {totalPrice.toLocaleString()}</span>
+                    <span className="font-semibold text-charcoal-900">
+                      {currInfo.symbol}{totalPrice.toLocaleString()}
+                    </span>
                   </div>
-                  <div className="flex justify-between text-xs text-emerald-600 font-medium">
-                    <span>Direct Booking Discount</span>
-                    <span>FREE Amenities Included</span>
+
+                  <div className="flex justify-between text-xs text-charcoal-700">
+                    <span>6 Private Attached Bathrooms &amp; A/C</span>
+                    <span className="font-semibold text-emerald-700">Included ($0)</span>
                   </div>
-                  <div className="pt-2 border-t border-sand-100 flex justify-between items-center">
-                    <span className="text-sm font-bold text-charcoal-900">Estimated Total:</span>
-                    <span className="font-serif text-xl font-bold text-gold-600">
-                      {currInfo.symbol} {totalPrice.toLocaleString()}
+
+                  <div className="flex justify-between text-xs text-charcoal-700">
+                    <span>Swimming Pool, Kitchen &amp; BBQ Use</span>
+                    <span className="font-semibold text-emerald-700">Included ($0)</span>
+                  </div>
+
+                  <div className="flex justify-between text-xs text-charcoal-700">
+                    <span>Third-Party Platform Booking Fees</span>
+                    <span className="font-semibold text-emerald-700">WAIVED ($0)</span>
+                  </div>
+
+                  <div className="pt-3 border-t border-sand-200 flex justify-between items-baseline">
+                    <div>
+                      <span className="text-sm font-bold text-charcoal-950 block">Guaranteed Total:</span>
+                      <span className="text-[11px] text-charcoal-400 font-normal">No hidden fees or extra person tax</span>
+                    </div>
+                    <span className="font-serif text-2xl sm:text-3xl font-bold text-gold-600">
+                      {currInfo.symbol}{totalPrice.toLocaleString()}
                     </span>
                   </div>
                 </div>
 
-                {/* Direct Action Button */}
+                {/* Direct Action Button with Official WhatsApp Icon */}
                 <motion.button
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                   onClick={handleWhatsAppBooking}
-                  className="w-full bg-[#25D366] hover:bg-[#20ba59] text-white py-3.5 rounded-xl font-semibold text-sm shadow-md transition-all flex items-center justify-center gap-2 mt-4"
+                  className="w-full bg-[#25D366] hover:bg-[#20ba59] text-white py-4 rounded-2xl font-semibold text-sm sm:text-base shadow-lg shadow-emerald-500/20 transition-all flex items-center justify-center gap-2.5 group cursor-pointer"
                 >
-                  <MessageCircle className="w-5 h-5 fill-current" />
-                  <span>Instant Reserve on WhatsApp</span>
+                  <svg
+                    viewBox="0 0 24 24"
+                    className="w-5 h-5 fill-current shrink-0"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.03 14.69 2 12.04 2ZM12.05 20.15C10.57 20.15 9.12 19.75 7.85 19L7.55 18.82L4.43 19.64L5.26 16.59L5.06 16.27C4.24 14.97 3.8 13.46 3.8 11.91C3.8 7.37 7.5 3.67 12.05 3.67C14.25 3.67 16.31 4.53 17.87 6.09C19.42 7.65 20.28 9.72 20.28 11.92C20.28 16.46 16.58 20.15 12.05 20.15ZM16.57 14.39C16.32 14.26 15.1 13.66 14.87 13.58C14.65 13.5 14.49 13.46 14.32 13.71C14.16 13.96 13.69 14.51 13.54 14.68C13.4 14.84 13.25 14.86 13 14.74C12.75 14.61 11.95 14.35 11 13.51C10.26 12.85 9.76 12.04 9.61 11.79C9.47 11.54 9.6 11.4 9.72 11.28C9.83 11.17 9.97 10.99 10.1 10.84C10.22 10.7 10.26 10.59 10.34 10.43C10.42 10.26 10.38 10.12 10.32 10C10.26 9.87 9.76 8.65 9.56 8.14C9.36 7.65 9.15 7.71 9 7.71C8.86 7.7 8.7 7.7 8.53 7.7C8.37 7.7 8.1 7.76 7.87 8.01C7.65 8.26 7.02 8.85 7.02 10.05C7.02 11.25 7.9 12.4 8.02 12.57C8.14 12.73 9.74 15.2 12.21 16.27C12.8 16.52 13.26 16.67 13.61 16.79C14.2 16.97 14.74 16.95 15.17 16.88C15.65 16.81 16.64 16.28 16.85 15.7C17.05 15.11 17.05 14.61 16.99 14.51C16.93 14.41 16.82 14.51 16.57 14.39Z" />
+                  </svg>
+                  <span>Instant Reserve on WhatsApp — Host M. Mangala</span>
                 </motion.button>
 
-                <p className="text-[11px] text-center text-charcoal-400 flex items-center justify-center gap-1">
-                  <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
-                  No instant charge • Direct contact with villa host
-                </p>
+                {/* Trust Badges */}
+                <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 pt-1 text-[11px] text-charcoal-500">
+                  <span className="flex items-center gap-1">
+                    <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" /> Verified Host Direct
+                  </span>
+                  <span>•</span>
+                  <span>⚡ Instant Reply</span>
+                  <span>•</span>
+                  <span>🏖️ 1.5 km to Thalpe Beach</span>
+                </div>
+
               </div>
             </div>
           </div>
+
         </div>
       </div>
     </section>

@@ -3,8 +3,6 @@
 @tailwind utilities;
 
 :root {
-  --font-playfair: 'Playfair Display', serif;
-  --font-jakarta: 'Plus Jakarta Sans', sans-serif;
   --primary-gold: #C59152;
   --gold-glow: rgba(197, 145, 82, 0.25);
   --bg-sand: #FAF9F5;
@@ -13,14 +11,24 @@
 html {
   scroll-behavior: smooth;
   color-scheme: light;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
   background-color: var(--bg-sand);
-  color: #2D3748;
-  font-family: var(--font-jakarta), sans-serif;
+  color: #25292E;
+  font-family: var(--font-jakarta), system-ui, -apple-system, sans-serif;
   overflow-x: hidden;
-  -webkit-font-smoothing: antialiased;
+  font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
+}
+
+/* Luxury Editorial Headings */
+h1, h2, h3, .font-editorial {
+  font-family: var(--font-cormorant), var(--font-playfair), Georgia, serif;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
 }
 
 /* Custom Scrollbar */
@@ -40,16 +48,16 @@ body {
 
 /* Glassmorphism Classes */
 .glass-panel {
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
 }
 
 .glass-badge {
-  background: rgba(255, 255, 255, 0.92);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.08);
 }
 
