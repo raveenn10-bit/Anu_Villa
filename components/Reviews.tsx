@@ -7,7 +7,7 @@ import { VILLA_DATA } from "@/data/villaData";
 import { useAutoScroll } from "@/hooks/useAutoScroll";
 
 export default function Reviews() {
-  const scrollRef = useRef<HTMLDivElement>(null);
+  const scrollRef = useAutoScroll<HTMLDivElement>({ interval: 3500, pauseAfterTouch: 4000 });
 
   const handleScroll = (dir: "left" | "right") => {
     if (scrollRef.current) {

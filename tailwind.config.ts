@@ -24,6 +24,19 @@ const config: Config = {
           800: '#6D4720',
           900: '#4D3117',
         },
+        ocean: {
+          50:  '#F2FAFF',
+          100: '#DFF7FF',   // Plate 1 & 3 Light Sky Aqua
+          200: '#BBEAFF',
+          300: '#7FCDFF',   // Plate 1 & 3 Vibrant Coastal Azure
+          400: '#5BBBEF',   // Plate 2 Core Ocean Breeze
+          500: '#36A7E8',
+          600: '#1B87CA',
+          700: '#166BA3',
+          800: '#175A85',
+          900: '#184B6E',
+          950: '#0E3048',
+        },
         sand: {
           50:  '#FAF9F5',
           100: '#F4F1EA',

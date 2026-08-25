@@ -29,7 +29,7 @@ interface RoomsFacilitiesProps {
 export default function RoomsFacilities({ onOpenBooking }: RoomsFacilitiesProps) {
   const [selectedFacility, setSelectedFacility] = useState<FacilityItem | null>(null);
   const [showAllModal, setShowAllModal] = useState(false);
-  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const scrollContainerRef = useAutoScroll<HTMLDivElement>({ interval: 3200, pauseAfterTouch: 4000 });
 
   const getIcon = (iconName: string) => {
     switch (iconName) {
@@ -151,7 +151,13 @@ export default function RoomsFacilities({ onOpenBooking }: RoomsFacilitiesProps)
                   <div className="absolute inset-0 bg-gradient-to-br from-amber-900/[0.07] to-transparent pointer-events-none z-[3]" />
 
                   {/* Floating Icon badge */}
-                  <div className="absolute top-3.5 left-3.5 w-10 h-10 rounded-xl bg-white/95 backdrop-blur-md text-gold-700 flex items-center justify-center shadow-md">
+                  <div
+                    className={`absolute top-3.5 left-3.5 w-10 h-10 rounded-xl flex items-center justify-center shadow-md ${
+                      item.iconName === "Waves"
+                        ? "bg-ocean-plate-1 text-[#0E3048] border border-[#7FCDFF]"
+                        : "bg-white/95 backdrop-blur-md text-gold-700"
+                    }`}
+                  >
                     <IconComponent className="w-5 h-5" />
                   </div>
 

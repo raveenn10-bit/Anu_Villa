@@ -9,7 +9,7 @@ import { useAutoScroll } from "@/hooks/useAutoScroll";
 
 export default function NearbyPlaces() {
   const [selectedPlace, setSelectedPlace] = useState<NearbyPlace | null>(null);
-  const scrollRef = useRef<HTMLDivElement>(null);
+  const scrollRef = useAutoScroll<HTMLDivElement>({ interval: 3400, pauseAfterTouch: 4000 });
 
   const handleScroll = (dir: "left" | "right") => {
     if (scrollRef.current) {
@@ -26,12 +26,12 @@ export default function NearbyPlaces() {
         
         {/* Chapter Header */}
         <div className="flex items-center gap-3 mb-8 sm:mb-12">
-          <span className="font-serif text-sm font-semibold tracking-[0.2em] text-gold-600 uppercase font-sans">
+          <span className="font-serif text-sm font-semibold tracking-[0.2em] text-ocean-700 uppercase font-sans">
             05 / THE SOUTHERN COAST GUIDE
           </span>
           <div className="flex-1 h-[1px] bg-sand-300/80" />
-          <span className="text-xs text-charcoal-400 font-sans hidden sm:inline">
-            1.5 km to Coastline
+          <span className="text-xs text-ocean-600 font-sans hidden sm:inline font-medium">
+            1.5 km to Turtle Lagoon
           </span>
         </div>
 
@@ -47,7 +47,7 @@ export default function NearbyPlaces() {
           </div>
 
           {/* Mobile Arrows */}
-          <div className="flex md:hidden items-center gap-1.5 bg-sand-200/70 p-1 rounded-xl self-start">
+          <div className="flex md:hidden items-center gap-1.5 bg-ocean-100/80 p-1 rounded-xl self-start border border-ocean-200">
             <button
               onClick={() => handleScroll("left")}
               aria-label="Scroll left"
@@ -79,7 +79,7 @@ export default function NearbyPlaces() {
               transition={{ duration: 0.6, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
               whileHover={{ y: -6 }}
               onClick={() => setSelectedPlace(place)}
-              className="w-[85vw] max-w-[340px] md:w-auto md:max-w-none flex-shrink-0 snap-start group cursor-pointer bg-white rounded-3xl overflow-hidden border border-sand-200 hover:border-gold-300 transition-all duration-300 shadow-xs hover:shadow-xl flex flex-col justify-between"
+              className="w-[85vw] max-w-[340px] md:w-auto md:max-w-none flex-shrink-0 snap-start group cursor-pointer bg-white rounded-3xl overflow-hidden border border-sand-200 hover:border-ocean-300 transition-all duration-300 shadow-xs hover:shadow-xl flex flex-col justify-between"
             >
               {/* Image Container */}
               <div className="relative h-52 sm:h-56 w-full overflow-hidden bg-sand-200">
@@ -92,15 +92,15 @@ export default function NearbyPlaces() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-noir-950/70 via-transparent to-transparent opacity-80" />
 
-                {/* Distance Badge */}
-                <div className="absolute top-3.5 left-3.5 bg-white/95 backdrop-blur-md px-3 py-1 rounded-full text-[11px] font-bold text-charcoal-900 flex items-center gap-1.5 shadow-sm border border-sand-200/60 font-sans">
-                  <Clock className="w-3 h-3 text-gold-600" />
+                {/* Distance Badge with Ocean Breeze Plate 1 */}
+                <div className="absolute top-3.5 left-3.5 bg-ocean-plate-1 px-3 py-1 rounded-full text-[11px] font-bold text-[#0E3048] flex items-center gap-1.5 shadow-sm border border-[#7FCDFF] font-sans">
+                  <Clock className="w-3 h-3 text-[#0E3048]" />
                   <span>{place.travelTime}</span>
-                  <span className="text-charcoal-400 font-normal">({place.distance})</span>
+                  <span className="text-[#0E3048]/75 font-normal">({place.distance})</span>
                 </div>
 
                 <div className="absolute bottom-3 left-4 right-4">
-                  <span className="text-[10px] font-bold uppercase tracking-widest text-gold-300 font-sans block">
+                  <span className="text-[10px] font-bold uppercase tracking-widest text-ocean-200 font-sans block">
                     {place.category}
                   </span>
                   <h3 className="font-serif text-lg font-semibold text-white leading-tight">

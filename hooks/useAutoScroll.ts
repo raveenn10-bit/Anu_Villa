@@ -2,78 +2,34 @@
 
 import { useEffect, useRef, useCallback } from "react";
 
-interface UseAutoScrollOptions {
-  /** Speed in pixels per second (default: 40) */
-  speed?: number;
-  /** Delay before auto-scroll starts in ms (default: 1200) */
-  startDelay?: number;
-  /** Pause duration after user touches in ms (default: 3000) */
+interface UseSmoothCardAutoScrollOptions {
+  /** Interval in ms between card transitions (default: 3200) */
+  interval?: number;
+  /** Pause duration after user interaction in ms (default: 4000) */
   pauseAfterTouch?: number;
-  /** Only activate below this screen width in px (default: 768) */
+  /** Only auto-scroll below this width in px (default: 1024) */
   mobileBreakpoint?: number;
 }
 
 /**
- * useAutoScroll — Smooth, infinite horizontal auto-scroll for mobile carousels.
- * - Activates only on mobile (below mobileBreakpoint).
- * - Pauses on touch/pointer start, resumes after pauseAfterTouch ms.
- * - Seamlessly loops back to start when reaching the end.
- * - Respects prefers-reduced-motion media query.
+ * useSmoothCardAutoScroll — Step-by-step silky smooth card carousel auto-scroll on mobile & portrait.
+ * - Transitions smoothly card-by-card every 3.2s.
+ * - Snaps precisely without clipping or jitter.
+ * - Loops smoothly back to start upon reaching the end.
+ * - Pauses on user touch/pointer interaction and resumes after pauseAfterTouch ms.
  */
 export function useAutoScroll<T extends HTMLElement>(
-  options: UseAutoScrollOptions = {}
+  options: UseSmoothCardAutoScrollOptions = {}
 ) {
   const {
-    speed = 40,
-    startDelay = 1200,
-    pauseAfterTouch = 3000,
-    mobileBreakpoint = 768,
+    interval = 3200,
+    pauseAfterTouch = 4000,
+    mobileBreakpoint = 1024,
   } = options;
 
   const ref = useRef<T>(null);
-  const animFrameRef = useRef<number | null>(null);
-  const lastTimeRef = useRef<number | null>(null);
   const isPausedRef = useRef(false);
   const resumeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const isActiveRef = useRef(false);
-
-  const stopAnimation = useCallback(() => {
-    if (animFrameRef.current) {
-      cancelAnimationFrame(animFrameRef.current);
-      animFrameRef.current = null;
-    }
-    lastTimeRef.current = null;
-  }, []);
-
-  const animate = useCallback(
-    (timestamp: number) => {
-      const el = ref.current;
-      if (!el || isPausedRef.current) {
-        lastTimeRef.current = null;
-        animFrameRef.current = requestAnimationFrame(animate);
-        return;
-      }
-
-      if (lastTimeRef.current === null) {
-        lastTimeRef.current = timestamp;
-      }
-
-      const delta = timestamp - lastTimeRef.current;
-      lastTimeRef.current = timestamp;
-
-      const pixelsToScroll = (speed * delta) / 1000;
-      el.scrollLeft += pixelsToScroll;
-
-      // Loop: if we've scrolled past halfway point, jump back to start smoothly
-      const maxScroll = el.scrollWidth - el.clientWidth;
-      if (el.scrollLeft >= maxScroll - 2) {
-        el.scrollLeft = 0;
-      }
-
-      animFrameRef.current = requestAnimationFrame(animate);
-    },
-    [speed]
-  );
 
   const handleInteractionStart = useCallback(() => {
     isPausedRef.current = true;
@@ -91,17 +47,29 @@ export function useAutoScroll<T extends HTMLElement>(
     const el = ref.current;
     if (!el) return;
 
-    // Respect prefers-reduced-motion
-    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reducedMotion) return;
+    const checkShouldScroll = () => {
+      if (typeof window === "undefined") return false;
+      return (
+        window.innerWidth < mobileBreakpoint ||
+        window.matchMedia("(orientation: portrait)").matches
+      );
+    };
 
-    // Only run on mobile
-    const checkMobile = () => window.innerWidth < mobileBreakpoint;
-    if (!checkMobile()) return;
+    const timer = setInterval(() => {
+      if (!el || isPausedRef.current || !checkShouldScroll()) return;
 
-    isActiveRef.current = true;
+      const card = el.firstElementChild as HTMLElement | null;
+      const scrollStep = card ? card.offsetWidth + 16 : 300;
+      const maxScroll = el.scrollWidth - el.clientWidth;
 
-    // Attach event listeners for pause on touch/mouse
+      if (el.scrollLeft >= maxScroll - 20) {
+        // Loop back to start smoothly
+        el.scrollTo({ left: 0, behavior: "smooth" });
+      } else {
+        el.scrollBy({ left: scrollStep, behavior: "smooth" });
+      }
+    }, interval);
+
     el.addEventListener("touchstart", handleInteractionStart, { passive: true });
     el.addEventListener("touchend", handleInteractionEnd, { passive: true });
     el.addEventListener("mouseenter", handleInteractionStart);
@@ -109,31 +77,9 @@ export function useAutoScroll<T extends HTMLElement>(
     el.addEventListener("pointerdown", handleInteractionStart);
     el.addEventListener("pointerup", handleInteractionEnd);
 
-    // Start animation after delay
-    const startTimer = setTimeout(() => {
-      if (isActiveRef.current) {
-        animFrameRef.current = requestAnimationFrame(animate);
-      }
-    }, startDelay);
-
-    // Resize observer: stop auto-scroll when screen becomes desktop
-    const resizeObserver = new ResizeObserver(() => {
-      if (!checkMobile()) {
-        stopAnimation();
-        isActiveRef.current = false;
-      } else if (!isActiveRef.current) {
-        isActiveRef.current = true;
-        animFrameRef.current = requestAnimationFrame(animate);
-      }
-    });
-    resizeObserver.observe(document.body);
-
     return () => {
-      clearTimeout(startTimer);
+      clearInterval(timer);
       if (resumeTimerRef.current) clearTimeout(resumeTimerRef.current);
-      stopAnimation();
-      isActiveRef.current = false;
-      resizeObserver.disconnect();
       el.removeEventListener("touchstart", handleInteractionStart);
       el.removeEventListener("touchend", handleInteractionEnd);
       el.removeEventListener("mouseenter", handleInteractionStart);
@@ -141,7 +87,7 @@ export function useAutoScroll<T extends HTMLElement>(
       el.removeEventListener("pointerdown", handleInteractionStart);
       el.removeEventListener("pointerup", handleInteractionEnd);
     };
-  }, [animate, handleInteractionStart, handleInteractionEnd, mobileBreakpoint, startDelay, stopAnimation]);
+  }, [interval, mobileBreakpoint, handleInteractionStart, handleInteractionEnd]);
 
   return ref;
 }

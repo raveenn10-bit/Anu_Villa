@@ -49,25 +49,26 @@ export default function About({ onOpenBooking }: AboutProps) {
               <div className="absolute inset-0 bg-gradient-to-t from-noir-950/60 via-transparent to-transparent opacity-70 pointer-events-none" />
 
               {/* Floating Architectural Badge */}
-              <div className="absolute bottom-4 left-4 right-4 sm:bottom-6 sm:left-6 sm:right-6 p-3.5 sm:p-4 rounded-2xl bg-white/95 backdrop-blur-md border border-white/40 shadow-lg">
+              <div className="absolute bottom-4 left-4 right-4 sm:bottom-6 sm:left-6 sm:right-6 p-3.5 sm:p-4 rounded-2xl bg-gradient-to-r from-white/95 via-ocean-50/90 to-white/95 backdrop-blur-md border border-[#7FCDFF]/40 shadow-xl">
                 <div className="flex items-center justify-between">
                   <div>
-                    <span className="text-[10px] uppercase font-bold tracking-widest text-gold-600 block">
-                      PRIVATE PROPERTY
+                    <span className="text-[10px] uppercase font-bold tracking-widest text-[#166BA3] block font-sans">
+                      PRIVATE SANCTUARY
                     </span>
                     <h4 className="font-serif text-sm sm:text-base font-bold text-charcoal-900">
                       6 Suites • 12 Guests Max
                     </h4>
                   </div>
-                  <span className="font-ui text-xs sm:text-sm font-bold text-gold-700 bg-gold-50 px-3 py-1 rounded-xl border border-gold-200">
+                  <span className="font-ui text-xs sm:text-sm font-bold text-[#0E3048] bg-ocean-plate-1 px-3 py-1 rounded-xl border border-[#7FCDFF] shadow-2xs">
                     $140 / nt
                   </span>
                 </div>
               </div>
             </div>
 
-            {/* Subtle atmospheric glow */}
-            <div className="absolute -bottom-6 -left-6 w-40 h-40 bg-gold-200/30 rounded-full blur-3xl -z-10" />
+            {/* Subtle atmospheric ocean breeze glow */}
+            <div className="absolute -bottom-6 -left-6 w-48 h-48 bg-ocean-300/25 rounded-full blur-3xl -z-10" />
+            <div className="absolute -top-6 -right-6 w-40 h-40 bg-gold-200/20 rounded-full blur-3xl -z-10" />
           </motion.div>
 
           {/* Right Column: Editorial Narrative & Stay Parameters */}

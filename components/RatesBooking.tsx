@@ -91,6 +91,7 @@ export default function RatesBooking({ onOpenBookingModal }: RatesBookingProps) 
       
       {/* Background Subtle Luxury Glows */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[700px] h-[500px] bg-gold-200/20 blur-[130px] rounded-full pointer-events-none -z-10" />
+      <div className="absolute top-1/3 right-10 w-[500px] h-[400px] bg-ocean-300/15 blur-[140px] rounded-full pointer-events-none -z-10" />
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12 sm:space-y-16">
         
@@ -158,13 +159,20 @@ export default function RatesBooking({ onOpenBookingModal }: RatesBookingProps) 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                 {directPerks.map((perk, idx) => {
                   const Icon = perk.icon;
+                  const isOceanBreeze = idx === 2; // Complimentary BBQ & Pool
                   return (
                     <motion.div
                       key={idx}
                       whileHover={{ y: -3 }}
                       className="p-4 rounded-2xl bg-white border border-sand-200/80 shadow-2xs hover:border-gold-300 hover:shadow-md transition-all flex items-start gap-3"
                     >
-                      <div className="w-9 h-9 rounded-xl bg-gold-50 border border-gold-200/80 text-gold-600 flex items-center justify-center shrink-0 mt-0.5">
+                      <div
+                        className={`w-9 h-9 rounded-xl flex items-center justify-center shrink-0 mt-0.5 ${
+                          isOceanBreeze
+                            ? "bg-ocean-plate-1 border border-[#7FCDFF] text-[#0E3048]"
+                            : "bg-gold-50 border border-gold-200/80 text-gold-600"
+                        }`}
+                      >
                         <Icon className="w-4 h-4" />
                       </div>
                       <div className="space-y-0.5">

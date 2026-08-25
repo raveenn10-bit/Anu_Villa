@@ -614,4 +614,82 @@ small, .text-fine {
   will-change: transform;
 }
 
+/* ═══════════════════════════════════════════════════════════════════
+   03 OCEAN BREEZE COLOR PLATES
+   Plate 1: Gradient #DFF7FF (Top) to #7FCDFF (Bottom)
+   Plate 2: Solid / Accent #5BBBEF ("Ocean Breeze")
+   Plate 3: Gradient #7FCDFF (Top) to #DFF7FF (Bottom)
+═══════════════════════════════════════════════════════════════════ */
+.bg-ocean-plate-1 {
+  background: linear-gradient(180deg, #DFF7FF 0%, #7FCDFF 100%);
+}
+
+.bg-ocean-plate-2 {
+  background: linear-gradient(180deg, #5BBBEF 0%, #3BA5E6 100%);
+}
+
+.bg-ocean-plate-3 {
+  background: linear-gradient(180deg, #7FCDFF 0%, #DFF7FF 100%);
+}
+
+.bg-ocean-breeze-mesh {
+  background: radial-gradient(circle at 10% 20%, rgba(223, 247, 255, 0.6) 0%, transparent 40%),
+              radial-gradient(circle at 90% 80%, rgba(127, 205, 255, 0.4) 0%, transparent 40%),
+              radial-gradient(circle at 50% 50%, rgba(91, 187, 239, 0.15) 0%, transparent 60%);
+}
+
+.badge-ocean-plate-1 {
+  background: linear-gradient(180deg, rgba(223, 247, 255, 0.95) 0%, rgba(127, 205, 255, 0.85) 100%);
+  border: 1px solid #7FCDFF;
+  color: #0E3048;
+}
+
+.badge-ocean-plate-2 {
+  background: #5BBBEF;
+  border: 1px solid #36A7E8;
+  color: #FFFFFF;
+}
+
+.badge-ocean-plate-3 {
+  background: linear-gradient(180deg, rgba(127, 205, 255, 0.9) 0%, rgba(223, 247, 255, 0.95) 100%);
+  border: 1px solid #7FCDFF;
+  color: #0E3048;
+}
+
+.glow-ocean-plate {
+  box-shadow: 0 10px 30px -5px rgba(91, 187, 239, 0.35);
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   HERO RESPONSIVE BACKGROUND: PORTRAIT / MOBILE vs LANDSCAPE DESKTOP
+   - Mobile devices (< 1024px) OR any screen in Portrait (1080x1920, vertical monitors, etc.) -> VIDEO
+   - Landscape Desktop (width >= 1024px AND aspect-ratio > 1) -> 3-IMAGE SLIDESHOW
+═══════════════════════════════════════════════════════════════════ */
+.hero-video-portrait {
+  display: none;
+}
+.hero-slideshow-landscape {
+  display: block;
+}
+
+@media (orientation: portrait), (max-width: 1023px) {
+  .hero-video-portrait {
+    display: block !important;
+  }
+  .hero-slideshow-landscape {
+    display: none !important;
+  }
+}
+
+@media (orientation: landscape) and (min-width: 1024px) {
+  .hero-video-portrait {
+    display: none !important;
+  }
+  .hero-slideshow-landscape {
+    display: block !important;
+  }
+}
+
+
+
 

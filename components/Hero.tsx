@@ -65,8 +65,8 @@ export default function Hero({ onOpenBooking, onExplore }: HeroProps) {
       {/* ── Background Media Container ───────────────────────────────── */}
       <div className="absolute inset-0 z-0 w-full h-full overflow-hidden pointer-events-none">
         
-        {/* 1. Desktop Landscape View: 3-Image Slideshow (>= lg) */}
-        <div className="hidden lg:block absolute inset-0 w-full h-full">
+        {/* 1. Desktop Landscape View: 3-Image Slideshow */}
+        <div className="hero-slideshow-landscape absolute inset-0 w-full h-full">
           <AnimatePresence mode="sync">
             <motion.div
               key={currentSlide}
@@ -88,13 +88,14 @@ export default function Hero({ onOpenBooking, onExplore }: HeroProps) {
           </AnimatePresence>
         </div>
 
-        {/* 2. Mobile & Portrait View: Looping Cinematic Video (< lg) */}
-        <div className="block lg:hidden absolute inset-0 w-full h-full">
+        {/* 2. Mobile & Portrait View: Looping Cinematic Video (e.g. 1080x1920, mobile, tablet portrait) */}
+        <div className="hero-video-portrait absolute inset-0 w-full h-full">
           <video
             autoPlay
             loop
             muted
             playsInline
+            preload="auto"
             poster="/images/villa/apartment-1/apartment-1-08.webp"
             className="w-full h-full object-cover object-center scale-[1.02] filter brightness-[0.76] contrast-[1.06] saturate-[0.92]"
           >
@@ -139,25 +140,29 @@ export default function Hero({ onOpenBooking, onExplore }: HeroProps) {
           transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
           className="bg-white/95 backdrop-blur-md rounded-2xl shadow-xl shadow-black/10 border border-sand-200 p-3 sm:p-5 lg:p-6 relative"
         >
-          {/* Slide Indicators visible on Desktop */}
-          <div className="hidden lg:flex items-center gap-1.5 absolute -top-3 right-6 bg-noir-950/80 backdrop-blur-md px-3 py-1 rounded-full border border-gold-400/30">
-            {HERO_DESKTOP_SLIDES.map((_, idx) => (
-              <button
-                key={idx}
-                onClick={() => setCurrentSlide(idx)}
-                aria-label={`Go to slide ${idx + 1}`}
-                className={`transition-all duration-300 rounded-full ${
-                  currentSlide === idx
-                    ? "w-5 h-1.5 bg-gold-400"
-                    : "w-1.5 h-1.5 bg-white/40 hover:bg-white/70"
-                }`}
-              />
-            ))}
+          {/* Slide Indicators visible ONLY on Desktop Landscape */}
+          <div className="hero-slideshow-landscape items-center gap-1.5 absolute -top-3 right-6 bg-noir-950/80 backdrop-blur-md px-3 py-1 rounded-full border border-gold-400/30">
+            <div className="flex items-center gap-1.5">
+              {HERO_DESKTOP_SLIDES.map((_, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => setCurrentSlide(idx)}
+                  aria-label={`Go to slide ${idx + 1}`}
+                  className={`transition-all duration-300 rounded-full ${
+                    currentSlide === idx
+                      ? "w-5 h-1.5 bg-gold-400"
+                      : "w-1.5 h-1.5 bg-white/40 hover:bg-white/70"
+                  }`}
+                />
+              ))}
+            </div>
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-2.5 sm:gap-6 md:divide-x md:divide-sand-200">
             {highlights.map((item, index) => {
               const Icon = item.icon;
+              const isOceanBreeze = index === 2; // Private Pool
+              const isCoastal = index === 3; // Thalpe Coast
               return (
                 <div
                   key={index}
@@ -165,7 +170,15 @@ export default function Hero({ onOpenBooking, onExplore }: HeroProps) {
                     index > 0 ? "md:pl-4 lg:pl-6" : ""
                   }`}
                 >
-                  <div className="w-8 h-8 sm:w-11 sm:h-11 rounded-xl bg-gold-50 border border-gold-200 text-gold-600 flex items-center justify-center shrink-0">
+                  <div
+                    className={`w-8 h-8 sm:w-11 sm:h-11 rounded-xl flex items-center justify-center shrink-0 transition-transform hover:scale-105 ${
+                      isOceanBreeze
+                        ? "bg-ocean-plate-1 border border-[#7FCDFF] text-[#0E3048] shadow-xs"
+                        : isCoastal
+                        ? "bg-ocean-plate-3 border border-[#7FCDFF] text-[#0E3048] shadow-xs"
+                        : "bg-gold-50 border border-gold-200 text-gold-600"
+                    }`}
+                  >
                     <Icon className="w-4 h-4 sm:w-5 sm:h-5" />
                   </div>
                   <div>
