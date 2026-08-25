@@ -1,77 +1,82 @@
 "use client";
 
 import React, { useState } from "react";
+import dynamic from "next/dynamic";
+
+// ── Above-the-fold: load immediately (no lazy) ────────────────────
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
-import About from "@/components/About";
-import RoomsFacilities from "@/components/RoomsFacilities";
-import Gallery from "@/components/Gallery";
-import RatesBooking from "@/components/RatesBooking";
-import NearbyPlaces from "@/components/NearbyPlaces";
-import Reviews from "@/components/Reviews";
-import FAQ from "@/components/FAQ";
-import ContactLocation from "@/components/ContactLocation";
-import Footer from "@/components/Footer";
-import BookingModal from "@/components/BookingModal";
 import FloatingWhatsApp from "@/components/FloatingWhatsApp";
+
+// ── Below-the-fold: dynamic import = separate JS chunk ───────────
+// Each component only downloads when the browser is ready.
+// `ssr: false` prevents server-rendering large interactive components,
+// reducing TTFB and eliminating hydration mismatches on modals.
+const About = dynamic(() => import("@/components/About"), {
+  ssr: true,  // keep SSR for SEO content
+});
+const RoomsFacilities = dynamic(() => import("@/components/RoomsFacilities"), {
+  ssr: true,
+});
+const Gallery = dynamic(() => import("@/components/Gallery"), {
+  ssr: true,
+});
+const RatesBooking = dynamic(() => import("@/components/RatesBooking"), {
+  ssr: true,
+});
+const NearbyPlaces = dynamic(() => import("@/components/NearbyPlaces"), {
+  ssr: true,
+});
+const Reviews = dynamic(() => import("@/components/Reviews"), {
+  ssr: true,
+});
+const FAQ = dynamic(() => import("@/components/FAQ"), {
+  ssr: true,
+});
+const ContactLocation = dynamic(() => import("@/components/ContactLocation"), {
+  ssr: true,
+});
+const Footer = dynamic(() => import("@/components/Footer"), {
+  ssr: true,
+});
+
+// Modals: never need SSR — load only when opened
+const BookingModal = dynamic(() => import("@/components/BookingModal"), {
+  ssr: false,
+});
 
 export default function Home() {
   const [bookingModalOpen, setBookingModalOpen] = useState(false);
 
-  const handleOpenBooking = () => {
-    setBookingModalOpen(true);
-  };
-
-  const handleCloseBooking = () => {
-    setBookingModalOpen(false);
-  };
+  const handleOpenBooking = () => setBookingModalOpen(true);
+  const handleCloseBooking = () => setBookingModalOpen(false);
 
   const handleExplore = () => {
-    const facilitiesSection = document.getElementById("facilities");
-    if (facilitiesSection) {
-      facilitiesSection.scrollIntoView({ behavior: "smooth" });
-    }
+    const el = document.getElementById("facilities");
+    if (el) el.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
     <main className="min-h-screen flex flex-col bg-sand-50 text-charcoal-800 selection:bg-gold-500 selection:text-white">
-      {/* Fixed Luxury Navigation */}
+      {/* Above-the-fold — renders immediately */}
       <Navbar onOpenBooking={handleOpenBooking} />
-
-      {/* Hero Section */}
       <Hero onOpenBooking={handleOpenBooking} onExplore={handleExplore} />
 
-      {/* About Section */}
+      {/* Below-the-fold — lazy chunks, load as user scrolls */}
       <About onOpenBooking={handleOpenBooking} />
-
-      {/* Rooms & Facilities Section */}
       <RoomsFacilities onOpenBooking={handleOpenBooking} />
-
-      {/* Gallery Section */}
       <Gallery />
-
-      {/* Rates & Direct Booking Section */}
       <RatesBooking onOpenBookingModal={handleOpenBooking} />
-
-      {/* Nearby Attractions */}
       <NearbyPlaces />
-
-      {/* 5-Star Reviews & Testimonials */}
       <Reviews />
-
-      {/* Frequently Asked Questions */}
       <FAQ />
-
-      {/* Contact & Map Location */}
       <ContactLocation />
-
-      {/* Minimalist Centered Luxury Footer */}
       <Footer />
 
-      {/* Interactive Booking Modal */}
+      {/* Deferred modal — 0 cost until user clicks Book */}
       <BookingModal isOpen={bookingModalOpen} onClose={handleCloseBooking} />
 
-      {/* Floating WhatsApp Concierge with Pill Badge */}
+      {/* WhatsApp pill — tiny component, always visible */}
       <FloatingWhatsApp />
     </main>
   );

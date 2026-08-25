@@ -87,6 +87,7 @@ export default function NearbyPlaces() {
                   src={place.image}
                   alt={place.name}
                   fill
+                  sizes="(max-width: 640px) 280px, (max-width: 1024px) 340px, 380px"
                   className="object-cover transition-transform duration-700 group-hover:scale-108"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-noir-950/70 via-transparent to-transparent opacity-80" />
@@ -157,6 +158,7 @@ export default function NearbyPlaces() {
                   src={selectedPlace.image}
                   alt={selectedPlace.name}
                   fill
+                  sizes="(max-width: 640px) 100vw, 600px"
                   className="object-cover"
                 />
                 <button

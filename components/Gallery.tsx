@@ -125,6 +125,7 @@ export default function Gallery() {
                 src={img.image}
                 alt={img.alt}
                 fill
+                sizes="(max-width: 640px) 240px, (max-width: 1024px) 33vw, 20vw"
                 className="object-cover img-gallery"
               />
               {/* Cinematic card overlay — text legibility on hover */}
@@ -208,6 +209,7 @@ export default function Gallery() {
                       src={img.image}
                       alt={img.alt}
                       fill
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                       className="object-cover transition-transform duration-500 group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-noir-950/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-4 flex items-end">
@@ -258,6 +260,7 @@ export default function Gallery() {
                     src={filteredImages[selectedImageIndex].image}
                     alt={filteredImages[selectedImageIndex].alt}
                     fill
+                    sizes="(max-width: 1024px) 100vw, 1000px"
                     className="object-contain"
                   />
                 </motion.div>

@@ -142,6 +142,7 @@ export default function RoomsFacilities({ onOpenBooking }: RoomsFacilitiesProps)
                     src={item.image}
                     alt={item.title}
                     fill
+                    sizes="(max-width: 640px) 280px, (max-width: 1024px) 340px, 380px"
                     className="object-cover img-gallery"
                   />
                   {/* Cinematic cinematic bottom-to-top text gradient */}
@@ -211,6 +212,7 @@ export default function RoomsFacilities({ onOpenBooking }: RoomsFacilitiesProps)
                   src={selectedFacility.image}
                   alt={selectedFacility.title}
                   fill
+                  sizes="(max-width: 640px) 100vw, 600px"
                   className="object-cover"
                 />
                 <button

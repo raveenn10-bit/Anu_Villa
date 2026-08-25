@@ -41,10 +41,12 @@ export default function Hero({ onOpenBooking, onExplore }: HeroProps) {
       {/* Full-bleed edge-to-edge Cinematic Background Image */}
       <div className="absolute inset-0 z-0 w-full h-full">
         <Image
-          src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=2200&q=90"
+          src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=2000&q=80"
           alt="M.S.A Anu Villa Private Luxury Estate in Thalpe North Unawatuna"
           fill
           priority
+          quality={85}
+          sizes="100vw"
           className="object-cover object-center md:object-right-top scale-[1.02]"
         />
         

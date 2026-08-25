@@ -40,9 +40,10 @@ export default function About({ onOpenBooking }: AboutProps) {
           >
             <div className="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-sand-200 aspect-[4/5] group">
               <Image
-                src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1200&q=85"
+                src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1000&q=80"
                 alt="Anu Villa tropical alfresco patio and private garden"
                 fill
+                sizes="(max-width: 1024px) 100vw, 40vw"
                 className="object-cover transition-transform duration-700 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-noir-950/60 via-transparent to-transparent opacity-70" />
