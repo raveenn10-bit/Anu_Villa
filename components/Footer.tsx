@@ -166,10 +166,19 @@ export default function Footer() {
         {/* 6. Divider Line */}
         <div className="w-full max-w-4xl h-[1px] bg-sand-300 my-2" />
 
-        {/* 7. Copyright Bottom */}
-        <div className="flex items-center justify-center gap-2 text-xs text-charcoal-500 pb-2">
-          <span>Copyright © {new Date().getFullYear()} {VILLA_DATA.officialName}. All Rights Reserved.</span>
-          <Lock className="w-3 h-3 text-charcoal-400" />
+        {/* 7. Copyright & Agency Attribution Bottom */}
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-3 text-xs text-charcoal-500 pb-2 text-center font-sans">
+          <div className="flex items-center gap-1.5">
+            <span>Copyright © {new Date().getFullYear()} {VILLA_DATA.officialName}. All Rights Reserved.</span>
+            <Lock className="w-3 h-3 text-charcoal-400" />
+          </div>
+          <span className="hidden sm:inline text-sand-400">•</span>
+          <div className="text-[11px] text-charcoal-500">
+            Designed &amp; Developed by{" "}
+            <span className="font-bold text-charcoal-900 tracking-wider">
+              HARSH APEX DIGITAL SOLUTIONS
+            </span>
+          </div>
         </div>
 
       </div>
