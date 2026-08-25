@@ -391,6 +391,17 @@ export default function RatesBooking({ onOpenBookingModal }: RatesBookingProps) 
                   <span>Instant Reserve on WhatsApp — Host M. Mangala</span>
                 </motion.button>
 
+                {/* Booking.com Alternative Link Button */}
+                <a
+                  href={VILLA_DATA.social.bookingCom}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="w-full bg-[#003580] hover:bg-[#00224f] text-white py-3 rounded-2xl font-semibold text-xs sm:text-sm shadow-md transition-all flex items-center justify-center gap-2 group"
+                >
+                  <span className="font-extrabold text-sm tracking-tighter text-[#00BAFC]">B.</span>
+                  <span>View Official Listing &amp; Availability on Booking.com</span>
+                </a>
+
                 {/* Trust Badges */}
                 <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 pt-1 text-[11px] text-charcoal-500">
                   <span className="flex items-center gap-1">

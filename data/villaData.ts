@@ -37,6 +37,7 @@ export interface VillaData {
     facebook: string;
     tiktok: string;
     googleMaps: string;
+    bookingCom: string;
   };
   mapCoordinates: {
     lat: number;
@@ -135,6 +136,7 @@ export const VILLA_DATA: VillaData = {
     facebook: "https://www.facebook.com/share/1dwdJ81Bb2/",
     tiktok: "https://www.tiktok.com/@m.s.a.anu.villa?_r=1&_t=ZS-999U9uyxsjl",
     googleMaps: "https://maps.app.goo.gl/dEWkDvk16S6Um1J9A",
+    bookingCom: "https://www.booking.com/hotel/lk/msa-anuvilla-unawatuna.html",
   },
   mapCoordinates: {
     lat: 6.0132375,
@@ -153,32 +155,31 @@ export const VILLA_DATA: VillaData = {
   facilities: [
     {
       id: "bedrooms",
-      title: "6 Spacious Bedrooms",
+      title: "6 Air-Conditioned Suites",
       subtitle: "Accommodates up to 12 Guests",
       iconName: "BedDouble",
-      // Art direction: Warm morning backlight through louvred shutters, cream linen
-      image: "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&fit=crop&w=1000&q=88",
-      description: "6 king and queen bedrooms featuring whisper-quiet air conditioning, plush hotel-grade mattresses, ceiling fans, wardrobe space, and tropical garden views.",
+      image: "/images/villa/apartment-1/apartment-1-08.webp",
+      description: "Spacious independent bedroom suites with canopy four-poster beds, whisper-quiet air conditioning, study desks, ceiling fans, wardrobe space, and tropical garden views.",
       details: [
         "6 Independent spacious bedrooms",
         "Accommodates up to 12 guests",
         "Individual remote-controlled A/C",
+        "Canopy four-poster beds with mosquito netting",
         "Premium linens & fresh towels provided",
-        "Ample luggage storage & wardrobe space",
       ],
     },
     {
       id: "bathrooms",
-      title: "6 Attached Bathrooms",
-      subtitle: "Private En-Suite for Every Room",
+      title: "6 Attached En-Suite Baths",
+      subtitle: "Private Bathroom for Every Room",
       iconName: "Bath",
-      // Art direction: Rain shower, clean white ceramic, warm ambient glow
-      image: "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?auto=format&fit=crop&w=1000&q=88",
-      description: "Every single bedroom has its own private attached bathroom with modern sanitary fittings, hot water showers, and complimentary toiletries.",
+      image: "/images/villa/apartment-2/apartment-2-04.webp",
+      description: "Every single bedroom has its own private attached bathroom with modern polished cement finishes, rain showers, continuous hot water, and complimentary toiletries.",
       details: [
         "6 Private attached en-suite bathrooms",
         "Continuous hot & cold water",
         "Modern rain showerheads",
+        "Artisanal polished cement vanities",
         "Clean towels & essentials supplied",
       ],
     },
@@ -187,7 +188,6 @@ export const VILLA_DATA: VillaData = {
       title: "Private Swimming Pool",
       subtitle: "Exclusive for Your Group",
       iconName: "Waves",
-      // Art direction: Crisp aquamarine water, sun loungers, tropical palm border
       image: "https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?auto=format&fit=crop&w=1000&q=88",
       description: "Dive into your sparkling private outdoor pool, complete with sun loungers, tropical poolside relaxation areas, and evening mood lighting.",
       details: [
@@ -199,29 +199,27 @@ export const VILLA_DATA: VillaData = {
     },
     {
       id: "bbq",
-      title: "BBQ & Outdoor Dining",
-      subtitle: "Alfresco Garden Grill",
+      title: "Veranda Dining & Garden BBQ",
+      subtitle: "Alfresco Tropical Dining",
       iconName: "UtensilsCrossed",
-      // Art direction: Warm evening candlelit table in tropical garden setting
-      image: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1000&q=88",
-      description: "Enjoy festive outdoor barbecue evenings under the stars with our dedicated BBQ grill setup, outdoor dining tables, and garden seating.",
+      image: "/images/villa/apartment-1/apartment-1-05.webp",
+      description: "Enjoy breezy outdoor dining and barbecue evenings surrounded by lush banana and coconut greenery on our covered veranda.",
       details: [
         "Dedicated BBQ grill & accessories",
-        "Outdoor dining table for group meals",
-        "Lush garden atmosphere under the stars",
-        "Host assistance available for seafood sourcing",
+        "Solid timber outdoor dining table",
+        "Lush garden atmosphere under tropical palms",
+        "Host assistance available for fresh local seafood sourcing",
       ],
     },
     {
       id: "kitchen",
-      title: "Kitchen Facilities",
+      title: "Kitchen & Dining Hall",
       subtitle: "Fully Equipped for Home Cooking",
       iconName: "UtensilsCrossed",
-      // Art direction: Natural daylight, clean modern worktop, organised equipment
-      image: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=1000&q=88",
-      description: "Prepare fresh meals with ease in the equipped kitchen featuring gas stove, refrigerator, cookware, dinnerware, microwave, and electric kettle.",
+      image: "/images/villa/room-2/room-2-04.webp",
+      description: "Prepare fresh home meals with ease in the equipped kitchen area featuring gas stove, refrigerator, cookware, dinnerware, microwave, and kettle.",
       details: [
-        "Gas burners & microwave oven",
+        "Gas burners & cooking stations",
         "Large refrigerator & freezer",
         "Pots, pans, dinnerware & cutlery",
         "Electric kettle & Ceylon tea station",
@@ -229,17 +227,16 @@ export const VILLA_DATA: VillaData = {
     },
     {
       id: "garden",
-      title: "Garden & Outdoor Area",
+      title: "Garden & Private Parking",
       subtitle: "Peaceful Natural Sanctuary",
       iconName: "Trees",
-      // Art direction: Lush tropical garden path, dappled noon light through palms
-      image: "https://images.unsplash.com/photo-1585128792020-803d29415281?auto=format&fit=crop&w=1000&q=88",
-      description: "A secure, peaceful garden surrounded by coconut palms and exotic flora, offering private on-site parking and a serene place to unwind.",
+      image: "/images/villa/apartment-2/apartment-2-01.webp",
+      description: "A secure, peaceful estate surrounded by coconut palms and exotic flora, offering private on-site parking and a serene place to unwind.",
       details: [
         "Lush tropical garden landscaping",
-        "Spacious outdoor relaxation area",
+        "Spacious veranda relaxation areas",
         "Free secure private on-site parking",
-        "Quiet residential setting in Samagiya, Thalpe",
+        "Quiet residential setting in Samagiya, Thalpe North",
       ],
     },
   ],
@@ -247,67 +244,87 @@ export const VILLA_DATA: VillaData = {
   galleryImages: [
     {
       id: "gal-1",
-      title: "Private Pool & Villa Exterior",
-      category: "exterior",
-      // G01 — Wide anchor shot. Pool foreground, villa architecture behind.
-      image: "https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=1400&q=90",
-      alt: "Anu Villa private outdoor swimming pool and tropical facade in Unawatuna Galle",
+      title: "Apartment 1 Master Suite",
+      category: "bedrooms",
+      image: "/images/villa/apartment-1/apartment-1-08.webp",
+      alt: "Spacious master bedroom with four-poster canopy bed and study area at M.S.A Anu Villa",
     },
     {
       id: "gal-2",
-      title: "Spacious Air-Conditioned Bedroom",
+      title: "Apartment 2 Timber Ceiling Suite",
       category: "bedrooms",
-      // G02 — Warm morning backlight, cream linen, shadow play
-      image: "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&fit=crop&w=1000&q=88",
-      alt: "Comfortable air conditioned bedroom with attached bathroom at Anu Villa",
+      image: "/images/villa/apartment-2/apartment-2-01.webp",
+      alt: "Apartment 2 bedroom suite with high timber ceiling and air conditioning at Anu Villa",
     },
     {
       id: "gal-3",
-      title: "Private En-Suite Bathroom",
-      category: "bedrooms",
-      // G03 — Rain shower detail, ceramic warmth, natural light
-      image: "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?auto=format&fit=crop&w=1000&q=88",
-      alt: "Clean en-suite bathroom with hot water rain shower",
+      title: "Veranda & Outdoor Dining Area",
+      category: "garden",
+      image: "/images/villa/apartment-1/apartment-1-05.webp",
+      alt: "Tropical veranda dining table with lush garden backdrop at M.S.A Anu Villa",
     },
     {
       id: "gal-4",
-      title: "Tropical Garden & Outdoor Area",
-      category: "garden",
-      // G04 — Lush tropical garden, dappled light through coconut palms
-      image: "https://images.unsplash.com/photo-1585128792020-803d29415281?auto=format&fit=crop&w=1000&q=88",
-      alt: "Lush tropical garden and outdoor relaxation area",
+      title: "Modern En-Suite Rain Shower",
+      category: "bedrooms",
+      image: "/images/villa/apartment-2/apartment-2-04.webp",
+      alt: "Attached polished cement bathroom with hot water rain shower at Anu Villa",
     },
     {
       id: "gal-5",
-      title: "Alfresco Garden Dining",
-      category: "garden",
-      // G05 — Outdoor dining table, warm candlelight, tropical evening
-      image: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1000&q=88",
-      alt: "Alfresco outdoor garden dining and BBQ area at Anu Villa",
+      title: "Polished Cement Vanity Bathroom",
+      category: "bedrooms",
+      image: "/images/villa/apartment-1/apartment-1-03.webp",
+      alt: "Clean en-suite bathroom with artisanal cement vanity and mirror at Anu Villa",
     },
     {
       id: "gal-6",
-      title: "Poolside at Dusk",
-      category: "exterior",
-      // G06 — Evening pool with ambient lighting, aqua glow
-      image: "https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?auto=format&fit=crop&w=1000&q=88",
-      alt: "Illuminated evening pool at Anu Villa Unawatuna",
+      title: "Terracotta Attached Bathroom",
+      category: "bedrooms",
+      image: "/images/villa/apartment-1/apartment-1-04.webp",
+      alt: "Private attached bathroom with terracotta wash basin at Anu Villa",
     },
     {
       id: "gal-7",
-      title: "Second Bedroom Suite",
-      category: "bedrooms",
-      // G07 — Airy secondary bedroom, clean warm tones
-      image: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1000&q=88",
-      alt: "Bright and airy guest bedroom suite at Anu Villa",
+      title: "Kitchenette & Indoor Dining Area",
+      category: "living",
+      image: "/images/villa/room-2/room-2-04.webp",
+      alt: "Equipped kitchen and dining area at Anu Villa Unawatuna",
     },
     {
       id: "gal-8",
-      title: "Spacious Living & Lounge",
-      category: "living",
-      // G08 — Architectural natural light, open plan lounge
-      image: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1000&q=88",
-      alt: "Spacious lounge and living area at Anu Villa",
+      title: "Canopy Bedroom Four-Poster Bed",
+      category: "bedrooms",
+      image: "/images/villa/apartment-1/apartment-1-01.webp",
+      alt: "Canopy four-poster bed with mosquito net at Anu Villa",
+    },
+    {
+      id: "gal-9",
+      title: "Artisanal Basin & Blue Accent Wall",
+      category: "bedrooms",
+      image: "/images/villa/apartment-2/apartment-2-08.webp",
+      alt: "Artisan washbasin and mirror detail in en-suite bathroom",
+    },
+    {
+      id: "gal-10",
+      title: "Private Outdoor Pool & Sun Deck",
+      category: "exterior",
+      image: "https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?auto=format&fit=crop&w=1400&q=90",
+      alt: "Private outdoor swimming pool at M.S.A Anu Villa",
+    },
+    {
+      id: "gal-11",
+      title: "Second En-Suite Bathroom",
+      category: "bedrooms",
+      image: "/images/villa/room-1/room-1-04.webp",
+      alt: "Clean modern bathroom with shower and vanity",
+    },
+    {
+      id: "gal-12",
+      title: "Estate Façade & Tropical Sanctuary",
+      category: "exterior",
+      image: "https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=1400&q=90",
+      alt: "Tropical villa estate in Samagiya, Thalpe North, Unawatuna",
     },
   ],
 
@@ -428,7 +445,7 @@ export const VILLA_DATA: VillaData = {
     },
     {
       question: "How do I book or pay?",
-      answer: "You can book directly via WhatsApp or phone with host M. Mangala (+94 77 518 3955 / +94 76 452 6021 / +94 74 118 0163) for the guaranteed best direct rate, or via our Airbnb and Booking.com listings.",
+      answer: "You can book directly via WhatsApp or phone with host M. Mangala (+94 77 518 3955 / +94 76 452 6021 / +94 74 118 0163) for the guaranteed best direct rate, or via our official Booking.com listing.",
     },
   ],
 };
