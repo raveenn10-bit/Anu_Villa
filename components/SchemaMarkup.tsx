@@ -2,12 +2,36 @@ import React from "react";
 import { VILLA_DATA } from "@/data/villaData";
 
 export default function SchemaMarkup() {
-  const lodgingSchema = {
+  const reviewsData = VILLA_DATA.testimonials.map((t) => ({
+    "@type": "Review",
+    author: {
+      "@type": "Person",
+      name: t.name,
+    },
+    datePublished: "2024-02-01",
+    reviewBody: t.review,
+    reviewRating: {
+      "@type": "Rating",
+      ratingValue: t.rating.toString(),
+      bestRating: "5",
+      worstRating: "1",
+    },
+  }));
+
+  const vacationRentalSchema = {
     "@context": "https://schema.org",
-    "@type": ["LodgingBusiness", "Hotel", "Resort", "VacationRental"],
-    "@id": "https://www.msaanuvilla.com/#lodging",
+    "@type": "VacationRental",
+    "@id": "https://www.msaanuvilla.com/#vacationrental",
+    identifier: "MSA-ANU-VILLA-001",
+    additionalType: "https://schema.org/LodgingBusiness",
     name: VILLA_DATA.officialName,
-    alternateName: ["Anu Villa", "M.S.A Anu Villa Unawatuna", "Anu Villa Thalpe", "MSA Anu Villa Galle"],
+    alternateName: [
+      "Anu Villa",
+      "M.S.A Anu Villa Unawatuna",
+      "Anu Villa Thalpe",
+      "MSA Anu Villa Galle",
+      "M.S.A AnuVilla",
+    ],
     description:
       "M.S.A Anu Villa is a luxury 6-bedroom private pool villa in Samagiya, Thalpe North, Unawatuna, Galle, Sri Lanka. Offering 6 en-suite air-conditioned suites, private swimming pool, kitchen, garden BBQ, and accommodation for up to 12 guests at $140/night.",
     url: "https://www.msaanuvilla.com",
@@ -21,6 +45,16 @@ export default function SchemaMarkup() {
       "https://www.msaanuvilla.com/images/hero/hero-slide-1.jpg",
       "https://www.msaanuvilla.com/images/hero/hero-slide-2.jpg",
       "https://www.msaanuvilla.com/images/villa/pool-real.jpg",
+      "https://www.msaanuvilla.com/images/villa/estate/estate-01.jpg",
+      "https://www.msaanuvilla.com/images/villa/estate/estate-02.jpg",
+      "https://www.msaanuvilla.com/images/villa/estate/estate-03.jpg",
+      "https://www.msaanuvilla.com/images/villa/estate/estate-04.jpg",
+      "https://www.msaanuvilla.com/images/villa/estate/estate-05.jpg",
+      "https://www.msaanuvilla.com/images/villa/estate/estate-06.jpg",
+      "https://www.msaanuvilla.com/images/villa/estate/estate-07.jpg",
+      "https://www.msaanuvilla.com/images/villa/apartment-1/apartment-1-08.jpg",
+      "https://www.msaanuvilla.com/images/villa/apartment-2/apartment-2-01.jpg",
+      "https://www.msaanuvilla.com/images/villa/room-1/room-1-01.jpg",
     ],
     logo: "https://www.msaanuvilla.com/images/logo.png",
     address: {
@@ -55,6 +89,7 @@ export default function SchemaMarkup() {
       ratingCount: "48",
       reviewCount: "48",
     },
+    review: reviewsData,
     amenityFeature: [
       {
         "@type": "LocationFeatureSpecification",
@@ -95,6 +130,58 @@ export default function SchemaMarkup() {
         "@type": "LocationFeatureSpecification",
         name: "1.5 km to Turtle Beach & Dalawella Beach",
         value: true,
+      },
+    ],
+    containsPlace: [
+      {
+        "@type": "Accommodation",
+        "@id": "https://www.msaanuvilla.com/#entire-villa-unit",
+        identifier: "MSA-UNIT-WHOLE-VILLA",
+        name: "Entire 6-Bedroom Private Villa",
+        description:
+          "Exclusive whole villa reservation featuring 6 air-conditioned suites with private en-suite bathrooms, private swimming pool, self-catering kitchen, and garden BBQ facilities.",
+        numberOfRooms: 6,
+        numberOfBedrooms: 6,
+        numberOfBathroomsTotal: 6,
+        occupancy: {
+          "@type": "QuantitativeValue",
+          maxValue: 12,
+          unitText: "GUESTS",
+        },
+        bed: [
+          {
+            "@type": "BedDetails",
+            numberOfBeds: 6,
+            typeOfBed: "King Size Four-Poster Canopy Beds with Mosquito Netting",
+          },
+        ],
+        amenityFeature: [
+          {
+            "@type": "LocationFeatureSpecification",
+            name: "Private Swimming Pool",
+            value: true,
+          },
+          {
+            "@type": "LocationFeatureSpecification",
+            name: "Air Conditioning",
+            value: true,
+          },
+          {
+            "@type": "LocationFeatureSpecification",
+            name: "Attached Bathroom with Hot Water Shower",
+            value: true,
+          },
+          {
+            "@type": "LocationFeatureSpecification",
+            name: "Kitchen & Refrigerator",
+            value: true,
+          },
+          {
+            "@type": "LocationFeatureSpecification",
+            name: "Free Wi-Fi",
+            value: true,
+          },
+        ],
       },
     ],
     sameAs: [
@@ -229,7 +316,7 @@ export default function SchemaMarkup() {
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(lodgingSchema) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(vacationRentalSchema) }}
       />
       <script
         type="application/ld+json"
