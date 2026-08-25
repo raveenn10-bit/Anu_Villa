@@ -38,21 +38,22 @@ export default function Hero({ onOpenBooking, onExplore }: HeroProps) {
   return (
     <section id="home" className="relative w-full min-h-[94vh] lg:min-h-screen flex flex-col justify-between pt-28 pb-8 sm:pt-32 sm:pb-10 overflow-hidden bg-noir-950">
       
-      {/* Full-bleed edge-to-edge Cinematic Background Image */}
-      <div className="absolute inset-0 z-0 w-full h-full">
-        <Image
-          src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=2000&q=80"
-          alt="M.S.A Anu Villa Private Luxury Estate in Thalpe North Unawatuna"
-          fill
-          priority
-          quality={85}
-          sizes="100vw"
-          className="object-cover object-center md:object-right-top scale-[1.02]"
-        />
+      {/* Full-bleed edge-to-edge Cinematic Background Video with Poster Fallback */}
+      <div className="absolute inset-0 z-0 w-full h-full overflow-hidden">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          poster="/images/villa/apartment-1/apartment-1-08.webp"
+          className="w-full h-full object-cover object-center scale-[1.02] filter brightness-[0.78] contrast-[1.06] saturate-[0.92]"
+        >
+          <source src="/videos/hero-bg.mp4" type="video/mp4" />
+        </video>
         
         {/* Filmic Lighting Grading & Gradient Depth for Ultra-Crisp Legibility */}
-        <div className="absolute inset-0 bg-noir-950/50 z-10" />
-        <div className="absolute inset-0 bg-gradient-to-r from-noir-950/95 via-noir-950/80 to-transparent md:w-[70%] lg:w-[60%] z-10" />
+        <div className="absolute inset-0 bg-noir-950/45 z-10" />
+        <div className="absolute inset-0 bg-gradient-to-r from-noir-950/95 via-noir-950/75 to-transparent md:w-[70%] lg:w-[60%] z-10" />
         <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-sand-50 via-sand-50/70 to-transparent z-10" />
       </div>
 

@@ -32,7 +32,7 @@ export default function Footer() {
         </div>
 
         {/* 2. Social & OTA Booking Icons (Centered circular buttons) */}
-        <div className="flex items-center justify-center gap-3">
+        <div className="flex flex-wrap items-center justify-center gap-2.5 sm:gap-3">
           {/* Booking.com Official Icon */}
           <a
             href={VILLA_DATA.social.bookingCom}
@@ -40,10 +40,25 @@ export default function Footer() {
             rel="noreferrer"
             aria-label="Booking.com Official Listing"
             title="Book on Booking.com"
-            className="h-10 px-3.5 rounded-full bg-[#003580] hover:bg-[#00224f] text-white flex items-center justify-center gap-1.5 transition-all shadow-xs group"
+            className="h-10 px-3 rounded-full bg-[#003580] hover:bg-[#00224f] text-white flex items-center justify-center gap-1.5 transition-all shadow-xs group"
           >
             <span className="font-extrabold text-sm tracking-tighter text-[#00BAFC]">B.</span>
             <span className="text-[11px] font-bold tracking-tight">Booking.com</span>
+          </a>
+
+          {/* Airbnb Official Icon */}
+          <a
+            href={VILLA_DATA.social.airbnb}
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Airbnb Official Listing"
+            title="Book on Airbnb"
+            className="h-10 px-3 rounded-full bg-[#FF5A5F] hover:bg-[#e0484d] text-white flex items-center justify-center gap-1.5 transition-all shadow-xs group"
+          >
+            <svg className="w-4 h-4 fill-current" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+              <path d="M16 1c2.008 0 3.463.963 4.751 3.269l.533 1.025c1.954 3.83 6.114 12.54 7.1 14.836 1.88 4.382.49 9.387-3.327 11.233-1.428.69-3.003.887-4.577.581-2.023-.393-3.63-1.682-4.48-3.036-.85 1.354-2.457 2.643-4.48 3.036-1.574.306-3.149.109-4.577-.581-3.817-1.846-5.207-6.851-3.327-11.233.986-2.296 5.146-11.006 7.1-14.836l.533-1.025C12.537 1.963 13.992 1 16 1zm0 2c-1.398 0-2.392.684-3.414 2.508l-.517.994c-1.93 3.784-6.06 12.434-7.018 14.665-1.48 3.45-.457 7.378 2.527 8.82 1.077.52 2.261.666 3.447.435 1.996-.388 3.655-2.008 4.095-3.692.176-.673.804-1.144 1.498-1.144.694 0 1.322.471 1.498 1.144.44 1.684 2.099 3.304 4.095 3.692 1.186.231 2.37.085 3.447-.435 2.984-1.442 4.007-5.37 2.527-8.82-.958-2.231-5.088-10.881-7.018-14.665l-.517-.994C18.392 3.684 17.398 3 16 3zm0 7c2.209 0 4 1.791 4 4 0 1.942-1.385 3.562-3.23 3.931l-.27.039-.5-.035C13.844 17.587 12 15.65 12 14c0-2.209 1.791-4 4-4zm0 2c-1.105 0-2 .895-2 2 0 .963.681 1.767 1.586 1.954l.164.026.25.02c1.105 0 2-.895 2-2s-.895-2-2-2z"/>
+            </svg>
+            <span className="text-[11px] font-bold tracking-tight">Airbnb</span>
           </a>
 
           {/* Google Maps */}

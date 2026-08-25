@@ -25,7 +25,7 @@ export default function Gallery() {
     ? VILLA_DATA.galleryImages
     : VILLA_DATA.galleryImages.filter((img) => img.category === activeCategory);
 
-  const previewImages = VILLA_DATA.galleryImages.slice(0, 5);
+  const previewImages = VILLA_DATA.galleryImages.slice(0, 10);
 
   const handleNext = () => {
     if (selectedImageIndex === null) return;
@@ -57,7 +57,7 @@ export default function Gallery() {
           </span>
           <div className="flex-1 h-[1px] bg-sand-300/80" />
           <span className="text-xs text-charcoal-400 font-sans hidden sm:inline">
-            Estate Photography
+            Estate Photography • {VILLA_DATA.galleryImages.length} Real Frames
           </span>
         </div>
 
@@ -68,7 +68,7 @@ export default function Gallery() {
               Glimpse the Atmosphere
             </h2>
             <p className="text-xs sm:text-sm text-charcoal-600 font-sans font-normal max-w-lg">
-              Explore the architectural spaces, peaceful gardens, and inviting pool at M.S.A Anu Villa.
+              Explore authentic photos of our suites, private en-suite baths, peaceful garden verandas, and refreshing pool at M.S.A Anu Villa.
             </p>
           </div>
 
@@ -94,10 +94,10 @@ export default function Gallery() {
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               onClick={() => setShowFullGallery(true)}
-              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl border border-sand-300 text-xs sm:text-sm font-semibold text-charcoal-800 hover:text-gold-600 hover:border-gold-300 hover:bg-white transition-all shadow-2xs"
+              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl border border-sand-300 text-xs sm:text-sm font-semibold text-charcoal-800 hover:text-gold-600 hover:border-gold-300 hover:bg-white transition-all shadow-2xs cursor-pointer"
             >
               <ImageIcon className="w-4 h-4 text-gold-600" />
-              <span>Full Photo Archive</span>
+              <span>Full Photo Archive ({VILLA_DATA.galleryImages.length} Photos)</span>
             </motion.button>
           </div>
         </div>
