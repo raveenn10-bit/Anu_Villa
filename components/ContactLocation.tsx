@@ -87,12 +87,12 @@ export default function ContactLocation() {
                         <div className="w-8 h-8 rounded-lg bg-gold-100 text-gold-700 flex items-center justify-center">
                           <Phone className="w-4 h-4" />
                         </div>
-                        <span className="text-sm font-semibold text-charcoal-900">{phone}</span>
+                        <span className="text-xs sm:text-sm font-semibold font-mono tracking-tight text-charcoal-900">{phone}</span>
                       </div>
                       <div className="flex items-center gap-1.5">
                         <a
                           href={`tel:${phone.replace(/\s+/g, "")}`}
-                          className="px-2.5 py-1 rounded-lg bg-sand-100 text-charcoal-700 text-xs font-medium hover:bg-sand-200 transition-colors"
+                          className="px-2.5 py-1 rounded-lg bg-sand-100 text-charcoal-700 text-xs font-semibold hover:bg-sand-200 transition-colors font-ui"
                         >
                           Call
                         </a>
@@ -100,7 +100,7 @@ export default function ContactLocation() {
                           href={`https://wa.me/${rawNum}`}
                           target="_blank"
                           rel="noreferrer"
-                          className="px-2.5 py-1 rounded-lg bg-[#25D366] text-white text-xs font-medium hover:bg-[#20ba59] transition-colors"
+                          className="px-2.5 py-1 rounded-lg bg-[#25D366] text-white text-xs font-semibold hover:bg-[#20ba59] transition-colors font-ui"
                         >
                           WhatsApp
                         </a>
@@ -116,7 +116,7 @@ export default function ContactLocation() {
                   <MapPin className="w-4 h-4" />
                 </div>
                 <div>
-                  <span className="text-[11px] font-bold uppercase text-charcoal-400 block">Villa Address</span>
+                  <span className="text-[11px] font-bold uppercase text-charcoal-400 block font-ui">Villa Address</span>
                   <p className="text-xs sm:text-sm font-medium text-charcoal-800 mt-0.5">
                     {VILLA_DATA.location}
                   </p>
@@ -129,29 +129,39 @@ export default function ContactLocation() {
               {/* Check times */}
               <div className="grid grid-cols-2 gap-3 pt-1">
                 <div className="p-3 rounded-xl bg-white border border-sand-200 text-center">
-                  <span className="text-[10px] uppercase font-bold text-charcoal-400 block">Check-in</span>
-                  <span className="text-xs sm:text-sm font-bold text-charcoal-900">{VILLA_DATA.checkInTime}</span>
+                  <span className="text-[10px] uppercase font-bold text-charcoal-400 block font-ui">Check-in</span>
+                  <span className="text-xs sm:text-sm font-bold text-charcoal-900 font-ui">{VILLA_DATA.checkInTime}</span>
                 </div>
                 <div className="p-3 rounded-xl bg-white border border-sand-200 text-center">
-                  <span className="text-[10px] uppercase font-bold text-charcoal-400 block">Check-out</span>
-                  <span className="text-xs sm:text-sm font-bold text-charcoal-900">{VILLA_DATA.checkOutTime}</span>
+                  <span className="text-[10px] uppercase font-bold text-charcoal-400 block font-ui">Check-out</span>
+                  <span className="text-xs sm:text-sm font-bold text-charcoal-900 font-ui">{VILLA_DATA.checkOutTime}</span>
                 </div>
               </div>
 
               {/* Booking Platforms Badge Strip */}
-              <div className="p-3 rounded-xl bg-gold-50/70 border border-gold-200/80">
-                <span className="text-[11px] font-bold uppercase tracking-wider text-gold-800 block mb-1.5">
+              <div className="p-3.5 rounded-xl bg-gold-50/70 border border-gold-200/80">
+                <span className="text-[11px] font-bold uppercase tracking-wider text-gold-800 block mb-2 font-ui">
                   Also Available On
                 </span>
-                <div className="flex items-center gap-3">
-                  <span className="px-3 py-1 bg-white border border-sand-300 rounded-lg text-xs font-semibold text-charcoal-800 shadow-2xs">
+                <div className="flex flex-wrap items-center gap-2">
+                  <a
+                    href={VILLA_DATA.social.airbnb}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="px-3 py-1.5 bg-white border border-sand-300 hover:border-[#FF5A5F] rounded-lg text-xs font-bold text-charcoal-800 hover:text-[#FF5A5F] shadow-2xs transition-colors"
+                  >
                     Airbnb
-                  </span>
-                  <span className="px-3 py-1 bg-white border border-sand-300 rounded-lg text-xs font-semibold text-charcoal-800 shadow-2xs">
+                  </a>
+                  <a
+                    href={VILLA_DATA.social.bookingCom}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="px-3 py-1.5 bg-white border border-sand-300 hover:border-[#003580] rounded-lg text-xs font-bold text-charcoal-800 hover:text-[#003580] shadow-2xs transition-colors"
+                  >
                     Booking.com
-                  </span>
-                  <span className="text-[11px] text-charcoal-500 italic">
-                    (Direct booking via WhatsApp offers best rate)
+                  </a>
+                  <span className="text-[11px] text-charcoal-500 italic block sm:inline">
+                    (Direct WhatsApp offers best rate)
                   </span>
                 </div>
               </div>

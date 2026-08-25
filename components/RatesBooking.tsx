@@ -211,10 +211,10 @@ export default function RatesBooking({ onOpenBookingModal }: RatesBookingProps) 
                   <button
                     key={i}
                     onClick={() => handleDirectCall(phone)}
-                    className="flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl bg-white border border-gold-200/90 text-xs font-semibold text-charcoal-800 hover:text-gold-700 hover:border-gold-400 hover:bg-gold-50/40 shadow-2xs transition-all"
+                    className="flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-xl bg-white border border-gold-200/90 text-xs font-semibold text-charcoal-800 hover:text-gold-700 hover:border-gold-400 hover:bg-gold-50/40 shadow-2xs transition-all font-ui"
                   >
                     <Phone className="w-3.5 h-3.5 text-gold-600 shrink-0" />
-                    <span className="whitespace-nowrap">{phone}</span>
+                    <span className="whitespace-nowrap font-mono tracking-tight">{phone}</span>
                   </button>
                 ))}
               </div>
@@ -245,7 +245,7 @@ export default function RatesBooking({ onOpenBookingModal }: RatesBookingProps) 
 
                 <div className="sm:text-right bg-sand-50 sm:bg-transparent p-3 sm:p-0 rounded-2xl border sm:border-0 border-sand-200">
                   <div className="flex items-baseline sm:justify-end gap-1.5">
-                    <span className="font-serif text-3xl sm:text-4xl font-semibold text-charcoal-950 tracking-tight">
+                    <span className="font-ui text-3xl sm:text-4xl font-bold text-charcoal-950 tracking-tight">
                       {currInfo.symbol}{nightlyRate.toLocaleString()}
                     </span>
                     <span className="text-xs text-charcoal-500 font-sans font-medium">/ night</span>
@@ -323,7 +323,7 @@ export default function RatesBooking({ onOpenBookingModal }: RatesBookingProps) 
                       >
                         -
                       </button>
-                      <span className="flex-1 text-center font-serif font-bold text-charcoal-950 text-sm sm:text-base">
+                      <span className="flex-1 text-center font-ui font-bold text-charcoal-950 text-sm sm:text-base">
                         {nights} {nights === 1 ? "Night" : "Nights"}
                       </span>
                       <button
@@ -343,7 +343,7 @@ export default function RatesBooking({ onOpenBookingModal }: RatesBookingProps) 
                     <span>
                       {currInfo.symbol}{nightlyRate.toLocaleString()} × {nights} {nights === 1 ? "night" : "nights"}
                     </span>
-                    <span className="font-semibold text-charcoal-900">
+                    <span className="font-ui font-bold text-charcoal-900">
                       {currInfo.symbol}{totalPrice.toLocaleString()}
                     </span>
                   </div>

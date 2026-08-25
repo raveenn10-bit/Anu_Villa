@@ -38,7 +38,7 @@ export default function About({ onOpenBooking }: AboutProps) {
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="lg:col-span-5 relative"
           >
-            <div className="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-sand-200 aspect-[4/5] group">
+            <div className="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-sand-200 aspect-[4/3] sm:aspect-[1/1] lg:aspect-[4/5] group">
               <Image
                 src="/images/villa/pool-real.webp"
                 alt="M.S.A Anu Villa Private Swimming Pool and Courtyard Patio"
@@ -46,10 +46,10 @@ export default function About({ onOpenBooking }: AboutProps) {
                 sizes="(max-width: 1024px) 100vw, 40vw"
                 className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-noir-950/60 via-transparent to-transparent opacity-70" />
+              <div className="absolute inset-0 bg-gradient-to-t from-noir-950/60 via-transparent to-transparent opacity-70 pointer-events-none" />
 
               {/* Floating Architectural Badge */}
-              <div className="absolute bottom-6 left-6 right-6 p-4 rounded-2xl bg-white/95 backdrop-blur-md border border-white/40 shadow-lg">
+              <div className="absolute bottom-4 left-4 right-4 sm:bottom-6 sm:left-6 sm:right-6 p-3.5 sm:p-4 rounded-2xl bg-white/95 backdrop-blur-md border border-white/40 shadow-lg">
                 <div className="flex items-center justify-between">
                   <div>
                     <span className="text-[10px] uppercase font-bold tracking-widest text-gold-600 block">
@@ -59,7 +59,7 @@ export default function About({ onOpenBooking }: AboutProps) {
                       6 Suites • 12 Guests Max
                     </h4>
                   </div>
-                  <span className="text-xs font-bold text-gold-700 bg-gold-50 px-2.5 py-1 rounded-lg border border-gold-200">
+                  <span className="font-ui text-xs sm:text-sm font-bold text-gold-700 bg-gold-50 px-3 py-1 rounded-xl border border-gold-200">
                     $140 / nt
                   </span>
                 </div>
