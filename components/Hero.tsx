@@ -1,7 +1,8 @@
 "use client";
 
-import React from "react";
-import { motion } from "framer-motion";
+import React, { useState, useEffect } from "react";
+import Image from "next/image";
+import { motion, AnimatePresence } from "framer-motion";
 import { BedDouble, Users, Waves, MapPin } from "lucide-react";
 import { VILLA_DATA } from "@/data/villaData";
 
@@ -10,7 +11,31 @@ interface HeroProps {
   onExplore?: () => void;
 }
 
+const HERO_DESKTOP_SLIDES = [
+  {
+    src: "/images/hero/hero-slide-1.webp",
+    alt: "M.S.A Anu Villa Private Swimming Pool & Sunlit Courtyard",
+  },
+  {
+    src: "/images/hero/hero-slide-2.webp",
+    alt: "Poolside Dining Patio & Tropical Banana Greenery at Anu Villa",
+  },
+  {
+    src: "/images/hero/hero-slide-3.webp",
+    alt: "Sun Loungers on Stone Pool Deck Overlooking Lush Forest Canopy",
+  },
+];
+
 export default function Hero({ onOpenBooking, onExplore }: HeroProps) {
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % HERO_DESKTOP_SLIDES.length);
+    }, 6000);
+    return () => clearInterval(timer);
+  }, []);
+
   const highlights = [
     {
       icon: BedDouble,
@@ -37,19 +62,28 @@ export default function Hero({ onOpenBooking, onExplore }: HeroProps) {
   return (
     <section id="home" className="relative w-full min-h-[85vh] sm:min-h-[90vh] lg:min-h-screen flex flex-col justify-between pt-24 pb-6 sm:pt-32 sm:pb-10 overflow-hidden bg-noir-950">
       
-      {/* Full-bleed edge-to-edge Cinematic Background Video with Poster Fallback */}
+      {/* ── Desktop View: 3-Image Slideshow Background ──────────────── */}
       <div className="absolute inset-0 z-0 w-full h-full overflow-hidden pointer-events-none">
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          poster="/images/villa/apartment-1/apartment-1-08.webp"
-          className="w-full h-full object-cover object-center scale-[1.02] filter brightness-[0.78] contrast-[1.06] saturate-[0.92]"
-        >
-          <source src="/videos/hero-bg.mp4" type="video/mp4" />
-        </video>
-        
+        <AnimatePresence mode="sync">
+          <motion.div
+            key={currentSlide}
+            initial={{ opacity: 0, scale: 1.04 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 1.4, ease: [0.25, 1, 0.5, 1] }}
+            className="absolute inset-0 w-full h-full"
+          >
+            <Image
+              src={HERO_DESKTOP_SLIDES[currentSlide].src}
+              alt={HERO_DESKTOP_SLIDES[currentSlide].alt}
+              fill
+              priority
+              sizes="100vw"
+              className="object-cover object-center filter brightness-[0.76] contrast-[1.05] saturate-[0.96]"
+            />
+          </motion.div>
+        </AnimatePresence>
+
         {/* Filmic Lighting Grading & Gradient Depth for Ultra-Crisp Legibility */}
         <div className="absolute inset-0 bg-noir-950/40 z-10" />
         <div className="absolute inset-0 bg-gradient-to-r from-noir-950/95 via-noir-950/75 to-transparent md:w-[70%] lg:w-[60%] z-10" />
@@ -79,14 +113,30 @@ export default function Hero({ onOpenBooking, onExplore }: HeroProps) {
         </div>
       </div>
 
-      {/* Floating 4-Stat Architectural Bar (Fully Responsive Grid) */}
+      {/* Floating 4-Stat Architectural Bar with Slide Indicators */}
       <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full mt-2 sm:mt-6">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-          className="bg-white/95 backdrop-blur-md rounded-2xl shadow-xl shadow-black/10 border border-sand-200 p-3 sm:p-5 lg:p-6"
+          className="bg-white/95 backdrop-blur-md rounded-2xl shadow-xl shadow-black/10 border border-sand-200 p-3 sm:p-5 lg:p-6 relative"
         >
+          {/* Subtle Slide Indicators on Top Right */}
+          <div className="hidden sm:flex items-center gap-1.5 absolute -top-3 right-6 bg-noir-950/80 backdrop-blur-md px-3 py-1 rounded-full border border-gold-400/30">
+            {HERO_DESKTOP_SLIDES.map((_, idx) => (
+              <button
+                key={idx}
+                onClick={() => setCurrentSlide(idx)}
+                aria-label={`Go to slide ${idx + 1}`}
+                className={`transition-all duration-300 rounded-full ${
+                  currentSlide === idx
+                    ? "w-5 h-1.5 bg-gold-400"
+                    : "w-1.5 h-1.5 bg-white/40 hover:bg-white/70"
+                }`}
+              />
+            ))}
+          </div>
+
           <div className="grid grid-cols-2 md:grid-cols-4 gap-2.5 sm:gap-6 md:divide-x md:divide-sand-200">
             {highlights.map((item, index) => {
               const Icon = item.icon;
