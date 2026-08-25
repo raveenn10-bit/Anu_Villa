@@ -1,0 +1,111 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-playfair: 'Playfair Display', serif;
+  --font-jakarta: 'Plus Jakarta Sans', sans-serif;
+  --primary-gold: #C59152;
+  --gold-glow: rgba(197, 145, 82, 0.25);
+  --bg-sand: #FAF9F5;
+  --tropical-dark: #14231C;
+}
+
+.dark {
+  --bg-sand: #0B0F0D;
+  --primary-gold: #D5A466;
+  --gold-glow: rgba(213, 164, 102, 0.35);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg-sand);
+  color: #2D3748;
+  font-family: var(--font-jakarta), sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.dark body {
+  color: #E2E8F0;
+  background-color: #0E1612;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #F4F1EA;
+}
+.dark ::-webkit-scrollbar-track {
+  background: #14201A;
+}
+::-webkit-scrollbar-thumb {
+  background: #C59152;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #B07B3A;
+}
+
+/* Glassmorphism Classes */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.dark .glass-panel {
+  background: rgba(20, 32, 26, 0.85);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(213, 164, 102, 0.15);
+}
+
+.glass-badge {
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.08);
+}
+
+.dark .glass-badge {
+  background: rgba(27, 42, 34, 0.95);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(213, 164, 102, 0.3);
+}
+
+/* Gold Gradient Effects */
+.text-gold-gradient {
+  background: linear-gradient(135deg, #E0B883 0%, #C59152 50%, #9C6F35 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.bg-gold-gradient {
+  background: linear-gradient(135deg, #D5A466 0%, #C59152 50%, #B07B3A 100%);
+}
+
+.bg-gold-gradient-hover:hover {
+  background: linear-gradient(135deg, #DEAE70 0%, #CF9B5C 50%, #B98443 100%);
+}
+
+/* Luxury button interactive feel */
+.luxury-btn {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.luxury-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px -6px rgba(197, 145, 82, 0.4);
+}
+.luxury-btn:active {
+  transform: translateY(0px);
+}
