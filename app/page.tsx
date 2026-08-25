@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
@@ -17,36 +17,6 @@ import FloatingWhatsApp from "@/components/FloatingWhatsApp";
 
 export default function Home() {
   const [bookingModalOpen, setBookingModalOpen] = useState(false);
-  const [isDark, setIsDark] = useState(false);
-
-  // Initialize theme from localStorage / system preference
-  useEffect(() => {
-    const savedTheme = localStorage.getItem("anu_villa_theme");
-    if (savedTheme === "dark") {
-      setIsDark(true);
-      document.documentElement.classList.add("dark");
-    } else if (savedTheme === "light") {
-      setIsDark(false);
-      document.documentElement.classList.remove("dark");
-    } else if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
-      setIsDark(true);
-      document.documentElement.classList.add("dark");
-    }
-  }, []);
-
-  const handleToggleTheme = () => {
-    setIsDark((prev) => {
-      const next = !prev;
-      if (next) {
-        document.documentElement.classList.add("dark");
-        localStorage.setItem("anu_villa_theme", "dark");
-      } else {
-        document.documentElement.classList.remove("dark");
-        localStorage.setItem("anu_villa_theme", "light");
-      }
-      return next;
-    });
-  };
 
   const handleOpenBooking = () => {
     setBookingModalOpen(true);
@@ -64,13 +34,9 @@ export default function Home() {
   };
 
   return (
-    <main className="min-h-screen flex flex-col bg-sand-50 dark:bg-[#0E1612] text-charcoal-800 dark:text-charcoal-200 transition-colors duration-300 selection:bg-gold-500 selection:text-white">
-      {/* Fixed Luxury Navigation with Dark Mode Toggle */}
-      <Navbar
-        onOpenBooking={handleOpenBooking}
-        isDark={isDark}
-        onToggleTheme={handleToggleTheme}
-      />
+    <main className="min-h-screen flex flex-col bg-sand-50 text-charcoal-800 selection:bg-gold-500 selection:text-white">
+      {/* Fixed Luxury Navigation */}
+      <Navbar onOpenBooking={handleOpenBooking} />
 
       {/* Hero Section */}
       <Hero onOpenBooking={handleOpenBooking} onExplore={handleExplore} />

@@ -10,18 +10,18 @@ export default function NearbyPlaces() {
   const [selectedPlace, setSelectedPlace] = useState<NearbyPlace | null>(null);
 
   return (
-    <section id="nearby" className="py-16 lg:py-24 bg-sand-50 dark:bg-tropical-deep relative overflow-hidden">
+    <section id="nearby" className="py-16 lg:py-24 bg-sand-50 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-12 sm:mb-16 space-y-3">
-          <span className="text-xs font-bold tracking-[0.25em] text-gold-600 dark:text-gold-400 uppercase">
+          <span className="text-xs font-bold tracking-[0.25em] text-gold-600 uppercase">
             EXPLORE THE SOUTH COAST
           </span>
-          <h2 className="font-serif text-2xl sm:text-4xl text-charcoal-900 dark:text-white font-bold">
+          <h2 className="font-serif text-2xl sm:text-4xl text-charcoal-900 font-bold">
             Nearby Places & Attractions
           </h2>
-          <p className="text-xs sm:text-sm text-charcoal-600 dark:text-charcoal-300 leading-relaxed">
+          <p className="text-xs sm:text-sm text-charcoal-600 leading-relaxed">
             Anu Villa puts you right at the center of Unawatuna&apos;s best beaches, coral reefs, UNESCO heritage sites, and tropical nature spots.
           </p>
         </div>
@@ -37,23 +37,23 @@ export default function NearbyPlaces() {
               transition={{ duration: 0.6, delay: index * 0.1 }}
               whileHover={{ y: -6 }}
               onClick={() => setSelectedPlace(place)}
-              className="group cursor-pointer bg-white dark:bg-tropical-surface rounded-3xl overflow-hidden border border-sand-200 dark:border-white/10 hover:border-gold-300 dark:hover:border-gold-500/40 transition-all duration-300 shadow-sm hover:shadow-xl dark:hover:shadow-black/50 flex flex-col"
+              className="group cursor-pointer bg-white rounded-3xl overflow-hidden border border-sand-200 hover:border-gold-300 transition-all duration-300 shadow-sm hover:shadow-xl flex flex-col"
             >
               {/* Image Container */}
-              <div className="relative h-48 sm:h-52 w-full overflow-hidden bg-sand-200 dark:bg-tropical-card">
+              <div className="relative h-48 sm:h-52 w-full overflow-hidden bg-sand-200">
                 <Image
                   src={place.image}
                   alt={place.name}
                   fill
-                  className="object-cover transition-transform duration-700 group-hover:scale-108 brightness-[0.95] dark:brightness-[0.85]"
+                  className="object-cover transition-transform duration-700 group-hover:scale-108"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-80" />
 
                 {/* Distance & Travel Badge */}
-                <div className="absolute top-3.5 left-3.5 bg-white/95 dark:bg-tropical-deep/95 backdrop-blur-md px-3 py-1 rounded-full text-[11px] font-bold text-charcoal-900 dark:text-white flex items-center gap-1.5 shadow-sm border border-sand-200/50 dark:border-white/10">
-                  <Clock className="w-3 h-3 text-gold-600 dark:text-gold-400" />
+                <div className="absolute top-3.5 left-3.5 bg-white/95 backdrop-blur-md px-3 py-1 rounded-full text-[11px] font-bold text-charcoal-900 flex items-center gap-1.5 shadow-sm border border-sand-200/50">
+                  <Clock className="w-3 h-3 text-gold-600" />
                   <span>{place.travelTime}</span>
-                  <span className="text-charcoal-400 dark:text-charcoal-400 font-normal">({place.distance})</span>
+                  <span className="text-charcoal-400 font-normal">({place.distance})</span>
                 </div>
 
                 <div className="absolute bottom-3 left-4 right-4">
@@ -68,20 +68,20 @@ export default function NearbyPlaces() {
 
               {/* Card Body */}
               <div className="p-5 flex-1 flex flex-col justify-between space-y-4">
-                <p className="text-xs sm:text-sm text-charcoal-600 dark:text-charcoal-300 line-clamp-2 leading-relaxed">
+                <p className="text-xs sm:text-sm text-charcoal-600 line-clamp-2 leading-relaxed">
                   {place.description}
                 </p>
 
                 <div className="space-y-1.5">
                   {place.highlights.slice(0, 2).map((hl, i) => (
-                    <div key={i} className="flex items-center gap-1.5 text-xs text-charcoal-700 dark:text-charcoal-300">
-                      <CheckCircle className="w-3.5 h-3.5 text-gold-600 dark:text-gold-400 shrink-0" />
+                    <div key={i} className="flex items-center gap-1.5 text-xs text-charcoal-700">
+                      <CheckCircle className="w-3.5 h-3.5 text-gold-600 shrink-0" />
                       <span>{hl}</span>
                     </div>
                   ))}
                 </div>
 
-                <div className="pt-2 border-t border-sand-100 dark:border-white/10 flex items-center justify-between text-xs font-semibold text-gold-600 dark:text-gold-400 group-hover:text-gold-700">
+                <div className="pt-2 border-t border-sand-100 flex items-center justify-between text-xs font-semibold text-gold-600 group-hover:text-gold-700">
                   <span>View distance & guide</span>
                   <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                 </div>
@@ -100,13 +100,13 @@ export default function NearbyPlaces() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setSelectedPlace(null)}
-              className="absolute inset-0 bg-black/60 dark:bg-black/80 backdrop-blur-sm"
+              className="absolute inset-0 bg-black/60 backdrop-blur-sm"
             />
             <motion.div
               initial={{ opacity: 0, scale: 0.95, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
-              className="relative bg-white dark:bg-tropical-deep rounded-3xl max-w-xl w-full overflow-hidden shadow-2xl border border-sand-200 dark:border-white/10 z-10"
+              className="relative bg-white rounded-3xl max-w-xl w-full overflow-hidden shadow-2xl border border-sand-200 z-10"
             >
               <div className="relative h-60 w-full">
                 <Image
@@ -121,38 +121,38 @@ export default function NearbyPlaces() {
                 >
                   <X className="w-5 h-5" />
                 </button>
-                <div className="absolute bottom-4 left-4 right-4 bg-white/95 dark:bg-tropical-surface/95 backdrop-blur-md rounded-xl p-3.5 border border-white/40 dark:border-white/10">
-                  <span className="text-[10px] font-bold text-gold-600 dark:text-gold-400 uppercase tracking-widest">{selectedPlace.category}</span>
-                  <h3 className="font-serif text-lg font-bold text-charcoal-900 dark:text-white">{selectedPlace.name}</h3>
-                  <p className="text-xs text-charcoal-500 dark:text-charcoal-400 flex items-center gap-1.5 mt-0.5">
-                    <Navigation className="w-3.5 h-3.5 text-gold-600 dark:text-gold-400" />
+                <div className="absolute bottom-4 left-4 right-4 bg-white/95 backdrop-blur-md rounded-xl p-3.5 border border-white/40">
+                  <span className="text-[10px] font-bold text-gold-600 uppercase tracking-widest">{selectedPlace.category}</span>
+                  <h3 className="font-serif text-lg font-bold text-charcoal-900">{selectedPlace.name}</h3>
+                  <p className="text-xs text-charcoal-500 flex items-center gap-1.5 mt-0.5">
+                    <Navigation className="w-3.5 h-3.5 text-gold-600" />
                     {selectedPlace.distance} from Anu Villa • {selectedPlace.travelTime}
                   </p>
                 </div>
               </div>
 
               <div className="p-6 space-y-4">
-                <p className="text-sm text-charcoal-700 dark:text-charcoal-300 leading-relaxed">
+                <p className="text-sm text-charcoal-700 leading-relaxed">
                   {selectedPlace.description}
                 </p>
 
                 <div className="space-y-2">
-                  <h4 className="text-xs font-bold uppercase tracking-wider text-charcoal-400 dark:text-charcoal-500">
+                  <h4 className="text-xs font-bold uppercase tracking-wider text-charcoal-400">
                     Why You Should Visit:
                   </h4>
                   <div className="space-y-1.5">
                     {selectedPlace.highlights.map((hl, i) => (
-                      <div key={i} className="flex items-center gap-2 text-xs sm:text-sm text-charcoal-800 dark:text-charcoal-200">
-                        <CheckCircle className="w-4 h-4 text-gold-600 dark:text-gold-400 shrink-0" />
+                      <div key={i} className="flex items-center gap-2 text-xs sm:text-sm text-charcoal-800">
+                        <CheckCircle className="w-4 h-4 text-gold-600 shrink-0" />
                         <span>{hl}</span>
                       </div>
                     ))}
                   </div>
                 </div>
 
-                <div className="p-3.5 rounded-xl bg-sand-50 dark:bg-tropical-surface border border-sand-200 dark:border-white/5 text-xs text-charcoal-600 dark:text-charcoal-300 flex items-center justify-between">
+                <div className="p-3.5 rounded-xl bg-sand-50 border border-sand-200 text-xs text-charcoal-600 flex items-center justify-between">
                   <span>Need scooter rental or tuk-tuk arrangements?</span>
-                  <span className="font-semibold text-gold-700 dark:text-gold-400">Host can arrange</span>
+                  <span className="font-semibold text-gold-700">Host can arrange</span>
                 </div>
 
                 <div className="pt-2 flex justify-end">

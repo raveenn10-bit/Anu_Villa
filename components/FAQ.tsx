@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronDown, HelpCircle, Sparkles } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import { VILLA_DATA } from "@/data/villaData";
 
 export default function FAQ() {
@@ -13,18 +13,18 @@ export default function FAQ() {
   };
 
   return (
-    <section className="py-16 lg:py-24 bg-sand-50 dark:bg-tropical-deep relative overflow-hidden">
+    <section className="py-16 lg:py-24 bg-sand-50 relative overflow-hidden">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
         <div className="text-center mb-12 space-y-3">
-          <span className="text-xs font-bold tracking-[0.25em] text-gold-600 dark:text-gold-400 uppercase">
+          <span className="text-xs font-bold tracking-[0.25em] text-gold-600 uppercase">
             HAVE QUESTIONS?
           </span>
-          <h2 className="font-serif text-2xl sm:text-4xl text-charcoal-900 dark:text-white font-bold">
+          <h2 className="font-serif text-2xl sm:text-4xl text-charcoal-900 font-bold">
             Frequently Asked Questions
           </h2>
-          <p className="text-xs sm:text-sm text-charcoal-600 dark:text-charcoal-300">
+          <p className="text-xs sm:text-sm text-charcoal-600">
             Everything you need to know about booking, policies, facilities, and your stay at Anu Villa.
           </p>
         </div>
@@ -40,17 +40,17 @@ export default function FAQ() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: index * 0.05 }}
-                className="bg-white dark:bg-tropical-surface rounded-2xl border border-sand-200 dark:border-white/10 shadow-xs overflow-hidden transition-colors"
+                className="bg-white rounded-2xl border border-sand-200 shadow-xs overflow-hidden transition-colors"
               >
                 <button
                   onClick={() => toggleAccordion(index)}
-                  className="w-full px-6 py-4.5 text-left flex items-center justify-between gap-4 font-semibold text-charcoal-900 dark:text-white hover:text-gold-600 dark:hover:text-gold-400 transition-colors"
+                  className="w-full px-6 py-4.5 text-left flex items-center justify-between gap-4 font-semibold text-charcoal-900 hover:text-gold-600 transition-colors"
                   aria-expanded={isOpen}
                 >
                   <span className="text-sm sm:text-base font-medium">{item.question}</span>
                   <div
-                    className={`w-8 h-8 rounded-full bg-sand-50 dark:bg-tropical-deep flex items-center justify-center text-charcoal-500 dark:text-charcoal-400 shrink-0 transition-transform duration-300 ${
-                      isOpen ? "rotate-180 bg-gold-100 dark:bg-tropical-card text-gold-700 dark:text-gold-400" : ""
+                    className={`w-8 h-8 rounded-full bg-sand-50 flex items-center justify-center text-charcoal-500 shrink-0 transition-transform duration-300 ${
+                      isOpen ? "rotate-180 bg-gold-100 text-gold-700" : ""
                     }`}
                   >
                     <ChevronDown className="w-4 h-4" />
@@ -65,7 +65,7 @@ export default function FAQ() {
                       exit={{ height: 0, opacity: 0 }}
                       transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
                     >
-                      <div className="px-6 pb-5 pt-1 text-xs sm:text-sm text-charcoal-600 dark:text-charcoal-300 leading-relaxed border-t border-sand-100 dark:border-white/10">
+                      <div className="px-6 pb-5 pt-1 text-xs sm:text-sm text-charcoal-600 leading-relaxed border-t border-sand-100">
                         {item.answer}
                       </div>
                     </motion.div>

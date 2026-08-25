@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { Image as ImageIcon, ChevronLeft, ChevronRight, X, Maximize2, Sparkles, Filter } from "lucide-react";
+import { Image as ImageIcon, ChevronLeft, ChevronRight, X, Maximize2 } from "lucide-react";
 import { VILLA_DATA, GalleryItem } from "@/data/villaData";
 
 export default function Gallery() {
@@ -37,16 +37,16 @@ export default function Gallery() {
   };
 
   return (
-    <section id="gallery" className="py-16 lg:py-24 bg-sand-50 dark:bg-tropical-deep relative overflow-hidden">
+    <section id="gallery" className="py-16 lg:py-24 bg-sand-50 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Section Header (Matches mockup layout) */}
+        {/* Section Header */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 sm:mb-10 gap-4">
           <div className="space-y-2">
-            <span className="text-xs font-bold tracking-[0.25em] text-gold-600 dark:text-gold-400 uppercase">
+            <span className="text-xs font-bold tracking-[0.25em] text-gold-600 uppercase">
               GALLERY
             </span>
-            <h2 className="font-serif text-2xl sm:text-4xl text-charcoal-900 dark:text-white font-bold">
+            <h2 className="font-serif text-2xl sm:text-4xl text-charcoal-900 font-bold">
               A Glimpse of Anu Villa
             </h2>
           </div>
@@ -55,14 +55,14 @@ export default function Gallery() {
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             onClick={() => setShowFullGallery(true)}
-            className="self-start sm:self-auto inline-flex items-center gap-2 px-4 py-2.5 rounded-xl border border-sand-300 dark:border-white/15 text-xs sm:text-sm font-medium text-charcoal-700 dark:text-charcoal-200 hover:text-gold-600 dark:hover:text-gold-400 hover:border-gold-300 hover:bg-white dark:hover:bg-tropical-surface transition-all shadow-xs"
+            className="self-start sm:self-auto inline-flex items-center gap-2 px-4 py-2.5 rounded-xl border border-sand-300 text-xs sm:text-sm font-medium text-charcoal-700 hover:text-gold-600 hover:border-gold-300 hover:bg-white transition-all shadow-xs"
           >
-            <ImageIcon className="w-4 h-4 text-gold-600 dark:text-gold-400" />
+            <ImageIcon className="w-4 h-4 text-gold-600" />
             <span>View Full Gallery</span>
           </motion.button>
         </div>
 
-        {/* 5 Thumbnail Row (Exact mockup visual layout) */}
+        {/* 5 Thumbnail Row */}
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4">
           {previewImages.map((img, index) => (
             <motion.div
@@ -76,17 +76,17 @@ export default function Gallery() {
                 const globalIndex = filteredImages.findIndex((item) => item.id === img.id);
                 setSelectedImageIndex(globalIndex >= 0 ? globalIndex : 0);
               }}
-              className="group relative h-40 sm:h-48 lg:h-56 rounded-2xl overflow-hidden cursor-pointer shadow-md bg-sand-200 dark:bg-tropical-surface border border-sand-200 dark:border-white/10"
+              className="group relative h-40 sm:h-48 lg:h-56 rounded-2xl overflow-hidden cursor-pointer shadow-md bg-sand-200 border border-sand-200"
             >
               <Image
                 src={img.image}
                 alt={img.alt}
                 fill
-                className="object-cover transition-transform duration-700 group-hover:scale-110 brightness-[0.97] dark:brightness-[0.88]"
+                className="object-cover transition-transform duration-700 group-hover:scale-110"
               />
               <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                <div className="w-10 h-10 rounded-full bg-white/90 dark:bg-tropical-surface/90 backdrop-blur-sm flex items-center justify-center text-charcoal-900 dark:text-white shadow-md transform scale-75 group-hover:scale-100 transition-transform">
-                  <Maximize2 className="w-4 h-4 text-gold-600 dark:text-gold-400" />
+                <div className="w-10 h-10 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center text-charcoal-900 shadow-md transform scale-75 group-hover:scale-100 transition-transform">
+                  <Maximize2 className="w-4 h-4 text-gold-600" />
                 </div>
               </div>
             </motion.div>
@@ -103,22 +103,22 @@ export default function Gallery() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setShowFullGallery(false)}
-              className="absolute inset-0 bg-black/75 backdrop-blur-md"
+              className="absolute inset-0 bg-black/70 backdrop-blur-md"
             />
             <motion.div
               initial={{ opacity: 0, scale: 0.95, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
-              className="relative bg-white dark:bg-tropical-deep rounded-3xl max-w-5xl w-full p-6 sm:p-8 shadow-2xl border border-sand-200 dark:border-white/10 z-10 max-h-[92vh] overflow-y-auto"
+              className="relative bg-white rounded-3xl max-w-5xl w-full p-6 sm:p-8 shadow-2xl border border-sand-200 z-10 max-h-[92vh] overflow-y-auto"
             >
-              <div className="flex items-center justify-between pb-6 border-b border-sand-200 dark:border-white/10">
+              <div className="flex items-center justify-between pb-6 border-b border-sand-200">
                 <div>
-                  <h3 className="font-serif text-2xl font-bold text-charcoal-900 dark:text-white">Anu Villa Photo Gallery</h3>
-                  <p className="text-xs text-gold-600 dark:text-gold-400 font-medium">Explore every corner of our Unawatuna oasis</p>
+                  <h3 className="font-serif text-2xl font-bold text-charcoal-900">Anu Villa Photo Gallery</h3>
+                  <p className="text-xs text-gold-600 font-medium">Explore every corner of our Unawatuna oasis</p>
                 </div>
                 <button
                   onClick={() => setShowFullGallery(false)}
-                  className="w-9 h-9 rounded-full bg-sand-100 dark:bg-tropical-surface hover:bg-sand-200 dark:hover:bg-tropical-card flex items-center justify-center text-charcoal-600 dark:text-charcoal-300"
+                  className="w-9 h-9 rounded-full bg-sand-100 hover:bg-sand-200 flex items-center justify-center text-charcoal-600"
                 >
                   <X className="w-5 h-5" />
                 </button>
@@ -132,8 +132,8 @@ export default function Gallery() {
                     onClick={() => setActiveCategory(cat.id)}
                     className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-medium transition-all ${
                       activeCategory === cat.id
-                        ? "bg-gold-500 dark:bg-gold-600 text-white shadow-sm"
-                        : "bg-sand-100 dark:bg-tropical-surface text-charcoal-700 dark:text-charcoal-300 hover:bg-sand-200 dark:hover:bg-tropical-card"
+                        ? "bg-gold-500 text-white shadow-sm"
+                        : "bg-sand-100 text-charcoal-700 hover:bg-sand-200"
                     }`}
                   >
                     {cat.name}
@@ -151,7 +151,7 @@ export default function Gallery() {
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
                     onClick={() => setSelectedImageIndex(idx)}
-                    className="group relative h-52 rounded-2xl overflow-hidden cursor-pointer shadow-sm bg-sand-200 dark:bg-tropical-surface"
+                    className="group relative h-52 rounded-2xl overflow-hidden cursor-pointer shadow-sm bg-sand-200"
                   >
                     <Image
                       src={img.image}
@@ -179,14 +179,14 @@ export default function Gallery() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setSelectedImageIndex(null)}
-              className="absolute inset-0 bg-black/92 backdrop-blur-lg"
+              className="absolute inset-0 bg-black/90 backdrop-blur-lg"
             />
 
             {/* Lightbox Container */}
             <div className="relative z-10 max-w-5xl w-full h-[85vh] flex flex-col justify-between">
               {/* Top Controls */}
               <div className="flex items-center justify-between text-white p-4">
-                <span className="text-sm font-medium text-sand-100">
+                <span className="text-sm font-medium">
                   {selectedImageIndex + 1} / {filteredImages.length} • {filteredImages[selectedImageIndex].title}
                 </span>
                 <button
@@ -232,7 +232,7 @@ export default function Gallery() {
               </div>
 
               {/* Caption Bar */}
-              <div className="bg-white/10 dark:bg-black/40 backdrop-blur-md text-white text-center py-3 px-6 rounded-2xl mx-auto max-w-xl border border-white/10">
+              <div className="bg-white/10 backdrop-blur-md text-white text-center py-3 px-6 rounded-2xl mx-auto max-w-xl">
                 <p className="text-sm font-medium">{filteredImages[selectedImageIndex].alt}</p>
               </div>
             </div>

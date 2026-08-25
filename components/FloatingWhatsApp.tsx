@@ -30,17 +30,17 @@ export default function FloatingWhatsApp() {
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, scale: 0.9 }}
-            className="bg-white dark:bg-charcoal-900 border border-sand-300 dark:border-white/20 px-4 py-2 rounded-full shadow-xl flex items-center gap-2 text-xs font-semibold text-charcoal-900 dark:text-white cursor-pointer hover:bg-sand-50 dark:hover:bg-charcoal-800 transition-colors"
+            className="bg-white border border-sand-300 px-4 py-2 rounded-full shadow-lg flex items-center gap-2 text-xs font-semibold text-charcoal-900 cursor-pointer hover:bg-sand-50 transition-colors"
             onClick={handleDirectWhatsApp}
           >
             <span className="w-2 h-2 rounded-full bg-[#25D366] animate-pulse shrink-0" />
-            <span className="whitespace-nowrap font-medium text-charcoal-900 dark:text-white">Chat on WhatsApp</span>
+            <span className="whitespace-nowrap font-medium text-charcoal-900">Chat on WhatsApp</span>
             <button
               onClick={(e) => {
                 e.stopPropagation();
                 setShowPill(false);
               }}
-              className="text-charcoal-400 hover:text-charcoal-700 dark:hover:text-white ml-1 p-0.5"
+              className="text-charcoal-400 hover:text-charcoal-700 ml-1 p-0.5"
               aria-label="Dismiss chat pill"
             >
               <X className="w-3.5 h-3.5" />
@@ -56,7 +56,7 @@ export default function FloatingWhatsApp() {
             initial={{ opacity: 0, scale: 0.85, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.85, y: 20 }}
-            className="absolute bottom-16 right-0 bg-white dark:bg-tropical-deep rounded-3xl shadow-2xl border border-sand-200 dark:border-white/15 w-80 overflow-hidden"
+            className="absolute bottom-16 right-0 bg-white rounded-3xl shadow-2xl border border-sand-200 w-80 overflow-hidden"
           >
             {/* Header */}
             <div className="bg-[#075E54] p-4 text-white flex items-center justify-between">
@@ -81,16 +81,16 @@ export default function FloatingWhatsApp() {
             </div>
 
             {/* Chat Body */}
-            <div className="p-4 bg-[#ECE5DD] dark:bg-[#121B16] space-y-3">
-              <div className="bg-white dark:bg-tropical-surface p-3 rounded-2xl rounded-tl-none shadow-xs text-xs text-charcoal-800 dark:text-charcoal-200 space-y-1">
-                <p className="font-semibold text-gold-700 dark:text-gold-400">Welcome to Anu Villa! 🌴</p>
+            <div className="p-4 bg-[#ECE5DD] space-y-3">
+              <div className="bg-white p-3 rounded-2xl rounded-tl-none shadow-xs text-xs text-charcoal-800 space-y-1">
+                <p className="font-semibold text-gold-700">Welcome to Anu Villa! 🌴</p>
                 <p>How can we assist your stay in Unawatuna today? Ask for dates, rates, or custom requests.</p>
-                <span className="text-[9px] text-charcoal-400 dark:text-charcoal-500 block text-right">Just now</span>
+                <span className="text-[9px] text-charcoal-400 block text-right">Just now</span>
               </div>
             </div>
 
             {/* Input & Action */}
-            <div className="p-3 bg-white dark:bg-tropical-deep border-t border-sand-200 dark:border-white/10 space-y-2">
+            <div className="p-3 bg-white border-t border-sand-200 space-y-2">
               <div className="flex items-center gap-2">
                 <input
                   type="text"
@@ -100,7 +100,7 @@ export default function FloatingWhatsApp() {
                   onKeyDown={(e) => {
                     if (e.key === "Enter") handleSendMessage();
                   }}
-                  className="flex-1 px-3 py-2 text-xs rounded-xl bg-sand-50 dark:bg-tropical-surface border border-sand-300 dark:border-white/10 text-charcoal-800 dark:text-white focus:outline-none focus:border-[#25D366]"
+                  className="flex-1 px-3 py-2 text-xs rounded-xl bg-sand-50 border border-sand-300 text-charcoal-800 focus:outline-none focus:border-[#25D366]"
                 />
                 <button
                   onClick={handleSendMessage}
@@ -109,7 +109,7 @@ export default function FloatingWhatsApp() {
                   <Send className="w-4 h-4" />
                 </button>
               </div>
-              <p className="text-[9px] text-center text-charcoal-400 dark:text-charcoal-500">
+              <p className="text-[9px] text-center text-charcoal-400">
                 Direct WhatsApp with Villa Management
               </p>
             </div>
