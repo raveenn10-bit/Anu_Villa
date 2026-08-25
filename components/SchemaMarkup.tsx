@@ -18,12 +18,28 @@ export default function SchemaMarkup() {
     },
   }));
 
-  const vacationRentalSchema = {
+  const lodgingImages = [
+    "https://www.msaanuvilla.com/images/hero/hero-slide-3.jpg",
+    "https://www.msaanuvilla.com/images/hero/hero-slide-1.jpg",
+    "https://www.msaanuvilla.com/images/hero/hero-slide-2.jpg",
+    "https://www.msaanuvilla.com/images/villa/pool-real.jpg",
+    "https://www.msaanuvilla.com/images/villa/estate/estate-01.jpg",
+    "https://www.msaanuvilla.com/images/villa/estate/estate-02.jpg",
+    "https://www.msaanuvilla.com/images/villa/estate/estate-03.jpg",
+    "https://www.msaanuvilla.com/images/villa/estate/estate-04.jpg",
+    "https://www.msaanuvilla.com/images/villa/estate/estate-05.jpg",
+    "https://www.msaanuvilla.com/images/villa/estate/estate-06.jpg",
+    "https://www.msaanuvilla.com/images/villa/estate/estate-07.jpg",
+    "https://www.msaanuvilla.com/images/villa/apartment-1/apartment-1-08.jpg",
+    "https://www.msaanuvilla.com/images/villa/apartment-2/apartment-2-01.jpg",
+    "https://www.msaanuvilla.com/images/villa/room-1/room-1-01.jpg",
+  ];
+
+  const lodgingSchema = {
     "@context": "https://schema.org",
-    "@type": "VacationRental",
-    "@id": "https://www.msaanuvilla.com/#vacationrental",
+    "@type": "LodgingBusiness",
+    "@id": "https://www.msaanuvilla.com/#lodging",
     identifier: "MSA-ANU-VILLA-001",
-    additionalType: "https://schema.org/LodgingBusiness",
     name: VILLA_DATA.officialName,
     alternateName: [
       "Anu Villa",
@@ -37,25 +53,10 @@ export default function SchemaMarkup() {
     url: "https://www.msaanuvilla.com",
     telephone: "+94775183955",
     email: "contact@msaanuvilla.com",
-    priceRange: "$140",
+    priceRange: "$$",
     currenciesAccepted: "USD, LKR, EUR, GBP, AUD",
     paymentAccepted: "Cash, Bank Transfer, Online Payment",
-    image: [
-      "https://www.msaanuvilla.com/images/hero/hero-slide-3.jpg",
-      "https://www.msaanuvilla.com/images/hero/hero-slide-1.jpg",
-      "https://www.msaanuvilla.com/images/hero/hero-slide-2.jpg",
-      "https://www.msaanuvilla.com/images/villa/pool-real.jpg",
-      "https://www.msaanuvilla.com/images/villa/estate/estate-01.jpg",
-      "https://www.msaanuvilla.com/images/villa/estate/estate-02.jpg",
-      "https://www.msaanuvilla.com/images/villa/estate/estate-03.jpg",
-      "https://www.msaanuvilla.com/images/villa/estate/estate-04.jpg",
-      "https://www.msaanuvilla.com/images/villa/estate/estate-05.jpg",
-      "https://www.msaanuvilla.com/images/villa/estate/estate-06.jpg",
-      "https://www.msaanuvilla.com/images/villa/estate/estate-07.jpg",
-      "https://www.msaanuvilla.com/images/villa/apartment-1/apartment-1-08.jpg",
-      "https://www.msaanuvilla.com/images/villa/apartment-2/apartment-2-01.jpg",
-      "https://www.msaanuvilla.com/images/villa/room-1/room-1-01.jpg",
-    ],
+    image: lodgingImages,
     logo: "https://www.msaanuvilla.com/images/logo.png",
     address: {
       "@type": "PostalAddress",
@@ -98,12 +99,12 @@ export default function SchemaMarkup() {
       },
       {
         "@type": "LocationFeatureSpecification",
-        name: "Air Conditioning in all 6 Bedrooms",
+        name: "Air Conditioning",
         value: true,
       },
       {
         "@type": "LocationFeatureSpecification",
-        name: "6 Attached En-Suite Bathrooms with Hot Water",
+        name: "En-Suite Bathrooms with Hot Water",
         value: true,
       },
       {
@@ -113,12 +114,12 @@ export default function SchemaMarkup() {
       },
       {
         "@type": "LocationFeatureSpecification",
-        name: "Poolside Garden BBQ Grill & Dining Patio",
+        name: "Poolside BBQ Grill & Dining Patio",
         value: true,
       },
       {
         "@type": "LocationFeatureSpecification",
-        name: "High-Speed Free Wi-Fi",
+        name: "Free High-Speed Wi-Fi",
         value: true,
       },
       {
@@ -145,6 +146,8 @@ export default function SchemaMarkup() {
         numberOfBathroomsTotal: 6,
         occupancy: {
           "@type": "QuantitativeValue",
+          value: 12,
+          minValue: 1,
           maxValue: 12,
           unitText: "GUESTS",
         },
@@ -191,7 +194,7 @@ export default function SchemaMarkup() {
       "https://www.facebook.com/share/1dwdJ81Bb2/",
       "https://www.tiktok.com/@m.s.a.anu.villa",
     ],
-    makesOffer: {
+    offers: {
       "@type": "Offer",
       name: "Exclusive Whole 6-Bedroom Villa Rental",
       price: "140",
@@ -316,7 +319,7 @@ export default function SchemaMarkup() {
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(vacationRentalSchema) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(lodgingSchema) }}
       />
       <script
         type="application/ld+json"
