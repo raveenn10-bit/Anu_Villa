@@ -370,3 +370,228 @@ small, .text-fine {
   h2 { font-size: clamp(2rem, 5.5vw, 3rem); }
   h3 { font-size: clamp(1.625rem, 4vw, 2.25rem); }
 }
+
+/* ═══════════════════════════════════════════════════════════════════
+   ANU VILLA — LUXURY PHOTOGRAPHY VISUAL TREATMENT SYSTEM
+   
+   CINEMATIC GRADE SPECIFICATION:
+   → Color temperature shift: +8K warm (amber tones, not cool blue)
+   → Black lift: 8–12% (no crushed blacks — lifted, filmic)
+   → Saturation: –9% global (nature feels lush, not neon)
+   → Contrast: +4% (presence without harshness)
+   → Skin & sand: warm, not pink; stone tones: warm beige
+   → Pool/water: aqua/teal preserved (slightly enhanced clarity)
+═══════════════════════════════════════════════════════════════════ */
+
+/* ── Cinematic Grade ────────────────────────────────────────────── */
+/* Applied to every img element that should carry the luxury grade */
+.img-cinema {
+  filter: brightness(0.97) contrast(1.04) saturate(0.91);
+  transition: filter 0.5s ease;
+}
+.img-cinema:hover {
+  filter: brightness(1.01) contrast(1.05) saturate(0.94);
+}
+
+/* ── Hover Zoom Container ───────────────────────────────────────── */
+/* Wrap any image in this — gives the slow editorial zoom on hover */
+.img-zoom-container {
+  overflow: hidden;
+}
+.img-zoom-container img,
+.img-zoom-container .img-inner {
+  transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+.img-zoom-container:hover img,
+.img-zoom-container:hover .img-inner {
+  transform: scale(1.06);
+}
+
+/* ── Gallery Card Image ─────────────────────────────────────────── */
+/* Extra-slow, barely-perceptible luxury zoom for gallery cards */
+.img-gallery {
+  transition: transform 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+              filter 0.5s ease;
+  filter: brightness(0.96) contrast(1.05) saturate(0.90);
+  will-change: transform;
+}
+.img-gallery:hover {
+  transform: scale(1.07);
+  filter: brightness(1.00) contrast(1.05) saturate(0.93);
+}
+
+/* ── Hero Image Treatment ───────────────────────────────────────── */
+/* Full-bleed hero: darker, more dramatic, text must be legible */
+.img-hero {
+  filter: brightness(0.82) contrast(1.08) saturate(0.88);
+  will-change: transform;
+  transform: scale(1.04); /* Start slightly zoomed for parallax room */
+  transition: transform 12s linear;
+}
+
+/* ── Image Overlay System ───────────────────────────────────────── */
+/* Tonal overlays applied as sibling divs inside the same container */
+
+/* Warm amber wash — applied to ALL images (very subtle, 5%) */
+.overlay-warm::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(197, 145, 82, 0.07) 0%,
+    rgba(197, 145, 82, 0.00) 100%
+  );
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Cinematic bottom gradient — for card text legibility */
+.overlay-cinematic::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(11, 15, 13, 0.80) 0%,
+    rgba(11, 15, 13, 0.35) 40%,
+    transparent 70%
+  );
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Hero directional overlay — left-to-right for copy zone */
+.overlay-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    rgba(11, 15, 13, 0.92) 0%,
+    rgba(11, 15, 13, 0.68) 40%,
+    rgba(11, 15, 13, 0.18) 75%,
+    transparent 100%
+  );
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Vignette — radial edge darkening */
+.overlay-vignette::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse at center,
+    transparent 35%,
+    rgba(11, 15, 13, 0.55) 100%
+  );
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* ── Film Grain Texture ─────────────────────────────────────────── */
+/* Ultra-subtle grain — appears only on hover to add tactile depth */
+.img-grain::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.06'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 128px 128px;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 3;
+  transition: opacity 0.4s ease;
+  mix-blend-mode: overlay;
+}
+.img-grain:hover::before {
+  opacity: 1;
+}
+
+/* ── Image Reveal Animations ────────────────────────────────────── */
+/* For components not using framer-motion — pure CSS fallback */
+@keyframes imgRevealUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.975);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+@keyframes imgRevealFade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.img-reveal {
+  animation: imgRevealUp 0.75s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.img-reveal-fade {
+  animation: imgRevealFade 0.6s ease both;
+}
+
+/* Stagger delay utilities */
+.delay-100 { animation-delay: 0.1s; }
+.delay-200 { animation-delay: 0.2s; }
+.delay-300 { animation-delay: 0.3s; }
+.delay-400 { animation-delay: 0.4s; }
+.delay-500 { animation-delay: 0.5s; }
+
+/* ── About / Story Image Frame ──────────────────────────────────── */
+/* Architectural off-white border frame treatment for story images */
+.img-frame {
+  position: relative;
+}
+.img-frame::before {
+  content: "";
+  position: absolute;
+  inset: -10px;
+  border: 1px solid rgba(197, 145, 82, 0.22);
+  pointer-events: none;
+  z-index: 10;
+  border-radius: inherit;
+}
+.img-frame::after {
+  content: "";
+  position: absolute;
+  inset: -20px;
+  border: 1px solid rgba(197, 145, 82, 0.10);
+  pointer-events: none;
+  z-index: 10;
+  border-radius: inherit;
+}
+
+/* ── Aspect Ratio Utilities ─────────────────────────────────────── */
+/* Consistent proportions across all image placements */
+.aspect-cinema    { aspect-ratio: 21 / 9; }   /* Hero widescreen  */
+.aspect-editorial { aspect-ratio: 4 / 5; }    /* Portrait plates  */
+.aspect-landscape { aspect-ratio: 4 / 3; }    /* Card images      */
+.aspect-film      { aspect-ratio: 3 / 2; }    /* Gallery wide     */
+.aspect-tall      { aspect-ratio: 2 / 3; }    /* Gallery portrait */
+.aspect-square    { aspect-ratio: 1 / 1; }    /* Thumbnails       */
+
+/* ── Gallery Masonry-Style Layout ──────────────────────────────── */
+/* Feature gallery card sizing */
+.gallery-card-feature {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+.gallery-card-portrait {
+  grid-row: span 2;
+}
+
+/* ── Mobile Image Scroll Container ─────────────────────────────── */
+.mobile-scroll-item {
+  flex: 0 0 80vw;
+  max-width: 320px;
+  scroll-snap-align: start;
+}
+@media (max-width: 480px) {
+  .mobile-scroll-item { flex: 0 0 85vw; }
+}
+

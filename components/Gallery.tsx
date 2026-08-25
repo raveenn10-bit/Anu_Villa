@@ -119,19 +119,25 @@ export default function Gallery() {
                 const globalIndex = filteredImages.findIndex((item) => item.id === img.id);
                 setSelectedImageIndex(globalIndex >= 0 ? globalIndex : 0);
               }}
-              className="min-w-[240px] sm:min-w-0 flex-shrink-0 snap-center group relative h-48 sm:h-56 lg:h-64 rounded-2xl overflow-hidden cursor-pointer shadow-sm bg-sand-200 border border-sand-200/80"
+              className="min-w-[240px] sm:min-w-0 flex-shrink-0 snap-center group relative h-48 sm:h-56 lg:h-64 rounded-2xl overflow-hidden cursor-pointer shadow-sm bg-sand-200 border border-sand-200/80 img-zoom-container"
             >
               <Image
                 src={img.image}
                 alt={img.alt}
                 fill
-                className="object-cover transition-transform duration-700 group-hover:scale-110"
+                className="object-cover img-gallery"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-noir-950/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3.5">
-                <div className="w-8 h-8 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center text-charcoal-900 shadow-md">
-                  <Maximize2 className="w-3.5 h-3.5 text-gold-600" />
+              {/* Cinematic card overlay — text legibility on hover */}
+              <div className="absolute inset-0 bg-gradient-to-t from-noir-950/70 via-noir-950/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-3.5 z-10">
+                <div className="flex items-center gap-2">
+                  <div className="w-8 h-8 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center shadow-md flex-shrink-0">
+                    <Maximize2 className="w-3.5 h-3.5 text-gold-600" />
+                  </div>
+                  <span className="text-white/90 font-ui text-label-sm tracking-wider uppercase opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100 text-[10px]">{img.title}</span>
                 </div>
               </div>
+              {/* Warm amber tonal overlay */}
+              <div className="absolute inset-0 bg-gradient-to-br from-amber-900/[0.06] to-transparent pointer-events-none z-[5]" />
             </motion.div>
           ))}
         </div>

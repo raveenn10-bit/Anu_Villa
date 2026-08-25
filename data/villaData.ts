@@ -156,7 +156,8 @@ export const VILLA_DATA: VillaData = {
       title: "6 Spacious Bedrooms",
       subtitle: "Accommodates up to 12 Guests",
       iconName: "BedDouble",
-      image: "https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=800&q=80",
+      // Art direction: Warm morning backlight through louvred shutters, cream linen
+      image: "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&fit=crop&w=1000&q=88",
       description: "6 king and queen bedrooms featuring whisper-quiet air conditioning, plush hotel-grade mattresses, ceiling fans, wardrobe space, and tropical garden views.",
       details: [
         "6 Independent spacious bedrooms",
@@ -171,7 +172,8 @@ export const VILLA_DATA: VillaData = {
       title: "6 Attached Bathrooms",
       subtitle: "Private En-Suite for Every Room",
       iconName: "Bath",
-      image: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=800&q=80",
+      // Art direction: Rain shower, clean white ceramic, warm ambient glow
+      image: "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?auto=format&fit=crop&w=1000&q=88",
       description: "Every single bedroom has its own private attached bathroom with modern sanitary fittings, hot water showers, and complimentary toiletries.",
       details: [
         "6 Private attached en-suite bathrooms",
@@ -185,7 +187,8 @@ export const VILLA_DATA: VillaData = {
       title: "Private Swimming Pool",
       subtitle: "Exclusive for Your Group",
       iconName: "Waves",
-      image: "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?auto=format&fit=crop&w=800&q=80",
+      // Art direction: Crisp aquamarine water, sun loungers, tropical palm border
+      image: "https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?auto=format&fit=crop&w=1000&q=88",
       description: "Dive into your sparkling private outdoor pool, complete with sun loungers, tropical poolside relaxation areas, and evening mood lighting.",
       details: [
         "Crystal clear freshwater pool",
@@ -199,7 +202,8 @@ export const VILLA_DATA: VillaData = {
       title: "BBQ & Outdoor Dining",
       subtitle: "Alfresco Garden Grill",
       iconName: "UtensilsCrossed",
-      image: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=800&q=80",
+      // Art direction: Warm evening candlelit table in tropical garden setting
+      image: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1000&q=88",
       description: "Enjoy festive outdoor barbecue evenings under the stars with our dedicated BBQ grill setup, outdoor dining tables, and garden seating.",
       details: [
         "Dedicated BBQ grill & accessories",
@@ -213,7 +217,8 @@ export const VILLA_DATA: VillaData = {
       title: "Kitchen Facilities",
       subtitle: "Fully Equipped for Home Cooking",
       iconName: "UtensilsCrossed",
-      image: "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=800&q=80",
+      // Art direction: Natural daylight, clean modern worktop, organised equipment
+      image: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=1000&q=88",
       description: "Prepare fresh meals with ease in the equipped kitchen featuring gas stove, refrigerator, cookware, dinnerware, microwave, and electric kettle.",
       details: [
         "Gas burners & microwave oven",
@@ -227,7 +232,8 @@ export const VILLA_DATA: VillaData = {
       title: "Garden & Outdoor Area",
       subtitle: "Peaceful Natural Sanctuary",
       iconName: "Trees",
-      image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80",
+      // Art direction: Lush tropical garden path, dappled noon light through palms
+      image: "https://images.unsplash.com/photo-1585128792020-803d29415281?auto=format&fit=crop&w=1000&q=88",
       description: "A secure, peaceful garden surrounded by coconut palms and exotic flora, offering private on-site parking and a serene place to unwind.",
       details: [
         "Lush tropical garden landscaping",
@@ -237,64 +243,74 @@ export const VILLA_DATA: VillaData = {
       ],
     },
   ],
+
   galleryImages: [
     {
       id: "gal-1",
-      title: "Private Swimming Pool & Villa Exterior",
+      title: "Private Pool & Villa Exterior",
       category: "exterior",
-      image: "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=1000&q=80",
+      // G01 — Wide anchor shot. Pool foreground, villa architecture behind.
+      image: "https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=1400&q=90",
       alt: "Anu Villa private outdoor swimming pool and tropical facade in Unawatuna Galle",
     },
     {
       id: "gal-2",
       title: "Spacious Air-Conditioned Bedroom",
       category: "bedrooms",
-      image: "https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=1000&q=80",
+      // G02 — Warm morning backlight, cream linen, shadow play
+      image: "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&fit=crop&w=1000&q=88",
       alt: "Comfortable air conditioned bedroom with attached bathroom at Anu Villa",
     },
     {
       id: "gal-3",
-      title: "Modern Attached Bathroom",
+      title: "Private En-Suite Bathroom",
       category: "bedrooms",
-      image: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=1000&q=80",
+      // G03 — Rain shower detail, ceramic warmth, natural light
+      image: "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?auto=format&fit=crop&w=1000&q=88",
       alt: "Clean en-suite bathroom with hot water rain shower",
     },
     {
       id: "gal-4",
-      title: "Garden & BBQ Dining Area",
+      title: "Tropical Garden & Outdoor Area",
       category: "garden",
-      image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1000&q=80",
-      alt: "Lush tropical garden and alfresco dining patio",
+      // G04 — Lush tropical garden, dappled light through coconut palms
+      image: "https://images.unsplash.com/photo-1585128792020-803d29415281?auto=format&fit=crop&w=1000&q=88",
+      alt: "Lush tropical garden and outdoor relaxation area",
     },
     {
       id: "gal-5",
-      title: "Fully Equipped Kitchen & Dining",
-      category: "living",
-      image: "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=1000&q=80",
-      alt: "Modern equipped kitchen for guest cooking",
+      title: "Alfresco Garden Dining",
+      category: "garden",
+      // G05 — Outdoor dining table, warm candlelight, tropical evening
+      image: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1000&q=88",
+      alt: "Alfresco outdoor garden dining and BBQ area at Anu Villa",
     },
     {
       id: "gal-6",
-      title: "Poolside Evening Lounge",
+      title: "Poolside at Dusk",
       category: "exterior",
-      image: "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?auto=format&fit=crop&w=1000&q=80",
-      alt: "Illuminated evening pool at Anu Villa",
+      // G06 — Evening pool with ambient lighting, aqua glow
+      image: "https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?auto=format&fit=crop&w=1000&q=88",
+      alt: "Illuminated evening pool at Anu Villa Unawatuna",
     },
     {
       id: "gal-7",
-      title: "Master Suite with Garden View",
+      title: "Second Bedroom Suite",
       category: "bedrooms",
-      image: "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=1000&q=80",
-      alt: "Bright and airy master bedroom",
+      // G07 — Airy secondary bedroom, clean warm tones
+      image: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1000&q=88",
+      alt: "Bright and airy guest bedroom suite at Anu Villa",
     },
     {
       id: "gal-8",
-      title: "Spacious Living Room Lounge",
+      title: "Spacious Living & Lounge",
       category: "living",
-      image: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1000&q=80",
-      alt: "Cozy sofa seating in the living hall",
+      // G08 — Architectural natural light, open plan lounge
+      image: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1000&q=88",
+      alt: "Spacious lounge and living area at Anu Villa",
     },
   ],
+
   nearbyAttractions: [
     {
       id: "turtle-beach",

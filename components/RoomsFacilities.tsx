@@ -137,15 +137,18 @@ export default function RoomsFacilities({ onOpenBooking }: RoomsFacilitiesProps)
                 className="min-w-[280px] sm:min-w-[320px] md:min-w-0 flex-shrink-0 snap-center group cursor-pointer bg-white rounded-3xl overflow-hidden border border-sand-200 hover:border-gold-300 transition-all duration-300 shadow-xs hover:shadow-xl flex flex-col justify-between"
               >
                 {/* Image Container */}
-                <div className="relative h-52 sm:h-56 w-full overflow-hidden bg-sand-200">
+                <div className="relative h-52 sm:h-56 w-full overflow-hidden bg-sand-200 img-zoom-container">
                   <Image
                     src={item.image}
                     alt={item.title}
                     fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-108"
+                    className="object-cover img-gallery"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-noir-950/60 via-transparent to-transparent opacity-60 group-hover:opacity-80 transition-opacity" />
-                  
+                  {/* Cinematic cinematic bottom-to-top text gradient */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-noir-950/72 via-noir-950/20 to-transparent z-[2]" />
+                  {/* Warm amber tonal wash */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-amber-900/[0.07] to-transparent pointer-events-none z-[3]" />
+
                   {/* Floating Icon badge */}
                   <div className="absolute top-3.5 left-3.5 w-10 h-10 rounded-xl bg-white/95 backdrop-blur-md text-gold-700 flex items-center justify-center shadow-md">
                     <IconComponent className="w-5 h-5" />
