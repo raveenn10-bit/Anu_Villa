@@ -3,7 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { MessageCircle, MapPin, Lock, Facebook, Youtube, Instagram } from "lucide-react";
+import { MessageCircle, MapPin, Lock, Facebook, Youtube, Instagram, User } from "lucide-react";
 import { VILLA_DATA } from "@/data/villaData";
 
 export default function Footer() {
@@ -16,17 +16,17 @@ export default function Footer() {
           <div className="relative w-14 h-14 rounded-full overflow-hidden bg-white border border-gold-300 p-0.5 shadow-sm">
             <Image
               src="/images/logo.png"
-              alt="Anu Villa"
+              alt="M.S.A Anu Villa"
               fill
               className="object-contain"
             />
           </div>
           <div>
             <h3 className="font-serif text-2xl sm:text-3xl font-bold tracking-widest text-charcoal-900 uppercase">
-              ANU VILLA
+              {VILLA_DATA.officialName}
             </h3>
             <span className="text-[10px] tracking-[0.3em] uppercase text-gold-600 font-semibold block">
-              UNAWATUNA • GALLE
+              THALPE NORTH • UNAWATUNA • GALLE
             </span>
           </div>
         </div>
@@ -77,49 +77,47 @@ export default function Footer() {
           <Link href="#about" className="hover:text-gold-600 transition-colors">ABOUT US</Link>
           <Link href="#facilities" className="hover:text-gold-600 transition-colors">ROOMS &amp; FACILITIES</Link>
           <Link href="#gallery" className="hover:text-gold-600 transition-colors">GALLERY</Link>
-          <Link href="#rates" className="hover:text-gold-600 transition-colors">RATES</Link>
+          <Link href="#rates" className="hover:text-gold-600 transition-colors">RATES ($140)</Link>
           <Link href="#nearby" className="hover:text-gold-600 transition-colors">NEARBY PLACES</Link>
           <Link href="#contact" className="hover:text-gold-600 transition-colors">CONTACT</Link>
         </nav>
 
         {/* 4. Villa Features Tagline Row */}
         <div className="flex flex-wrap items-center justify-center gap-x-2.5 gap-y-1 text-xs text-charcoal-500 max-w-3xl leading-relaxed">
-          <span>4 A/C Bedrooms</span>
+          <span>6 A/C Bedrooms</span>
           <span className="text-gold-500">•</span>
-          <span>4 Attached Bathrooms</span>
+          <span>6 Attached Bathrooms</span>
           <span className="text-gold-500">•</span>
-          <span>Private Outdoor Swimming Pool</span>
+          <span>Private Swimming Pool</span>
           <span className="text-gold-500">•</span>
-          <span>2 Fully Equipped Kitchens</span>
+          <span>Kitchen &amp; BBQ Facilities</span>
           <span className="text-gold-500">•</span>
-          <span>Spacious Living &amp; Dining</span>
+          <span>Garden Sanctuary</span>
           <span className="text-gold-500">•</span>
-          <span>Peaceful Garden Sanctuary</span>
+          <span>Up to 12 Guests</span>
         </div>
 
         {/* 5. GET IN TOUCH Section */}
-        <div className="pt-2 flex flex-col items-center space-y-1.5">
+        <div className="pt-2 flex flex-col items-center space-y-2">
           <span className="text-[11px] font-bold tracking-[0.25em] text-gold-600 uppercase">
-            GET IN TOUCH!
+            GET IN TOUCH WITH HOST M. MANGALA
           </span>
-          <div className="flex flex-wrap items-center justify-center gap-2">
-            <a
-              href="tel:+94764526021"
-              className="font-serif text-lg sm:text-2xl font-bold text-charcoal-900 hover:text-gold-600 transition-colors"
-            >
-              +94 76 452 6021
-            </a>
-            <span className="text-charcoal-400 text-lg font-light">/</span>
-            <a
-              href="tel:+94775183955"
-              className="font-serif text-lg sm:text-2xl font-bold text-charcoal-900 hover:text-gold-600 transition-colors"
-            >
-              +94 77 518 3955
-            </a>
+          <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1">
+            {VILLA_DATA.phones.map((p, idx) => (
+              <React.Fragment key={idx}>
+                {idx > 0 && <span className="text-charcoal-400 font-light hidden sm:inline">/</span>}
+                <a
+                  href={`tel:${p.replace(/\s+/g, "")}`}
+                  className="font-serif text-base sm:text-xl font-bold text-charcoal-900 hover:text-gold-600 transition-colors"
+                >
+                  {p}
+                </a>
+              </React.Fragment>
+            ))}
           </div>
-          <p className="text-xs text-charcoal-500 flex items-center justify-center gap-1.5 pt-1">
-            <MapPin className="w-3.5 h-3.5 text-gold-600" />
-            <span>Address: Unawatuna, Galle, Southern Province, Sri Lanka</span>
+          <p className="text-xs text-charcoal-500 flex items-center justify-center gap-1.5 pt-0.5">
+            <MapPin className="w-3.5 h-3.5 text-gold-600 shrink-0" />
+            <span>{VILLA_DATA.location} (1.5 km to Beach)</span>
           </p>
         </div>
 
@@ -128,7 +126,7 @@ export default function Footer() {
 
         {/* 7. Copyright Bottom */}
         <div className="flex items-center justify-center gap-2 text-xs text-charcoal-500 pb-2">
-          <span>Copyright © {new Date().getFullYear()} Anu Villa Unawatuna. All Rights Reserved.</span>
+          <span>Copyright © {new Date().getFullYear()} {VILLA_DATA.officialName}. All Rights Reserved.</span>
           <Lock className="w-3 h-3 text-charcoal-400" />
         </div>
 

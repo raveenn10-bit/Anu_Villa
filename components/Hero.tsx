@@ -15,13 +15,13 @@ export default function Hero({ onOpenBooking, onExplore }: HeroProps) {
   const highlights = [
     {
       icon: BedDouble,
-      title: "4 Bedrooms",
-      subtitle: "Spacious & Comfortable",
+      title: "6 Bedrooms",
+      subtitle: "6 Attached Bathrooms",
     },
     {
       icon: Users,
-      title: "Up to 8 Guests",
-      subtitle: "Perfect for Families",
+      title: "Up to 12 Guests",
+      subtitle: "Families & Groups",
     },
     {
       icon: Waves,
@@ -30,8 +30,8 @@ export default function Hero({ onOpenBooking, onExplore }: HeroProps) {
     },
     {
       icon: MapPin,
-      title: "Galle, Sri Lanka",
-      subtitle: "Prime Location",
+      title: "Thalpe, Unawatuna",
+      subtitle: "1.5 km to Beach",
     },
   ];
 
@@ -46,14 +46,14 @@ export default function Hero({ onOpenBooking, onExplore }: HeroProps) {
           <div className="absolute inset-0 z-0">
             <Image
               src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=1800&q=85"
-              alt="Anu Villa Galle Luxury Private Getaway"
+              alt="M.S.A Anu Villa Thalpe North Unawatuna Galle"
               fill
               priority
               className="object-cover object-right md:object-center"
             />
             
             {/* Smooth Left Gradient for Crisp Text Readability matching mockup */}
-            <div className="absolute inset-0 bg-gradient-to-r from-sand-50/95 via-sand-50/85 to-transparent md:w-[65%] lg:w-[55%]" />
+            <div className="absolute inset-0 bg-gradient-to-r from-sand-50/95 via-sand-50/85 to-transparent md:w-[68%] lg:w-[58%]" />
             <div className="absolute inset-0 bg-gradient-to-t from-sand-50/90 via-transparent to-transparent md:hidden" />
           </div>
 
@@ -66,19 +66,21 @@ export default function Hero({ onOpenBooking, onExplore }: HeroProps) {
               className="space-y-4 sm:space-y-5"
             >
               {/* Subtitle */}
-              <span className="text-[11px] sm:text-xs font-bold tracking-[0.25em] text-gold-600 uppercase block">
-                WELCOME TO ANU VILLA
-              </span>
+              <div className="inline-flex items-center gap-2">
+                <span className="text-[11px] sm:text-xs font-bold tracking-[0.25em] text-gold-600 uppercase">
+                  WELCOME TO {VILLA_DATA.officialName.toUpperCase()}
+                </span>
+              </div>
 
-              {/* Main Heading (Exact mockup typography) */}
-              <h1 className="font-serif text-3xl sm:text-5xl lg:text-[54px] text-charcoal-900 font-bold leading-[1.12] tracking-tight">
-                Your Private Getaway <br />
-                in <span className="text-gold-600 font-serif">Galle</span>
+              {/* Main Heading */}
+              <h1 className="font-serif text-3xl sm:text-5xl lg:text-[52px] text-charcoal-900 font-bold leading-[1.12] tracking-tight">
+                Your Perfect Getaway <br />
+                in <span className="text-gold-600 font-serif">Unawatuna</span>
               </h1>
 
               {/* Description */}
               <p className="text-charcoal-600 text-xs sm:text-sm lg:text-base leading-relaxed max-w-md">
-                {VILLA_DATA.description.hero}
+                Escape the busy city life and enjoy a peaceful, comfortable stay at ANU VILLA. 6 spacious en-suite rooms, private pool, BBQ facilities, and tropical serenity.
               </p>
 
               {/* Action Buttons */}
@@ -90,7 +92,7 @@ export default function Hero({ onOpenBooking, onExplore }: HeroProps) {
                   className="bg-gold-500 hover:bg-gold-600 text-white px-6 py-3 rounded-xl font-medium text-xs sm:text-sm shadow-md transition-all flex items-center gap-2"
                 >
                   <Calendar className="w-4 h-4" />
-                  <span>Book Your Stay</span>
+                  <span>Book Entire Villa ($140/nt)</span>
                 </motion.button>
 
                 <motion.button
@@ -100,14 +102,14 @@ export default function Hero({ onOpenBooking, onExplore }: HeroProps) {
                   className="bg-white/90 hover:bg-white text-charcoal-800 border border-sand-300 px-5 py-3 rounded-xl font-medium text-xs sm:text-sm shadow-xs backdrop-blur-sm transition-all flex items-center gap-2"
                 >
                   <Compass className="w-4 h-4 text-gold-600" />
-                  <span>Explore Villa</span>
+                  <span>Explore 6 Rooms</span>
                 </motion.button>
               </div>
             </motion.div>
           </div>
         </div>
 
-        {/* Floating Quick Features Bar (Exact mockup alignment & layout) */}
+        {/* Floating Quick Features Bar */}
         <motion.div
           initial={{ opacity: 0, y: 25 }}
           animate={{ opacity: 1, y: 0 }}

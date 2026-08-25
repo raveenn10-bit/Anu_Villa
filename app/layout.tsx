@@ -15,35 +15,40 @@ const jakarta = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Anu Villa | Luxury Private 4-Bedroom Holiday Villa in Unawatuna, Galle",
+  title: "M.S.A Anu Villa | 6-Bedroom Private Villa in Thalpe North, Unawatuna, Galle",
   description:
-    "Experience pure serenity and luxury at Anu Villa Unawatuna, Galle. 4 A/C en-suite bedrooms, private swimming pool, 2 kitchens, lush tropical garden, just minutes from Unawatuna Beach & Galle Fort.",
+    "Escape the busy city life at M.S.A Anu Villa in Samagiya, Thalpe North, Unawatuna. 6 A/C en-suite bedrooms, private swimming pool, kitchen, BBQ, up to 12 guests, just 1.5 km to beach. $140/night.",
   keywords: [
+    "M.S.A Anu Villa",
     "Anu Villa",
     "Anu Villa Unawatuna",
+    "Thalpe North Villa",
     "Villa in Galle",
     "Private Villa Unawatuna",
     "Holiday Villa Sri Lanka",
     "Villa with Private Pool Galle",
-    "4 Bedroom Villa Unawatuna",
+    "6 Bedroom Villa Unawatuna",
+    "12 Guests Villa Galle",
+    "Turtle Beach Villa",
+    "Thalpe Beach Villa",
     "Luxury Stay Galle"
   ],
-  authors: [{ name: "Anu Villa Unawatuna" }],
+  authors: [{ name: "M.S.A Anu Villa - M. Mangala" }],
   viewport: "width=device-width, initial-scale=1, maximum-scale=5",
   themeColor: "#C59152",
   openGraph: {
-    title: "Anu Villa | Your Private Getaway in Galle",
+    title: "M.S.A Anu Villa | Your Perfect Getaway in Unawatuna",
     description:
-      "A calm, peaceful, comfortable and beautiful Villa in the middle of lush green in Unawatuna, Galle. 4 AC bedrooms, 2 kitchens, private pool.",
+      "A calm, peaceful, comfortable stay in Samagiya, Thalpe North, Unawatuna. 6 AC bedrooms with attached bathrooms, private pool, BBQ, up to 12 guests.",
     type: "website",
     locale: "en_US",
-    siteName: "Anu Villa Unawatuna",
+    siteName: "M.S.A Anu Villa",
     images: [
       {
         url: "/images/logo.png",
         width: 1200,
         height: 630,
-        alt: "Anu Villa Unawatuna Logo",
+        alt: "M.S.A Anu Villa Logo",
       },
     ],
   },

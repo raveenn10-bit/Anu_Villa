@@ -10,7 +10,9 @@ import {
   Send,
   CheckCircle2,
   ExternalLink,
-  Navigation
+  Navigation,
+  User,
+  ShieldCheck
 } from "lucide-react";
 import { VILLA_DATA } from "@/data/villaData";
 
@@ -21,7 +23,7 @@ export default function ContactLocation() {
     email: "",
     phone: "",
     dates: "",
-    guests: "4",
+    guests: "6",
     message: "",
   });
 
@@ -29,7 +31,7 @@ export default function ContactLocation() {
     e.preventDefault();
     setFormSubmitted(true);
     // WhatsApp auto-redirect with user's message
-    const msg = `Hello Anu Villa! Message from Website:\n\n👤 Name: ${formData.name}\n📧 Email: ${formData.email}\n📞 Phone: ${formData.phone}\n📅 Dates: ${formData.dates}\n👥 Guests: ${formData.guests}\n💬 Message: ${formData.message}`;
+    const msg = `Hello M. Mangala (${VILLA_DATA.officialName})! Message from Website:\n\n👤 Name: ${formData.name}\n📧 Email: ${formData.email}\n📞 Phone: ${formData.phone}\n📅 Dates: ${formData.dates}\n👥 Guests: ${formData.guests}\n💬 Message: ${formData.message}`;
     const encoded = encodeURIComponent(msg);
     setTimeout(() => {
       window.open(`https://wa.me/${VILLA_DATA.whatsappNumber}?text=${encoded}`, "_blank");
@@ -49,7 +51,7 @@ export default function ContactLocation() {
             We’d Love to Welcome You
           </h2>
           <p className="text-xs sm:text-sm text-charcoal-600">
-            Reach out directly for bookings, custom long-stay packages, private events, or questions about Unawatuna.
+            Reach out directly to villa host <span className="font-semibold text-charcoal-800">{VILLA_DATA.hostName}</span> for bookings, customized stays, or inquiries.
           </p>
         </div>
 
@@ -59,52 +61,68 @@ export default function ContactLocation() {
           <div className="lg:col-span-5 space-y-6">
             
             {/* Contact Details Card */}
-            <div className="bg-sand-50 rounded-3xl p-6 sm:p-8 border border-sand-200 space-y-5">
-              <h3 className="font-serif text-xl font-bold text-charcoal-900">Direct Contact</h3>
-
-              {/* Phones */}
-              <div className="space-y-3">
-                <span className="text-xs font-bold uppercase tracking-wider text-charcoal-400 block">
-                  WhatsApp &amp; Phone Numbers
+            <div className="bg-sand-50 rounded-3xl p-6 sm:p-8 border border-sand-200 space-y-5 shadow-xs">
+              <div className="flex items-center justify-between">
+                <div>
+                  <h3 className="font-serif text-xl font-bold text-charcoal-900">{VILLA_DATA.officialName}</h3>
+                  <span className="text-xs text-gold-600 font-semibold flex items-center gap-1 mt-0.5">
+                    <User className="w-3.5 h-3.5" /> Host: {VILLA_DATA.hostName}
+                  </span>
+                </div>
+                <span className="text-[10px] font-bold uppercase tracking-wider bg-emerald-100 text-emerald-800 px-2.5 py-1 rounded-full">
+                  Instant Reply
                 </span>
-                {VILLA_DATA.phones.map((phone, idx) => (
-                  <div key={idx} className="flex items-center justify-between p-3 rounded-xl bg-white border border-sand-200">
-                    <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 rounded-lg bg-gold-100 text-gold-700 flex items-center justify-center">
-                        <Phone className="w-4 h-4" />
+              </div>
+
+              {/* Phones List */}
+              <div className="space-y-2.5">
+                <span className="text-xs font-bold uppercase tracking-wider text-charcoal-400 block">
+                  Direct Calls &amp; WhatsApp
+                </span>
+                {VILLA_DATA.phones.map((phone, idx) => {
+                  const rawNum = VILLA_DATA.rawPhones[idx];
+                  return (
+                    <div key={idx} className="flex items-center justify-between p-3 rounded-xl bg-white border border-sand-200 hover:border-gold-300 transition-colors shadow-2xs">
+                      <div className="flex items-center gap-3">
+                        <div className="w-8 h-8 rounded-lg bg-gold-100 text-gold-700 flex items-center justify-center">
+                          <Phone className="w-4 h-4" />
+                        </div>
+                        <span className="text-sm font-semibold text-charcoal-900">{phone}</span>
                       </div>
-                      <span className="text-sm font-semibold text-charcoal-900">{phone}</span>
+                      <div className="flex items-center gap-1.5">
+                        <a
+                          href={`tel:${phone.replace(/\s+/g, "")}`}
+                          className="px-2.5 py-1 rounded-lg bg-sand-100 text-charcoal-700 text-xs font-medium hover:bg-sand-200 transition-colors"
+                        >
+                          Call
+                        </a>
+                        <a
+                          href={`https://wa.me/${rawNum}`}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="px-2.5 py-1 rounded-lg bg-[#25D366] text-white text-xs font-medium hover:bg-[#20ba59] transition-colors"
+                        >
+                          WhatsApp
+                        </a>
+                      </div>
                     </div>
-                    <div className="flex items-center gap-1.5">
-                      <a
-                        href={`tel:${phone.replace(/\s+/g, "")}`}
-                        className="px-2.5 py-1 rounded-lg bg-sand-100 text-charcoal-700 text-xs font-medium hover:bg-sand-200"
-                      >
-                        Call
-                      </a>
-                      <a
-                        href={`https://wa.me/${idx === 0 ? VILLA_DATA.rawPhones[0] : VILLA_DATA.rawPhones[1]}`}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="px-2.5 py-1 rounded-lg bg-[#25D366] text-white text-xs font-medium hover:bg-[#20ba59]"
-                      >
-                        WhatsApp
-                      </a>
-                    </div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
 
               {/* Location */}
               <div className="flex items-start gap-3 p-3.5 rounded-xl bg-white border border-sand-200">
-                <div className="w-8 h-8 rounded-lg bg-gold-100 text-gold-700 flex items-center justify-center shrink-0">
+                <div className="w-8 h-8 rounded-lg bg-gold-100 text-gold-700 flex items-center justify-center shrink-0 mt-0.5">
                   <MapPin className="w-4 h-4" />
                 </div>
                 <div>
-                  <span className="text-[11px] font-bold uppercase text-charcoal-400 block">Location</span>
+                  <span className="text-[11px] font-bold uppercase text-charcoal-400 block">Villa Address</span>
                   <p className="text-xs sm:text-sm font-medium text-charcoal-800 mt-0.5">
                     {VILLA_DATA.location}
                   </p>
+                  <span className="text-[11px] text-gold-700 font-semibold block mt-1">
+                    🏖️ Approximately 1.5 km to Thalpe &amp; Turtle Beach
+                  </span>
                 </div>
               </div>
 
@@ -119,13 +137,31 @@ export default function ContactLocation() {
                   <span className="text-xs sm:text-sm font-bold text-charcoal-900">{VILLA_DATA.checkOutTime}</span>
                 </div>
               </div>
+
+              {/* Booking Platforms Badge Strip */}
+              <div className="p-3 rounded-xl bg-gold-50/70 border border-gold-200/80">
+                <span className="text-[11px] font-bold uppercase tracking-wider text-gold-800 block mb-1.5">
+                  Also Available On
+                </span>
+                <div className="flex items-center gap-3">
+                  <span className="px-3 py-1 bg-white border border-sand-300 rounded-lg text-xs font-semibold text-charcoal-800 shadow-2xs">
+                    Airbnb
+                  </span>
+                  <span className="px-3 py-1 bg-white border border-sand-300 rounded-lg text-xs font-semibold text-charcoal-800 shadow-2xs">
+                    Booking.com
+                  </span>
+                  <span className="text-[11px] text-charcoal-500 italic">
+                    (Direct booking via WhatsApp offers best rate)
+                  </span>
+                </div>
+              </div>
             </div>
 
             {/* Interactive Map Card */}
             <div className="bg-sand-50 rounded-3xl p-2 border border-sand-200 overflow-hidden shadow-sm">
               <div className="relative h-60 w-full rounded-2xl overflow-hidden">
                 <iframe
-                  title="Anu Villa Unawatuna Location"
+                  title="M.S.A Anu Villa Thalpe North Unawatuna Location"
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15871.493922709193!2d80.2447953!3d6.0125712!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae172f3e8fbb571%3A0x7d65451aa4ea21c7!2sUnawatuna%2C%20Sri%20Lanka!5e0!3m2!1sen!2slk!4v1700000000000!5m2!1sen!2slk"
                   width="100%"
                   height="100%"
@@ -138,7 +174,7 @@ export default function ContactLocation() {
               </div>
               <div className="p-3 text-center">
                 <a
-                  href="https://maps.google.com/?q=Unawatuna+Galle+Sri+Lanka"
+                  href="https://maps.google.com/?q=Thalpe+Unawatuna+Galle+Sri+Lanka"
                   target="_blank"
                   rel="noreferrer"
                   className="inline-flex items-center gap-1.5 text-xs font-semibold text-gold-600 hover:text-gold-700"
@@ -155,10 +191,10 @@ export default function ContactLocation() {
           <div className="lg:col-span-7">
             <div className="bg-sand-50 rounded-3xl p-6 sm:p-8 border border-sand-200 shadow-lg">
               <h3 className="font-serif text-xl sm:text-2xl font-bold text-charcoal-900">
-                Send an Instant Inquiry
+                Send an Inquiry to Host
               </h3>
               <p className="text-xs sm:text-sm text-charcoal-500 mt-1 mb-6">
-                Fill out the details below to receive direct booking assistance and custom villa packages.
+                Fill out the details below to receive direct assistance for the whole 6-room villa ($140/night).
               </p>
 
               {formSubmitted ? (
@@ -172,7 +208,7 @@ export default function ContactLocation() {
                   </div>
                   <h4 className="font-serif text-xl font-bold text-charcoal-900">Inquiry Prepared!</h4>
                   <p className="text-xs sm:text-sm text-charcoal-600 max-w-md mx-auto">
-                    We are redirecting you to WhatsApp to connect directly with the villa host. If it didn&apos;t open automatically, click below:
+                    We are connecting you directly with host M. Mangala on WhatsApp. If WhatsApp didn&apos;t open automatically, click below:
                   </p>
                   <button
                     onClick={() => setFormSubmitted(false)}
@@ -221,7 +257,7 @@ export default function ContactLocation() {
                         type="tel"
                         value={formData.phone}
                         onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                        placeholder="+94 77 000 0000"
+                        placeholder="+94 77 518 3955"
                         className="w-full px-4 py-2.5 rounded-xl bg-white border border-sand-300 text-charcoal-800 text-xs sm:text-sm focus:outline-none focus:border-gold-500"
                       />
                     </div>
@@ -246,7 +282,7 @@ export default function ContactLocation() {
                         onChange={(e) => setFormData({ ...formData, guests: e.target.value })}
                         className="w-full px-4 py-2.5 rounded-xl bg-white border border-sand-300 text-charcoal-800 text-xs sm:text-sm focus:outline-none focus:border-gold-500"
                       >
-                        {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((n) => (
+                        {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((n) => (
                           <option key={n} value={n}>
                             {n} {n === 1 ? "Guest" : "Guests"}
                           </option>
@@ -263,7 +299,7 @@ export default function ContactLocation() {
                       rows={4}
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                      placeholder="Tell us about your trip (e.g. airport pickup needed, chef breakfast, cot for baby)..."
+                      placeholder="Ask any question regarding BBQ setup, kitchen facilities, scooter rentals, or airport pickup..."
                       className="w-full px-4 py-2.5 rounded-xl bg-white border border-sand-300 text-charcoal-800 text-xs sm:text-sm focus:outline-none focus:border-gold-500"
                     />
                   </div>
@@ -275,7 +311,7 @@ export default function ContactLocation() {
                     className="w-full bg-gold-500 hover:bg-gold-600 text-white py-3.5 rounded-xl font-semibold text-sm shadow-md transition-all flex items-center justify-center gap-2"
                   >
                     <Send className="w-4 h-4" />
-                    <span>Send Message &amp; Connect on WhatsApp</span>
+                    <span>Send Message &amp; Connect with Host on WhatsApp</span>
                   </motion.button>
                 </form>
               )}

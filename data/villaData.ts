@@ -1,27 +1,60 @@
+export interface VillaData {
+  name: string;
+  officialName: string;
+  tagline: string;
+  slogan: string;
+  location: string;
+  addressShort: string;
+  distanceToBeach: string;
+  hostName: string;
+  phones: string[];
+  rawPhones: string[];
+  whatsappNumber: string;
+  capacity: {
+    bedrooms: number;
+    bathrooms: number;
+    maxGuests: number;
+  };
+  checkInTime: string;
+  checkOutTime: string;
+  minimumStay: string;
+  pricing: {
+    baseNightlyRateUSD: number;
+    currencies: {
+      USD: { symbol: "$"; rate: 1; label: "USD ($)" };
+      LKR: { symbol: "Rs. "; rate: 310; label: "LKR (Rs)" };
+      EUR: { symbol: "€"; rate: 0.92; label: "EUR (€)" };
+      GBP: { symbol: "£"; rate: 0.79; label: "GBP (£)" };
+      AUD: { symbol: "A$"; rate: 1.52; label: "AUD (A$)" };
+    };
+  };
+  description: {
+    hero: string;
+    about: string;
+    longAbout: string;
+  };
+  aboutChecklist: string[];
+  facilities: FacilityItem[];
+  galleryImages: GalleryItem[];
+  nearbyAttractions: NearbyPlace[];
+  testimonials: Testimonial[];
+  faq: FAQItem[];
+}
+
 export interface FacilityItem {
   id: string;
   title: string;
   subtitle: string;
-  description: string;
   iconName: string;
   image: string;
+  description: string;
   details: string[];
 }
 
-export interface RoomItem {
+export interface GalleryItem {
   id: string;
   title: string;
-  bedType: string;
-  capacity: string;
-  size: string;
-  image: string;
-  features: string[];
-}
-
-export interface GalleryItem {
-  id: number;
-  title: string;
-  category: 'all' | 'exterior' | 'bedrooms' | 'living' | 'garden';
+  category: "exterior" | "bedrooms" | "living" | "garden" | "all";
   image: string;
   alt: string;
 }
@@ -32,8 +65,8 @@ export interface NearbyPlace {
   category: string;
   distance: string;
   travelTime: string;
-  description: string;
   image: string;
+  description: string;
   highlights: string[];
 }
 
@@ -42,308 +75,323 @@ export interface Testimonial {
   name: string;
   country: string;
   flag: string;
-  rating: number;
   date: string;
-  review: string;
+  rating: number;
   stayType: string;
+  review: string;
 }
 
 export interface FAQItem {
   question: string;
   answer: string;
-  category: 'booking' | 'stay' | 'facilities' | 'location';
 }
 
-export const VILLA_DATA = {
+export const VILLA_DATA: VillaData = {
   name: "Anu Villa",
-  tagline: "Your Private Getaway in Galle",
-  subtitle: "WELCOME TO ANU VILLA",
-  location: "Unawatuna, Galle, Southern Province, Sri Lanka",
-  phones: ["+94 76 452 6021", "+94 77 518 3955"],
-  rawPhones: ["94764526021", "94775183955"],
-  whatsappNumber: "94764526021",
-  email: "info@anuvillaunawatuna.com",
-  checkInTime: "2:00 PM",
-  checkOutTime: "11:00 AM",
-  minimumStay: "1 Night",
-  capacity: "Up to 8 - 10 Guests",
-  bedroomsCount: 4,
-  bathroomsCount: 4,
-  kitchensCount: 2,
-  
-  description: {
-    hero: "Anu Villa offers you a peaceful retreat surrounded by nature with luxury, comfort and privacy.",
-    about: "Anu Villa is a beautiful private villa located in the heart of Unawatuna, Galle. Whether you're planning a family vacation, a romantic getaway or a peaceful holiday with friends, Anu Villa is the perfect choice for your stay.",
-    longAbout: "Nestled in the lush tropical greenery of Unawatuna just minutes from the golden sands of the Indian Ocean, Anu Villa is a sanctuary designed for tranquility and effortless luxury. Featuring 4 spacious air-conditioned suites with private en-suite bathrooms, two fully-equipped kitchens, expansive living and dining areas, a private swimming pool, and an enchanting enclosed garden, our villa promises unmatched privacy and heartfelt Sri Lankan hospitality."
+  officialName: "M.S.A Anu Villa",
+  tagline: "Your Perfect Getaway in Unawatuna",
+  slogan: "Stay • Relax • Enjoy",
+  location: "Samagiya, Thalpe North, Unawatuna, Galle, Sri Lanka",
+  addressShort: "Thalpe North, Unawatuna, Galle",
+  distanceToBeach: "1.5 km to beach",
+  hostName: "M. Mangala",
+  phones: ["+94 77 518 3955", "+94 76 452 6021", "+94 74 118 0163"],
+  rawPhones: ["94775183955", "94764526021", "94741180163"],
+  whatsappNumber: "94775183955",
+  capacity: {
+    bedrooms: 6,
+    bathrooms: 6,
+    maxGuests: 12,
   },
-
-  keyHighlights: [
-    { title: "4 Bedrooms", subtitle: "Spacious & Comfortable", icon: "Bed" },
-    { title: "Up to 8 Guests", subtitle: "Perfect for Families", icon: "Users" },
-    { title: "Swimming Pool", subtitle: "Private & Relaxing", icon: "Waves" },
-    { title: "Galle, Sri Lanka", subtitle: "Prime Location", icon: "MapPin" }
-  ],
-
+  checkInTime: "12:00 PM",
+  checkOutTime: "10:00 AM",
+  minimumStay: "1 Night",
+  pricing: {
+    baseNightlyRateUSD: 140,
+    currencies: {
+      USD: { symbol: "$", rate: 1, label: "USD ($)" },
+      LKR: { symbol: "Rs. ", rate: 310, label: "LKR (Rs)" },
+      EUR: { symbol: "€", rate: 0.92, label: "EUR (€)" },
+      GBP: { symbol: "£", rate: 0.79, label: "GBP (£)" },
+      AUD: { symbol: "A$", rate: 1.52, label: "AUD (A$)" },
+    },
+  },
+  description: {
+    hero: "Escape the busy city life and enjoy a peaceful, comfortable stay at M.S.A Anu Villa in Thalpe North, Unawatuna. 6 spacious en-suite rooms, private pool, and tropical serenity.",
+    about: "Escape the busy city life and enjoy a peaceful, comfortable stay at ANU VILLA. Offering comfortable & private accommodation, peaceful surroundings, spacious rooms, and modern amenities ideal for families & groups.",
+    longAbout: "Nestled in the tranquil sanctuary of Samagiya, Thalpe North in Unawatuna, M.S.A Anu Villa offers the quintessential tropical escape. With 6 fully air-conditioned bedrooms featuring private attached bathrooms, an outdoor swimming pool, fully equipped kitchen, BBQ facilities, and peaceful lush gardens, our villa accommodates up to 12 guests in complete comfort and privacy. Just 1.5 km from the beach and minutes from historic Galle Fort, it is the perfect holiday destination for families, group getaways, and friends.",
+  },
   aboutChecklist: [
-    "Modern & Spacious Rooms",
-    "Fully Equipped Kitchen",
-    "Private Swimming Pool",
-    "Free Wi-Fi & Parking"
+    "6 Spacious A/C Rooms with Attached Bathrooms",
+    "Private Outdoor Swimming Pool & Sun Deck",
+    "Fully Equipped Kitchen & BBQ Facilities",
+    "High-Speed Wi-Fi & Secure Private Parking",
+    "Accommodates up to 12 Guests Comfortably",
+    "Peaceful Surroundings Just 1.5 km to the Beach",
   ],
-
   facilities: [
     {
       id: "bedrooms",
-      title: "4 Bedrooms",
-      subtitle: "Spacious bedrooms with AC and comfort.",
-      description: "Four king-sized air-conditioned master bedrooms, each with premium linen, mosquito netting, ambient lighting, and en-suite bathrooms.",
+      title: "6 Spacious Bedrooms",
+      subtitle: "Accommodates up to 12 Guests",
       iconName: "BedDouble",
-      image: "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=800&q=80",
-      details: ["King Size Luxury Beds", "Quiet Inverter Air Conditioning", "Private Wardrobes & Safe", "Blackout Curtains & Garden Views"]
+      image: "https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=800&q=80",
+      description: "6 king and queen bedrooms featuring whisper-quiet air conditioning, plush hotel-grade mattresses, ceiling fans, wardrobe space, and tropical garden views.",
+      details: [
+        "6 Independent spacious bedrooms",
+        "Accommodates up to 12 guests",
+        "Individual remote-controlled A/C",
+        "Premium linens & fresh towels provided",
+        "Ample luggage storage & wardrobe space",
+      ],
     },
     {
       id: "bathrooms",
-      title: "4 Bathrooms",
-      subtitle: "Clean & modern attached bathrooms.",
-      description: "Sparkling clean en-suite attached bathrooms for every bedroom with solar-powered hot showers, premium toiletries, and plush bath towels.",
+      title: "6 Attached Bathrooms",
+      subtitle: "Private En-Suite for Every Room",
       iconName: "Bath",
       image: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=800&q=80",
-      details: ["Solar Hot Water 24/7", "Modern Rain Showers", "Complimentary Organic Toiletries", "Fresh Towels & Hairdryers"]
+      description: "Every single bedroom has its own private attached bathroom with modern sanitary fittings, hot water showers, and complimentary toiletries.",
+      details: [
+        "6 Private attached en-suite bathrooms",
+        "Continuous hot & cold water",
+        "Modern rain showerheads",
+        "Clean towels & essentials supplied",
+      ],
     },
     {
       id: "pool",
-      title: "Swimming Pool",
-      subtitle: "Private pool for your relaxation.",
-      description: "Immaculate, crystal-clear outdoor swimming pool surrounded by sun loungers and tropical palm trees for refreshing dips anytime.",
+      title: "Private Swimming Pool",
+      subtitle: "Exclusive for Your Group",
       iconName: "Waves",
       image: "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?auto=format&fit=crop&w=800&q=80",
-      details: ["Exclusive Private Access", "Sun Deck with Comfortable Loungers", "Poolside Ambient Night Lighting", "Regular Fresh Chlorination"]
+      description: "Dive into your sparkling private outdoor pool, complete with sun loungers, tropical poolside relaxation areas, and evening mood lighting.",
+      details: [
+        "Crystal clear freshwater pool",
+        "Daily automated cleaning & maintenance",
+        "Poolside sun loungers & umbrellas",
+        "Evening ambient lighting for night dips",
+      ],
     },
     {
-      id: "living",
-      title: "Living Area",
-      subtitle: "Comfortable living space with TV.",
-      description: "Generous open-concept living area with comfortable designer sofas, 55-inch 4K Smart TV, high-speed fiber Wi-Fi, and garden vistas.",
-      iconName: "Tv",
-      image: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=800&q=80",
-      details: ["55-inch 4K Smart TV with Netflix", "High-Speed Mesh Wi-Fi (100+ Mbps)", "Handcrafted Teak Furniture", "Natural Cross-Breeze Ventilation"]
+      id: "bbq",
+      title: "BBQ & Outdoor Dining",
+      subtitle: "Alfresco Garden Grill",
+      iconName: "UtensilsCrossed",
+      image: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=800&q=80",
+      description: "Enjoy festive outdoor barbecue evenings under the stars with our dedicated BBQ grill setup, outdoor dining tables, and garden seating.",
+      details: [
+        "Dedicated BBQ grill & accessories",
+        "Outdoor dining table for group meals",
+        "Lush garden atmosphere under the stars",
+        "Host assistance available for seafood sourcing",
+      ],
     },
     {
       id: "kitchen",
-      title: "Fully Equipped Kitchen",
-      subtitle: "Cook your favorite meals with ease.",
-      description: "Two fully-equipped modern kitchens featuring refrigerators, gas stoves, microwaves, blenders, cookware, and dining ware.",
+      title: "Kitchen Facilities",
+      subtitle: "Fully Equipped for Home Cooking",
       iconName: "UtensilsCrossed",
       image: "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=800&q=80",
-      details: ["2 Complete Kitchens", "Double-Door Refrigerator & Freezer", "Coffee & Tea Maker", "Chef On-Request Available"]
+      description: "Prepare fresh meals with ease in the equipped kitchen featuring gas stove, refrigerator, cookware, dinnerware, microwave, and electric kettle.",
+      details: [
+        "Gas burners & microwave oven",
+        "Large refrigerator & freezer",
+        "Pots, pans, dinnerware & cutlery",
+        "Electric kettle & Ceylon tea station",
+      ],
     },
     {
       id: "garden",
-      title: "Outdoor Area",
-      subtitle: "Beautiful garden & relaxing outdoor space.",
-      description: "Lush tropical manicured lawns, tall coconut palms, outdoor dining table, BBQ facility, and serene spots for morning yoga or evening tea.",
+      title: "Garden & Outdoor Area",
+      subtitle: "Peaceful Natural Sanctuary",
       iconName: "Trees",
-      image: "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=800&q=80",
-      details: ["Enclosed & Gated Tropical Garden", "Al Fresco Dining Area", "BBQ Grill Setup Available", "Night Illumination & Security"]
-    }
+      image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80",
+      description: "A secure, peaceful garden surrounded by coconut palms and exotic flora, offering private on-site parking and a serene place to unwind.",
+      details: [
+        "Lush tropical garden landscaping",
+        "Spacious outdoor relaxation area",
+        "Free secure private on-site parking",
+        "Quiet residential setting in Samagiya, Thalpe",
+      ],
+    },
   ],
-
   galleryImages: [
     {
-      id: 1,
-      title: "Villa Exterior & Private Pool at Dusk",
+      id: "gal-1",
+      title: "Private Swimming Pool & Villa Exterior",
       category: "exterior",
-      image: "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=1200&q=80",
-      alt: "Anu Villa exterior architecture and swimming pool"
+      image: "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=1000&q=80",
+      alt: "Anu Villa private outdoor swimming pool and tropical facade in Unawatuna Galle",
     },
     {
-      id: 2,
-      title: "Master Suite with Four-Poster Canopy Bed",
+      id: "gal-2",
+      title: "Spacious Air-Conditioned Bedroom",
       category: "bedrooms",
-      image: "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=1200&q=80",
-      alt: "Anu Villa air-conditioned master bedroom"
+      image: "https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=1000&q=80",
+      alt: "Comfortable air conditioned bedroom with attached bathroom at Anu Villa",
     },
     {
-      id: 3,
-      title: "Spacious Living & Dining Lounge",
-      category: "living",
-      image: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=80",
-      alt: "Anu Villa comfortable living room"
+      id: "gal-3",
+      title: "Modern Attached Bathroom",
+      category: "bedrooms",
+      image: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=1000&q=80",
+      alt: "Clean en-suite bathroom with hot water rain shower",
     },
     {
-      id: 4,
-      title: "Lush Tropical Garden Pathway",
+      id: "gal-4",
+      title: "Garden & BBQ Dining Area",
       category: "garden",
-      image: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=1200&q=80",
-      alt: "Anu Villa green garden and palms"
+      image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1000&q=80",
+      alt: "Lush tropical garden and alfresco dining patio",
     },
     {
-      id: 5,
-      title: "Crystal Clear Swimming Pool & Deck",
+      id: "gal-5",
+      title: "Fully Equipped Kitchen & Dining",
+      category: "living",
+      image: "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=1000&q=80",
+      alt: "Modern equipped kitchen for guest cooking",
+    },
+    {
+      id: "gal-6",
+      title: "Poolside Evening Lounge",
       category: "exterior",
-      image: "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?auto=format&fit=crop&w=1200&q=80",
-      alt: "Anu Villa private swimming pool loungers"
+      image: "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?auto=format&fit=crop&w=1000&q=80",
+      alt: "Illuminated evening pool at Anu Villa",
     },
     {
-      id: 6,
-      title: "Modern Fully-Equipped Kitchen",
-      category: "living",
-      image: "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=1200&q=80",
-      alt: "Anu Villa modern kitchen"
-    },
-    {
-      id: 7,
-      title: "En-suite Bathroom with Rain Shower",
+      id: "gal-7",
+      title: "Master Suite with Garden View",
       category: "bedrooms",
-      image: "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?auto=format&fit=crop&w=1200&q=80",
-      alt: "Anu Villa luxury bathroom"
+      image: "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=1000&q=80",
+      alt: "Bright and airy master bedroom",
     },
     {
-      id: 8,
-      title: "Outdoor Al Fresco Dining Area",
-      category: "garden",
-      image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1200&q=80",
-      alt: "Anu Villa patio outdoor dining"
-    }
-  ] as GalleryItem[],
-
+      id: "gal-8",
+      title: "Spacious Living Room Lounge",
+      category: "living",
+      image: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1000&q=80",
+      alt: "Cozy sofa seating in the living hall",
+    },
+  ],
   nearbyAttractions: [
     {
-      id: "unawatuna-beach",
-      name: "Unawatuna Golden Beach",
-      category: "Beach & Water Sports",
-      distance: "1.8 km",
-      travelTime: "5 mins drive",
-      description: "One of Sri Lanka's most renowned curved golden sand bays, ideal for swimming, paddle boarding, vibrant beach cafes, and sunset dinners.",
-      image: "https://images.unsplash.com/photo-1586861635167-e5223aadc9fe?auto=format&fit=crop&w=800&q=80",
-      highlights: ["Safe Swimming Bay", "Beachfront Seafood Restaurants", "Scuba Diving & Snorkeling"]
-    },
-    {
-      id: "jungle-beach",
-      name: "Jungle Beach & Rumassala",
-      category: "Hidden Gem & Nature",
-      distance: "2.5 km",
-      travelTime: "7 mins drive",
-      description: "Secluded cove surrounded by dense tropical forest and coral reefs with calm turquoise waters perfect for snorkeling with colorful fish.",
-      image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80",
-      highlights: ["Live Coral Reefs", "Shaded Forest Walk", "Peaceful Atmosphere"]
-    },
-    {
-      id: "dalawella-beach",
-      name: "Dalawella & Wijaya Beach (Turtle Lagoon)",
-      category: "Wildlife & Scenery",
-      distance: "2.2 km",
-      travelTime: "6 mins drive",
-      description: "Famous for the iconic coconut tree rope swing, natural coral reef pool where giant wild sea turtles swim daily alongside visitors.",
+      id: "turtle-beach",
+      name: "Turtle Beach (Dalawella)",
+      category: "Beach & Wildlife",
+      distance: "1.5 km",
+      travelTime: "4 mins",
       image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=800&q=80",
-      highlights: ["Swim with Wild Sea Turtles", "Famous Rope Swing", "Wood-fired Pizza by the Beach"]
+      description: "Famous lagoon beach where wild giant sea turtles swim up close in shallow, crystal clear waters.",
+      highlights: ["Swim with giant sea turtles", "Safe natural swimming reef lagoon", "Iconic coconut tree rope swing"],
+    },
+    {
+      id: "mihiripanne-beach",
+      name: "Mihiripanne Beach",
+      category: "Pristine Beach",
+      distance: "1.8 km",
+      travelTime: "5 mins",
+      image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80",
+      description: "A tranquil golden sand beach with calm waters, coconut palms, and peaceful tropical sunsets.",
+      highlights: ["Quiet & uncrowded coastline", "Perfect for morning walks & sunbathing", "Local beach cafes nearby"],
+    },
+    {
+      id: "thalpe-beach",
+      name: "Thalpe Beach (Rock Pools)",
+      category: "Natural Wonder",
+      distance: "2.0 km",
+      travelTime: "5 mins",
+      image: "https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&w=800&q=80",
+      description: "Renowned for its unique historic natural coral rock pools carved into the sea reef, offering safe saltwater plunge baths.",
+      highlights: ["Unique coral rock swimming pools", "Sunset photography spot", "Crystal clear turquoise water"],
+    },
+    {
+      id: "yatagala-temple",
+      name: "Yatagala Raja Maha Viharaya",
+      category: "Culture & Heritage",
+      distance: "3.5 km",
+      travelTime: "8 mins",
+      image: "https://images.unsplash.com/photo-1588598198321-9735fd52455b?auto=format&fit=crop&w=800&q=80",
+      description: "Ancient 2,300-year-old rock cave temple nestled among serene giant boulders and lush jungle canopy.",
+      highlights: ["Historic rock cave paintings", "Peaceful Buddhist meditation vibe", "Lush tropical nature surroundings"],
     },
     {
       id: "galle-fort",
-      name: "UNESCO Galle Dutch Fort",
-      category: "Heritage & Culture",
-      distance: "4.5 km",
-      travelTime: "12 mins drive",
-      description: "Magnificent 16th-century Portuguese and Dutch colonial walled fortress packed with boutique shops, art galleries, gelato cafes, and sunset ramparts.",
-      image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?auto=format&fit=crop&w=800&q=80",
-      highlights: ["Galle Lighthouse", "Boutique Shopping & Cafes", "Colonial Architecture"]
+      name: "Galle Dutch Fort (UNESCO)",
+      category: "UNESCO World Heritage",
+      distance: "7.5 km",
+      travelTime: "14 mins",
+      image: "https://images.unsplash.com/photo-1586861635167-e5223aadc9fe?auto=format&fit=crop&w=800&q=80",
+      description: "Walk the 17th-century ramparts, explore boutique cafes, gem jewelers, colonial architecture, and the iconic lighthouse.",
+      highlights: ["Scenic rampart sunset walk", "Historic lighthouse & maritime museums", "Artisan cafes & fine dining"],
     },
     {
-      id: "peace-pagoda",
-      name: "Japanese Peace Pagoda",
-      category: "Scenic Viewpoint & Spirituality",
-      distance: "3.1 km",
-      travelTime: "8 mins drive",
-      description: "Majestic white stupa perched on Rumassala Hill offering 360-degree panoramic ocean views of the Galle harbour and lush coastline.",
-      image: "https://images.unsplash.com/photo-1546708973-b339540b5162?auto=format&fit=crop&w=800&q=80",
-      highlights: ["Panoramic Ocean Views", "Serene Sunset Spot", "Buddhist Shrines & Statues"]
+      id: "koggala-safari",
+      name: "Koggala River Safari",
+      category: "Nature & Lake Safari",
+      distance: "5.0 km",
+      travelTime: "10 mins",
+      image: "https://images.unsplash.com/photo-1544644181-1484b3fdfc62?auto=format&fit=crop&w=800&q=80",
+      description: "Scenic boat cruise across Koggala Lake, visiting Cinnamon Island, spice gardens, and birdwatching mangrove lagoons.",
+      highlights: ["Cinnamon Island demonstration", "Mangrove birdwatching & wildlife", "Tranquil freshwater lake scenery"],
     },
-    {
-      id: "mirissa",
-      name: "Mirissa Harbour & Whale Watching",
-      category: "Excursions",
-      distance: "22 km",
-      travelTime: "30 mins drive",
-      description: "World-class destination for Blue Whale and dolphin watching expeditions, surfing at Coconut Tree Hill, and vibrant beach nightlife.",
-      image: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=800&q=80",
-      highlights: ["Blue Whale Watching Cruises", "Coconut Tree Hill", "Sunset Surf Breaks"]
-    }
-  ] as NearbyPlace[],
-
+  ],
   testimonials: [
     {
-      id: "1",
-      name: "Charlotte & David Miller",
+      id: "rev-1",
+      name: "David & Emma S.",
       country: "United Kingdom",
       flag: "🇬🇧",
-      rating: 5,
       date: "February 2026",
-      review: "Anu Villa exceeded all our expectations! The villa is immaculate, the private pool is heaven after a day exploring Galle Fort, and the calm green surroundings made our stay unforgettable. Having 4 spacious en-suite rooms gave our family total comfort. We will definitely return!",
-      stayType: "Family Holiday (7 Nights)"
+      rating: 5,
+      stayType: "Family Vacation (8 Guests)",
+      review: "Anu Villa was the highlight of our Sri Lanka trip! All 6 rooms with attached bathrooms made our extended family stay effortless. The private pool and garden are marvelous, and host Mangala was exceptionally welcoming and attentive.",
     },
     {
-      id: "2",
-      name: "Lukas & Sophie Becker",
+      id: "rev-2",
+      name: "Lukas & Friends",
       country: "Germany",
       flag: "🇩🇪",
-      rating: 5,
       date: "January 2026",
-      review: "The peace and privacy here are unbeatable. Just 5 minutes from Unawatuna beach, yet completely secluded in a lush garden sanctuary. The kitchen is fully equipped, AC works perfectly, and the host was exceptionally helpful on WhatsApp with local tips and transport.",
-      stayType: "Friends Group (5 Nights)"
+      rating: 5,
+      stayType: "Group Getaway (10 Guests)",
+      review: "We stayed for a week and loved the location in Thalpe North. Just 4 minutes to the turtle beach, yet peaceful and quiet at night. The BBQ evening by the pool was unforgettable. Outstanding value at $140/night for the entire villa!",
     },
     {
-      id: "3",
-      name: "Ranil & Dilani Perera",
-      country: "Australia / Sri Lanka",
+      id: "rev-3",
+      name: "Chaminda & Nilmini",
+      country: "Sri Lanka / Australia",
       flag: "🇦🇺",
-      rating: 5,
       date: "December 2025",
-      review: "We booked the whole villa for a family reunion. The pool, the spacious dining area, and the garden were so wonderful for kids and adults alike. Very clean bathrooms, fast Wi-Fi, and great security. 10/10 recommendation for anyone visiting Galle!",
-      stayType: "Family Reunion (4 Nights)"
-    }
-  ] as Testimonial[],
-
+      rating: 5,
+      stayType: "Holiday Reunion (12 Guests)",
+      review: "Clean, spacious, and very private. Having full kitchen facilities and 6 private bathrooms for all our guests gave us complete peace of mind. Highly recommend booking direct with Mr. Mangala for the best rate!",
+    },
+  ],
   faq: [
     {
-      question: "How do I book Anu Villa?",
-      answer: "You can book directly by clicking the 'Book Now' or 'WhatsApp Us' button on our website. We provide instant confirmation, transparent direct rates with no hidden third-party fees, and flexible payment options.",
-      category: "booking"
+      question: "What is the check-in and check-out time at Anu Villa?",
+      answer: "Standard check-in is from 12:00 PM (noon) and check-out is by 10:00 AM. Early check-in or late check-out can be requested depending on availability.",
     },
     {
-      question: "Is the swimming pool completely private to our group?",
-      answer: "Yes, 100%! When you book Anu Villa, the entire property including the 4 bedrooms, 2 kitchens, private pool, living areas, and garden are exclusively yours.",
-      category: "facilities"
+      question: "What is the rate for the entire villa, and are there extra guest fees?",
+      answer: "The entire villa is priced at USD 140 per night (accommodating up to 12 guests across 6 en-suite bedrooms). There are no hidden extra guest charges.",
     },
     {
-      question: "What are the check-in and check-out times?",
-      answer: "Standard check-in is at 2:00 PM and check-out is at 11:00 AM. Early check-in or late check-out can be arranged subject to villa availability upon prior request.",
-      category: "stay"
+      question: "Are all 6 bedrooms air-conditioned with attached bathrooms?",
+      answer: "Yes! All 6 bedrooms are fully air-conditioned and each features its own private attached bathroom with hot water shower.",
     },
     {
-      question: "Are cooking facilities and private chefs available?",
-      answer: "The villa has 2 fully equipped modern kitchens with refrigerators, stoves, microwaves, and cookware for self-catering. We can also arrange an experienced local private chef to prepare authentic Sri Lankan seafood curries or western breakfast upon request.",
-      category: "facilities"
+      question: "How far is Anu Villa from the beach and attractions?",
+      answer: "Anu Villa is located approximately 1.5 km (3 to 5 minutes by tuk-tuk or scooter) from Turtle Beach, Mihiripanne Beach, and Thalpe Beach. Historic Galle Fort is approximately 14 minutes away.",
     },
     {
-      question: "How far is the villa from Unawatuna Beach and Galle Fort?",
-      answer: "Anu Villa is located just 5 minutes (1.8 km) from Unawatuna Beach and 12 minutes (4.5 km) from the historic Galle Dutch Fort. We can easily arrange trusted tuk-tuks, scooter rentals, or van transfers.",
-      category: "location"
+      question: "Is kitchen and BBQ equipment available for guests?",
+      answer: "Yes! Guests have full access to the equipped kitchen with stove, refrigerator, microwave, kettle, and cookware, as well as an outdoor BBQ grill setup for alfresco dinners.",
     },
     {
-      question: "Can you arrange airport transfer from Colombo (BIA)?",
-      answer: "Yes! We can arrange private, air-conditioned highway transfers directly from Bandaranaike International Airport (Colombo) to Anu Villa via the Southern Expressway (approx. 2 hours smooth drive).",
-      category: "booking"
-    }
-  ] as FAQItem[],
-
-  pricing: {
-    baseNightlyRateUSD: 140, // standard entire villa direct booking rate
-    currencies: {
-      USD: { symbol: "$", rate: 1 },
-      LKR: { symbol: "Rs.", rate: 310 },
-      EUR: { symbol: "€", rate: 0.92 },
-      GBP: { symbol: "£", rate: 0.79 },
-      AUD: { symbol: "A$", rate: 1.55 }
-    }
-  }
+      question: "How do I book or pay?",
+      answer: "You can book directly via WhatsApp or phone with host M. Mangala (+94 77 518 3955 / +94 76 452 6021 / +94 74 118 0163) for the guaranteed best direct rate, or via our Airbnb and Booking.com listings.",
+    },
+  ],
 };
