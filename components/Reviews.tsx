@@ -7,7 +7,7 @@ import { VILLA_DATA } from "@/data/villaData";
 import { useAutoScroll } from "@/hooks/useAutoScroll";
 
 export default function Reviews() {
-  const scrollRef = useAutoScroll<HTMLDivElement>({ speed: 30, startDelay: 1600, pauseAfterTouch: 3000 });
+  const scrollRef = useRef<HTMLDivElement>(null);
 
   const handleScroll = (dir: "left" | "right") => {
     if (scrollRef.current) {
@@ -39,7 +39,7 @@ export default function Reviews() {
         {/* Mobile Horizontal Snap-Scroll / Desktop 3-col Grid */}
         <div
           ref={scrollRef}
-          className="flex md:grid md:grid-cols-3 gap-6 sm:gap-8 overflow-x-auto md:overflow-x-visible pb-4 md:pb-0 snap-x snap-mandatory scrollbar-none -mx-4 px-4 md:mx-0 md:px-0"
+          className="flex md:grid md:grid-cols-3 gap-4 sm:gap-8 overflow-x-auto md:overflow-x-visible pb-4 md:pb-0 snap-x snap-mandatory scrollbar-none px-1 md:px-0 scroll-smooth"
         >
           {VILLA_DATA.testimonials.map((review, index) => (
             <motion.div
@@ -49,7 +49,7 @@ export default function Reviews() {
               viewport={{ once: true, margin: "-40px" }}
               transition={{ duration: 0.6, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
               whileHover={{ y: -6 }}
-              className="min-w-[290px] sm:min-w-[320px] md:min-w-0 flex-shrink-0 snap-center bg-white rounded-3xl p-6 sm:p-7 border border-sand-200 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between relative group"
+              className="w-[85vw] max-w-[340px] md:w-auto md:max-w-none flex-shrink-0 snap-start bg-white rounded-3xl p-6 sm:p-7 border border-sand-200 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between relative group"
             >
               <div className="space-y-4">
                 {/* Stars and Quote */}

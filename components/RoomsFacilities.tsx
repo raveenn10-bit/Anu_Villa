@@ -29,7 +29,7 @@ interface RoomsFacilitiesProps {
 export default function RoomsFacilities({ onOpenBooking }: RoomsFacilitiesProps) {
   const [selectedFacility, setSelectedFacility] = useState<FacilityItem | null>(null);
   const [showAllModal, setShowAllModal] = useState(false);
-  const scrollContainerRef = useAutoScroll<HTMLDivElement>({ speed: 38, startDelay: 1500, pauseAfterTouch: 3000 });
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   const getIcon = (iconName: string) => {
     switch (iconName) {
@@ -121,7 +121,7 @@ export default function RoomsFacilities({ onOpenBooking }: RoomsFacilitiesProps)
         {/* Mobile Horizontal Snap-Scroll / Desktop Responsive 3-Column Grid */}
         <div
           ref={scrollContainerRef}
-          className="flex md:grid md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-7 overflow-x-auto md:overflow-x-visible pb-4 md:pb-0 snap-x snap-mandatory scrollbar-none -mx-4 px-4 md:mx-0 md:px-0"
+          className="flex md:grid md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-7 overflow-x-auto md:overflow-x-visible pb-4 md:pb-0 snap-x snap-mandatory scrollbar-none px-1 md:px-0 scroll-smooth"
         >
           {VILLA_DATA.facilities.map((item, index) => {
             const IconComponent = getIcon(item.iconName);
@@ -134,7 +134,7 @@ export default function RoomsFacilities({ onOpenBooking }: RoomsFacilitiesProps)
                 transition={{ duration: 0.6, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
                 whileHover={{ y: -6 }}
                 onClick={() => setSelectedFacility(item)}
-                className="min-w-[280px] sm:min-w-[320px] md:min-w-0 flex-shrink-0 snap-center group cursor-pointer bg-white rounded-3xl overflow-hidden border border-sand-200 hover:border-gold-300 transition-all duration-300 shadow-xs hover:shadow-xl flex flex-col justify-between"
+                className="w-[85vw] max-w-[340px] md:w-auto md:max-w-none flex-shrink-0 snap-start group cursor-pointer bg-white rounded-3xl overflow-hidden border border-sand-200 hover:border-gold-300 transition-all duration-300 shadow-xs hover:shadow-xl flex flex-col justify-between"
               >
                 {/* Image Container */}
                 <div className="relative h-52 sm:h-56 w-full overflow-hidden bg-sand-200 img-zoom-container">

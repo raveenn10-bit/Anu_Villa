@@ -9,7 +9,7 @@ import { useAutoScroll } from "@/hooks/useAutoScroll";
 
 export default function NearbyPlaces() {
   const [selectedPlace, setSelectedPlace] = useState<NearbyPlace | null>(null);
-  const scrollRef = useAutoScroll<HTMLDivElement>({ speed: 35, startDelay: 2000, pauseAfterTouch: 3000 });
+  const scrollRef = useRef<HTMLDivElement>(null);
 
   const handleScroll = (dir: "left" | "right") => {
     if (scrollRef.current) {
@@ -68,7 +68,7 @@ export default function NearbyPlaces() {
         {/* Attractions Horizontal Snap-Scroll on Mobile / 3-col Grid on Desktop */}
         <div
           ref={scrollRef}
-          className="flex md:grid md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-7 overflow-x-auto md:overflow-x-visible pb-4 md:pb-0 snap-x snap-mandatory scrollbar-none -mx-4 px-4 md:mx-0 md:px-0"
+          className="flex md:grid md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-7 overflow-x-auto md:overflow-x-visible pb-4 md:pb-0 snap-x snap-mandatory scrollbar-none px-1 md:px-0 scroll-smooth"
         >
           {VILLA_DATA.nearbyAttractions.map((place, index) => (
             <motion.div
@@ -79,7 +79,7 @@ export default function NearbyPlaces() {
               transition={{ duration: 0.6, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
               whileHover={{ y: -6 }}
               onClick={() => setSelectedPlace(place)}
-              className="min-w-[280px] sm:min-w-[320px] md:min-w-0 flex-shrink-0 snap-center group cursor-pointer bg-white rounded-3xl overflow-hidden border border-sand-200 hover:border-gold-300 transition-all duration-300 shadow-xs hover:shadow-xl flex flex-col justify-between"
+              className="w-[85vw] max-w-[340px] md:w-auto md:max-w-none flex-shrink-0 snap-start group cursor-pointer bg-white rounded-3xl overflow-hidden border border-sand-200 hover:border-gold-300 transition-all duration-300 shadow-xs hover:shadow-xl flex flex-col justify-between"
             >
               {/* Image Container */}
               <div className="relative h-52 sm:h-56 w-full overflow-hidden bg-sand-200">

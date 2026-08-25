@@ -7,6 +7,7 @@ import {
 } from "next/font/google";
 import "./globals.css";
 import SchemaMarkup from "@/components/SchemaMarkup";
+import { Analytics } from "@vercel/analytics/next";
 
 // ─────────────────────────────────────────────────────────────────
 // PRIMARY LUXURY DISPLAY SERIF — Cormorant Garamond
@@ -178,6 +179,7 @@ export default function RootLayout({
       >
         <SchemaMarkup />
         {children}
+        <Analytics />
       </body>
     </html>
   );
