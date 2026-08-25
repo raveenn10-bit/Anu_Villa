@@ -162,7 +162,7 @@ export default function ContactLocation() {
               <div className="relative h-60 w-full rounded-2xl overflow-hidden">
                 <iframe
                   title="M.S.A Anu Villa Thalpe North Unawatuna Location"
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15871.493922709193!2d80.2447953!3d6.0125712!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae172f3e8fbb571%3A0x7d65451aa4ea21c7!2sUnawatuna%2C%20Sri%20Lanka!5e0!3m2!1sen!2slk!4v1700000000000!5m2!1sen!2slk"
+                  src={VILLA_DATA.googleMapsEmbedUrl}
                   width="100%"
                   height="100%"
                   style={{ border: 0 }}
@@ -174,7 +174,7 @@ export default function ContactLocation() {
               </div>
               <div className="p-3 text-center">
                 <a
-                  href="https://maps.google.com/?q=Thalpe+Unawatuna+Galle+Sri+Lanka"
+                  href={VILLA_DATA.social.googleMaps}
                   target="_blank"
                   rel="noreferrer"
                   className="inline-flex items-center gap-1.5 text-xs font-semibold text-gold-600 hover:text-gold-700"

@@ -34,31 +34,33 @@ export default function Footer() {
         {/* 2. Social & Contact Icons (Centered circular buttons) */}
         <div className="flex items-center justify-center gap-3">
           <a
-            href="https://facebook.com"
+            href={VILLA_DATA.social.googleMaps}
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Google Maps"
+            className="w-10 h-10 rounded-full bg-sand-50 border border-sand-300 text-charcoal-700 hover:text-gold-600 hover:border-gold-400 flex items-center justify-center transition-all shadow-xs"
+          >
+            <MapPin className="w-4 h-4 text-emerald-700" />
+          </a>
+          <a
+            href={VILLA_DATA.social.facebook}
             target="_blank"
             rel="noreferrer"
             aria-label="Facebook"
-            className="w-10 h-10 rounded-full bg-sand-50 border border-sand-300 text-charcoal-700 hover:text-gold-600 hover:border-gold-400 flex items-center justify-center transition-all shadow-xs"
+            className="w-10 h-10 rounded-full bg-sand-50 border border-sand-300 text-charcoal-700 hover:text-blue-600 hover:border-blue-400 flex items-center justify-center transition-all shadow-xs"
           >
-            <Facebook className="w-4 h-4" />
+            <Facebook className="w-4 h-4 text-blue-600" />
           </a>
           <a
-            href="https://instagram.com"
+            href={VILLA_DATA.social.tiktok}
             target="_blank"
             rel="noreferrer"
-            aria-label="Instagram"
-            className="w-10 h-10 rounded-full bg-sand-50 border border-sand-300 text-charcoal-700 hover:text-gold-600 hover:border-gold-400 flex items-center justify-center transition-all shadow-xs"
+            aria-label="TikTok"
+            className="w-10 h-10 rounded-full bg-sand-50 border border-sand-300 text-charcoal-700 hover:text-charcoal-950 hover:border-charcoal-400 flex items-center justify-center transition-all shadow-xs"
           >
-            <Instagram className="w-4 h-4" />
-          </a>
-          <a
-            href="https://youtube.com"
-            target="_blank"
-            rel="noreferrer"
-            aria-label="YouTube"
-            className="w-10 h-10 rounded-full bg-sand-50 border border-sand-300 text-charcoal-700 hover:text-gold-600 hover:border-gold-400 flex items-center justify-center transition-all shadow-xs"
-          >
-            <Youtube className="w-4 h-4" />
+            <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
+              <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64c.298-.002.595.042.88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 3 15.68a6.34 6.34 0 0 0 10.86 4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-3.04-1.54 4.83 4.83 0 0 1-1-3Z" />
+            </svg>
           </a>
           <a
             href={`https://wa.me/${VILLA_DATA.whatsappNumber}`}

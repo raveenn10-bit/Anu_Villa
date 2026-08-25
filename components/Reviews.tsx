@@ -90,6 +90,18 @@ export default function Reviews() {
           ))}
         </div>
 
+        {/* Action Link to Google Maps */}
+        <div className="text-center pt-4">
+          <a
+            href={VILLA_DATA.social.googleMaps}
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex items-center gap-2 bg-white hover:bg-sand-100 text-charcoal-900 px-6 py-3 rounded-2xl font-bold text-xs sm:text-sm border border-sand-300 transition-all shadow-xs"
+          >
+            <span>Read All Reviews on Google Maps &amp; Get Directions</span>
+            <span className="text-gold-600">→</span>
+          </a>
+        </div>
       </div>
     </section>
   );
