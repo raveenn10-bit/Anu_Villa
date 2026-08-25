@@ -27,6 +27,9 @@ const RatesBooking = dynamic(() => import("@/components/RatesBooking"), {
 const NearbyPlaces = dynamic(() => import("@/components/NearbyPlaces"), {
   ssr: true,
 });
+const AreaInfo = dynamic(() => import("@/components/AreaInfo"), {
+  ssr: true,
+});
 const Reviews = dynamic(() => import("@/components/Reviews"), {
   ssr: true,
 });
@@ -68,6 +71,7 @@ export default function Home() {
       <Gallery />
       <RatesBooking onOpenBookingModal={handleOpenBooking} />
       <NearbyPlaces />
+      <AreaInfo />
       <Reviews />
       <FAQ />
       <ContactLocation />
