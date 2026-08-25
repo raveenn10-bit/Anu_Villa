@@ -1,31 +1,31 @@
 "use client";
 
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { Image as ImageIcon, ChevronLeft, ChevronRight, X, Maximize2, Sparkles } from "lucide-react";
+import { Image as ImageIcon, ChevronLeft, ChevronRight, X } from "lucide-react";
 import { VILLA_DATA, GalleryItem } from "@/data/villaData";
-import { useAutoScroll } from "@/hooks/useAutoScroll";
+import { ImageAutoSlider } from "@/components/ui/image-auto-slider";
 
 export default function Gallery() {
   const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(null);
   const [activeCategory, setActiveCategory] = useState<string>("all");
   const [showFullGallery, setShowFullGallery] = useState(false);
-  const scrollRef = useAutoScroll<HTMLDivElement>({ speed: 32, startDelay: 1800, pauseAfterTouch: 3000 });
 
   const categories = [
     { id: "all", name: "All Frames" },
     { id: "exterior", name: "Pool & Exterior" },
     { id: "bedrooms", name: "Suites & Baths" },
     { id: "living", name: "Kitchen & Dining" },
-    { id: "garden", name: "Garden & BBQ" },
+    { id: "garden", name: "Garden & Verandas" },
   ];
 
   const filteredImages = activeCategory === "all"
     ? VILLA_DATA.galleryImages
     : VILLA_DATA.galleryImages.filter((img) => img.category === activeCategory);
 
-  const previewImages = VILLA_DATA.galleryImages.slice(0, 10);
+  const row1Images = VILLA_DATA.galleryImages.slice(0, Math.ceil(VILLA_DATA.galleryImages.length / 2));
+  const row2Images = VILLA_DATA.galleryImages.slice(Math.ceil(VILLA_DATA.galleryImages.length / 2));
 
   const handleNext = () => {
     if (selectedImageIndex === null) return;
@@ -37,13 +37,9 @@ export default function Gallery() {
     setSelectedImageIndex((selectedImageIndex - 1 + filteredImages.length) % filteredImages.length);
   };
 
-  const handleScrollMobile = (dir: "left" | "right") => {
-    if (scrollRef.current) {
-      scrollRef.current.scrollBy({
-        left: dir === "left" ? -280 : 280,
-        behavior: "smooth",
-      });
-    }
+  const handleSelectFromRow = (item: GalleryItem) => {
+    const idx = filteredImages.findIndex((img) => img.id === item.id);
+    setSelectedImageIndex(idx >= 0 ? idx : 0);
   };
 
   return (
@@ -57,95 +53,54 @@ export default function Gallery() {
           </span>
           <div className="flex-1 h-[1px] bg-sand-300/80" />
           <span className="text-xs text-charcoal-400 font-sans hidden sm:inline">
-            Estate Photography • {VILLA_DATA.galleryImages.length} Real Frames
+            Estate Photography • {VILLA_DATA.galleryImages.length} Authentic Frames
           </span>
         </div>
 
-        {/* Section Header */}
+        {/* Section Header & Archive CTA */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 sm:mb-12 gap-4">
-          <div className="space-y-2">
+          <div className="space-y-2 max-w-2xl">
             <h2 className="font-editorial text-3xl sm:text-5xl lg:text-[52px] text-charcoal-950 font-normal leading-[1.05] tracking-[-0.02em]">
               Glimpse the Atmosphere
             </h2>
-            <p className="text-xs sm:text-sm text-charcoal-600 font-sans font-normal max-w-lg">
-              Explore authentic photos of our suites, private en-suite baths, peaceful garden verandas, and refreshing pool at M.S.A Anu Villa.
+            <p className="text-xs sm:text-sm text-charcoal-600 font-sans font-normal">
+              Continuous stream of authentic frames capturing our pool, suites, private baths, and lush verandas at M.S.A Anu Villa. Hover to pause, click to expand.
             </p>
           </div>
 
-          <div className="flex items-center gap-2 self-start sm:self-auto">
-            <div className="flex sm:hidden items-center gap-1 bg-sand-200/60 p-1 rounded-xl">
-              <button
-                onClick={() => handleScrollMobile("left")}
-                aria-label="Scroll gallery left"
-                className="w-8 h-8 rounded-lg bg-white flex items-center justify-center text-charcoal-700 shadow-2xs"
-              >
-                <ChevronLeft className="w-4 h-4" />
-              </button>
-              <button
-                onClick={() => handleScrollMobile("right")}
-                aria-label="Scroll gallery right"
-                className="w-8 h-8 rounded-lg bg-white flex items-center justify-center text-charcoal-700 shadow-2xs"
-              >
-                <ChevronRight className="w-4 h-4" />
-              </button>
-            </div>
-
-            <motion.button
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              onClick={() => setShowFullGallery(true)}
-              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl border border-sand-300 text-xs sm:text-sm font-semibold text-charcoal-800 hover:text-gold-600 hover:border-gold-300 hover:bg-white transition-all shadow-2xs cursor-pointer"
-            >
-              <ImageIcon className="w-4 h-4 text-gold-600" />
-              <span>Full Photo Archive ({VILLA_DATA.galleryImages.length} Photos)</span>
-            </motion.button>
-          </div>
-        </div>
-
-        {/* 5-Photo Cinematic Preview Strip (Swipeable on mobile) */}
-        <div
-          ref={scrollRef}
-          className="flex sm:grid sm:grid-cols-3 lg:grid-cols-5 gap-3.5 sm:gap-4 overflow-x-auto sm:overflow-x-visible pb-4 sm:pb-0 snap-x snap-mandatory scrollbar-none -mx-4 px-4 sm:mx-0 sm:px-0"
-        >
-          {previewImages.map((img, index) => (
-            <motion.div
-              key={img.id}
-              initial={{ opacity: 0, scale: 0.96 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
-              whileHover={{ y: -6 }}
-              onClick={() => {
-                const globalIndex = filteredImages.findIndex((item) => item.id === img.id);
-                setSelectedImageIndex(globalIndex >= 0 ? globalIndex : 0);
-              }}
-              className="min-w-[240px] sm:min-w-0 flex-shrink-0 snap-center group relative h-48 sm:h-56 lg:h-64 rounded-2xl overflow-hidden cursor-pointer shadow-sm bg-sand-200 border border-sand-200/80 img-zoom-container"
-            >
-              <Image
-                src={img.image}
-                alt={img.alt}
-                fill
-                sizes="(max-width: 640px) 240px, (max-width: 1024px) 33vw, 20vw"
-                className="object-cover img-gallery"
-              />
-              {/* Cinematic card overlay — text legibility on hover */}
-              <div className="absolute inset-0 bg-gradient-to-t from-noir-950/70 via-noir-950/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-3.5 z-10">
-                <div className="flex items-center gap-2">
-                  <div className="w-8 h-8 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center shadow-md flex-shrink-0">
-                    <Maximize2 className="w-3.5 h-3.5 text-gold-600" />
-                  </div>
-                  <span className="text-white/90 font-ui text-label-sm tracking-wider uppercase opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100 text-[10px]">{img.title}</span>
-                </div>
-              </div>
-              {/* Warm amber tonal overlay */}
-              <div className="absolute inset-0 bg-gradient-to-br from-amber-900/[0.06] to-transparent pointer-events-none z-[5]" />
-            </motion.div>
-          ))}
+          <motion.button
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            onClick={() => setShowFullGallery(true)}
+            className="inline-flex items-center gap-2 px-5 py-3 rounded-2xl bg-white border border-sand-300 hover:border-gold-400 text-xs sm:text-sm font-semibold text-charcoal-900 hover:text-gold-600 shadow-sm transition-all cursor-pointer self-start sm:self-auto shrink-0"
+          >
+            <ImageIcon className="w-4 h-4 text-gold-600" />
+            <span>Full Photo Archive ({VILLA_DATA.galleryImages.length} Photos)</span>
+          </motion.button>
         </div>
 
       </div>
 
-      {/* Full Gallery Modal */}
+      {/* Infinite Auto-Scrolling Stream Rows */}
+      <div className="space-y-4">
+        {/* Row 1: Scrolling Left */}
+        <ImageAutoSlider
+          items={row1Images}
+          onSelectImage={(idx) => handleSelectFromRow(row1Images[idx])}
+          speedSeconds={40}
+          reverse={false}
+        />
+
+        {/* Row 2: Scrolling Right */}
+        <ImageAutoSlider
+          items={row2Images}
+          onSelectImage={(idx) => handleSelectFromRow(row2Images[idx])}
+          speedSeconds={44}
+          reverse={true}
+        />
+      </div>
+
+      {/* Full Gallery Archive Modal */}
       <AnimatePresence>
         {showFullGallery && (
           <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6">
@@ -166,11 +121,11 @@ export default function Gallery() {
               <div className="flex items-center justify-between pb-6 border-b border-sand-200">
                 <div>
                   <h3 className="font-editorial text-2xl sm:text-3xl font-normal text-charcoal-950">M.S.A Anu Villa Photography</h3>
-                  <p className="text-xs text-gold-700 font-semibold mt-0.5">Samagiya, Thalpe North, Unawatuna</p>
+                  <p className="text-xs text-gold-700 font-semibold mt-0.5">Samagiya, Thalpe North, Unawatuna • {VILLA_DATA.galleryImages.length} Total Photos</p>
                 </div>
                 <button
                   onClick={() => setShowFullGallery(false)}
-                  className="w-9 h-9 rounded-full bg-sand-100 hover:bg-sand-200 flex items-center justify-center text-charcoal-600"
+                  className="w-9 h-9 rounded-full bg-sand-100 hover:bg-sand-200 flex items-center justify-center text-charcoal-600 transition-colors cursor-pointer"
                 >
                   <X className="w-5 h-5" />
                 </button>
@@ -182,7 +137,7 @@ export default function Gallery() {
                   <button
                     key={cat.id}
                     onClick={() => setActiveCategory(cat.id)}
-                    className={`px-4 py-2 rounded-xl text-xs font-semibold tracking-wider uppercase transition-all ${
+                    className={`px-4 py-2 rounded-xl text-xs font-semibold tracking-wider uppercase transition-all cursor-pointer ${
                       activeCategory === cat.id
                         ? "bg-gold-500 text-white shadow-sm"
                         : "bg-sand-100 text-charcoal-700 hover:bg-sand-200"
@@ -203,7 +158,7 @@ export default function Gallery() {
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
                     onClick={() => setSelectedImageIndex(idx)}
-                    className="group relative h-56 rounded-2xl overflow-hidden cursor-pointer shadow-xs bg-sand-200"
+                    className="group relative h-56 rounded-2xl overflow-hidden cursor-pointer shadow-xs bg-sand-200 border border-sand-200"
                   >
                     <Image
                       src={img.image}
@@ -223,7 +178,7 @@ export default function Gallery() {
         )}
       </AnimatePresence>
 
-      {/* Lightbox */}
+      {/* Lightbox Modal */}
       <AnimatePresence>
         {selectedImageIndex !== null && filteredImages[selectedImageIndex] && (
           <div className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-6">
@@ -232,7 +187,7 @@ export default function Gallery() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setSelectedImageIndex(null)}
-              className="absolute inset-0 bg-noir-950/90 backdrop-blur-lg"
+              className="absolute inset-0 bg-noir-950/90 backdrop-blur-lg cursor-pointer"
             />
 
             <div className="relative z-10 max-w-5xl w-full h-[85vh] flex flex-col justify-between">
@@ -242,7 +197,7 @@ export default function Gallery() {
                 </span>
                 <button
                   onClick={() => setSelectedImageIndex(null)}
-                  className="w-10 h-10 rounded-full bg-white/15 hover:bg-white/30 text-white flex items-center justify-center transition-colors"
+                  className="w-10 h-10 rounded-full bg-white/15 hover:bg-white/30 text-white flex items-center justify-center transition-colors cursor-pointer"
                 >
                   <X className="w-5 h-5" />
                 </button>
@@ -267,14 +222,14 @@ export default function Gallery() {
 
                 <button
                   onClick={handlePrev}
-                  className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-white/20 hover:bg-white/40 text-white flex items-center justify-center backdrop-blur-md transition-colors"
+                  className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-white/20 hover:bg-white/40 text-white flex items-center justify-center backdrop-blur-md transition-colors cursor-pointer"
                   aria-label="Previous image"
                 >
                   <ChevronLeft className="w-6 h-6" />
                 </button>
                 <button
                   onClick={handleNext}
-                  className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-white/20 hover:bg-white/40 text-white flex items-center justify-center backdrop-blur-md transition-colors"
+                  className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-white/20 hover:bg-white/40 text-white flex items-center justify-center backdrop-blur-md transition-colors cursor-pointer"
                   aria-label="Next image"
                 >
                   <ChevronRight className="w-6 h-6" />
