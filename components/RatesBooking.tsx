@@ -28,28 +28,73 @@ interface RatesBookingProps {
   onOpenBookingModal: () => void;
 }
 
+const formatDateForInput = (d: Date) => {
+  const year = d.getFullYear();
+  const month = String(d.getMonth() + 1).padStart(2, "0");
+  const day = String(d.getDate()).padStart(2, "0");
+  return `${year}-${month}-${day}`;
+};
+
+const addDays = (dateStr: string, days: number) => {
+  const d = new Date(dateStr + "T12:00:00");
+  d.setDate(d.getDate() + days);
+  return formatDateForInput(d);
+};
+
 export default function RatesBooking({ onOpenBookingModal }: RatesBookingProps) {
   const [currency, setCurrency] = useState<"USD" | "LKR" | "EUR" | "GBP" | "AUD">("USD");
-  const [checkIn, setCheckIn] = useState("");
-  const [checkOut, setCheckOut] = useState("");
-  const [guests, setGuests] = useState(6);
   const [nights, setNights] = useState(2);
+  const [guests, setGuests] = useState(6);
+
+  const [checkIn, setCheckIn] = useState(() => {
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    return formatDateForInput(tomorrow);
+  });
+
+  const [checkOut, setCheckOut] = useState(() => {
+    const dayAfter = new Date();
+    dayAfter.setDate(dayAfter.getDate() + 3); // 2 nights default
+    return formatDateForInput(dayAfter);
+  });
 
   const currInfo = VILLA_DATA.pricing.currencies[currency];
   const nightlyRate = Math.round(VILLA_DATA.pricing.baseNightlyRateUSD * currInfo.rate);
   const totalPrice = nightlyRate * nights;
 
-  const handleDateChange = (inDate: string, outDate: string) => {
-    setCheckIn(inDate);
-    setCheckOut(outDate);
-    if (inDate && outDate) {
-      const d1 = new Date(inDate);
-      const d2 = new Date(outDate);
-      const diffTime = Math.abs(d2.getTime() - d1.getTime());
-      const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-      if (diffDays > 0) {
-        setNights(diffDays);
-      }
+  const handleCheckInChange = (newCheckIn: string) => {
+    setCheckIn(newCheckIn);
+    if (!newCheckIn) return;
+    const d1 = new Date(newCheckIn + "T12:00:00");
+    const d2 = new Date(checkOut + "T12:00:00");
+    if (d2 <= d1) {
+      setCheckOut(addDays(newCheckIn, nights));
+    } else {
+      const diffDays = Math.round((d2.getTime() - d1.getTime()) / (1000 * 60 * 60 * 24));
+      setNights(Math.max(1, diffDays));
+    }
+  };
+
+  const handleCheckOutChange = (newCheckOut: string) => {
+    setCheckOut(newCheckOut);
+    if (!newCheckOut || !checkIn) return;
+    const d1 = new Date(checkIn + "T12:00:00");
+    const d2 = new Date(newCheckOut + "T12:00:00");
+    if (d2 <= d1) {
+      const adjusted = addDays(checkIn, 1);
+      setCheckOut(adjusted);
+      setNights(1);
+    } else {
+      const diffDays = Math.round((d2.getTime() - d1.getTime()) / (1000 * 60 * 60 * 24));
+      setNights(Math.max(1, diffDays));
+    }
+  };
+
+  const handleNightsChange = (newNights: number) => {
+    const valid = Math.max(1, newNights);
+    setNights(valid);
+    if (checkIn) {
+      setCheckOut(addDays(checkIn, valid));
     }
   };
 
@@ -281,7 +326,8 @@ export default function RatesBooking({ onOpenBookingModal }: RatesBookingProps) 
                       <input
                         type="date"
                         value={checkIn}
-                        onChange={(e) => handleDateChange(e.target.value, checkOut)}
+                        min={formatDateForInput(new Date())}
+                        onChange={(e) => handleCheckInChange(e.target.value)}
                         className="w-full mt-1 bg-transparent text-xs sm:text-sm font-semibold text-charcoal-900 focus:outline-none cursor-pointer"
                       />
                     </div>
@@ -292,7 +338,8 @@ export default function RatesBooking({ onOpenBookingModal }: RatesBookingProps) 
                       <input
                         type="date"
                         value={checkOut}
-                        onChange={(e) => handleDateChange(checkIn, e.target.value)}
+                        min={checkIn || formatDateForInput(new Date())}
+                        onChange={(e) => handleCheckOutChange(e.target.value)}
                         className="w-full mt-1 bg-transparent text-xs sm:text-sm font-semibold text-charcoal-900 focus:outline-none cursor-pointer"
                       />
                     </div>
@@ -327,17 +374,17 @@ export default function RatesBooking({ onOpenBookingModal }: RatesBookingProps) 
                     <div className="flex items-center rounded-2xl border border-sand-300 bg-sand-50 p-1 shadow-2xs">
                       <button
                         type="button"
-                        onClick={() => setNights(Math.max(1, nights - 1))}
+                        onClick={() => handleNightsChange(nights - 1)}
                         className="w-10 h-10 rounded-xl bg-white hover:bg-sand-100 text-charcoal-800 font-bold border border-sand-200 shadow-2xs flex items-center justify-center text-base transition-colors"
                       >
                         -
                       </button>
-                      <span className="flex-1 text-center font-ui font-bold text-charcoal-950 text-sm sm:text-base">
+                      <span className="flex-1 text-center font-ui font-mono font-bold text-charcoal-950 text-sm sm:text-base">
                         {nights} {nights === 1 ? "Night" : "Nights"}
                       </span>
                       <button
                         type="button"
-                        onClick={() => setNights(nights + 1)}
+                        onClick={() => handleNightsChange(nights + 1)}
                         className="w-10 h-10 rounded-xl bg-white hover:bg-sand-100 text-charcoal-800 font-bold border border-sand-200 shadow-2xs flex items-center justify-center text-base transition-colors"
                       >
                         +
@@ -352,7 +399,7 @@ export default function RatesBooking({ onOpenBookingModal }: RatesBookingProps) 
                     <span>
                       {currInfo.symbol}{nightlyRate.toLocaleString()} × {nights} {nights === 1 ? "night" : "nights"}
                     </span>
-                    <span className="font-ui font-bold text-charcoal-900">
+                    <span className="font-ui font-mono font-bold text-charcoal-900">
                       {currInfo.symbol}{totalPrice.toLocaleString()}
                     </span>
                   </div>
@@ -377,7 +424,7 @@ export default function RatesBooking({ onOpenBookingModal }: RatesBookingProps) 
                       <span className="text-sm font-bold text-charcoal-950 block">Guaranteed Total:</span>
                       <span className="text-[11px] text-charcoal-400 font-normal">No hidden fees or extra person tax</span>
                     </div>
-                    <span className="font-serif text-2xl sm:text-3xl font-bold text-gold-600">
+                    <span className="font-ui font-mono text-2xl sm:text-3xl font-bold text-gold-700 tracking-tight">
                       {currInfo.symbol}{totalPrice.toLocaleString()}
                     </span>
                   </div>
