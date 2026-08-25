@@ -5,10 +5,11 @@ import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { MapPin, Navigation, Clock, Compass, Sparkles, CheckCircle, X, ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 import { VILLA_DATA, NearbyPlace } from "@/data/villaData";
+import { useAutoScroll } from "@/hooks/useAutoScroll";
 
 export default function NearbyPlaces() {
   const [selectedPlace, setSelectedPlace] = useState<NearbyPlace | null>(null);
-  const scrollRef = useRef<HTMLDivElement>(null);
+  const scrollRef = useAutoScroll<HTMLDivElement>({ speed: 35, startDelay: 2000, pauseAfterTouch: 3000 });
 
   const handleScroll = (dir: "left" | "right") => {
     if (scrollRef.current) {

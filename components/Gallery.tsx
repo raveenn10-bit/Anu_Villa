@@ -5,12 +5,13 @@ import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { Image as ImageIcon, ChevronLeft, ChevronRight, X, Maximize2, Sparkles } from "lucide-react";
 import { VILLA_DATA, GalleryItem } from "@/data/villaData";
+import { useAutoScroll } from "@/hooks/useAutoScroll";
 
 export default function Gallery() {
   const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(null);
   const [activeCategory, setActiveCategory] = useState<string>("all");
   const [showFullGallery, setShowFullGallery] = useState(false);
-  const scrollRef = useRef<HTMLDivElement>(null);
+  const scrollRef = useAutoScroll<HTMLDivElement>({ speed: 32, startDelay: 1800, pauseAfterTouch: 3000 });
 
   const categories = [
     { id: "all", name: "All Frames" },

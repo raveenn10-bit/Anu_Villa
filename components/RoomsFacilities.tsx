@@ -20,6 +20,7 @@ import {
   ChevronRight
 } from "lucide-react";
 import { VILLA_DATA, FacilityItem } from "@/data/villaData";
+import { useAutoScroll } from "@/hooks/useAutoScroll";
 
 interface RoomsFacilitiesProps {
   onOpenBooking: () => void;
@@ -28,7 +29,7 @@ interface RoomsFacilitiesProps {
 export default function RoomsFacilities({ onOpenBooking }: RoomsFacilitiesProps) {
   const [selectedFacility, setSelectedFacility] = useState<FacilityItem | null>(null);
   const [showAllModal, setShowAllModal] = useState(false);
-  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const scrollContainerRef = useAutoScroll<HTMLDivElement>({ speed: 38, startDelay: 1500, pauseAfterTouch: 3000 });
 
   const getIcon = (iconName: string) => {
     switch (iconName) {

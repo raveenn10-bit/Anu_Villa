@@ -1,28 +1,77 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Plus_Jakarta_Sans, Playfair_Display } from "next/font/google";
+import {
+  Cormorant_Garamond,
+  Cinzel,
+  DM_Sans,
+  Jost,
+} from "next/font/google";
 import "./globals.css";
 
+// ─────────────────────────────────────────────────────────────────
+// PRIMARY LUXURY DISPLAY SERIF — Cormorant Garamond
+// Inspiration: Loro Piana, Dior, Bottega Veneta, The Row
+// Use: H1, H2, Hero Headlines, Pull Quotes, Hero Italic accents
+// Character: Italian Renaissance origin, hairline serifs, extreme
+//   stroke contrast, exquisite at large sizes. Communicates old-money
+//   luxury, restraint, and editorial confidence.
+// ─────────────────────────────────────────────────────────────────
 const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],
   style: ["normal", "italic"],
   variable: "--font-cormorant",
   display: "swap",
+  preload: true,
 });
 
-const playfair = Playfair_Display({
+// ─────────────────────────────────────────────────────────────────
+// ARCHITECTURAL LABEL FONT — Cinzel
+// Inspiration: Rolls-Royce, Rolex, Roman Architectural Inscriptions
+// Use: Section eyebrows, chapter numbers, coordinate labels,
+//   badge text, navigation items, and all-caps structural markers.
+// Character: Based on classical Roman lapidary letterforms. Pure,
+//   timeless, architecturally precise. The Hermès of label fonts.
+// ─────────────────────────────────────────────────────────────────
+const cinzel = Cinzel({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-cinzel",
+  display: "swap",
+  preload: true,
+});
+
+// ─────────────────────────────────────────────────────────────────
+// BODY TEXT — DM Sans
+// Inspiration: Architectural Digest, Wallpaper*, Condé Nast
+// Use: All body copy, descriptions, paragraphs, form text, FAQs
+// Character: Geometric humanist sans designed for editorial clarity.
+//   Generous x-height, clean strokes, outstanding legibility at
+//   small sizes. Pairs beautifully with high-contrast display serifs.
+// ─────────────────────────────────────────────────────────────────
+const dmSans = DM_Sans({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600"],
   style: ["normal", "italic"],
-  variable: "--font-playfair",
+  variable: "--font-dm-sans",
   display: "swap",
+  preload: true,
 });
 
-const jakarta = Plus_Jakarta_Sans({
+// ─────────────────────────────────────────────────────────────────
+// UI & BUTTON FONT — Jost
+// Inspiration: Bang & Olufsen, Aesop, luxury DTC brands
+// Use: Navigation links, CTA buttons, stats, price labels, tags
+// Character: Geometric precision with optical balance. Zero visual
+//   noise. At uppercase tracking, it reads like a precision instrument.
+//   The mechanical clarity elevates buttons and labels above ordinary.
+// ─────────────────────────────────────────────────────────────────
+const jost = Jost({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700", "800"],
-  variable: "--font-jakarta",
+  weight: ["300", "400", "500", "600", "700"],
+  style: ["normal", "italic"],
+  variable: "--font-jost",
   display: "swap",
+  preload: true,
 });
 
 export const metadata: Metadata = {
@@ -72,7 +121,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body className={`${cormorant.variable} ${playfair.variable} ${jakarta.variable} font-sans bg-sand-50 text-charcoal-800 antialiased selection:bg-gold-500 selection:text-white`}>
+      <body
+        className={`
+          ${cormorant.variable}
+          ${cinzel.variable}
+          ${dmSans.variable}
+          ${jost.variable}
+          font-body bg-sand-50 text-charcoal-800 antialiased
+          selection:bg-gold-500 selection:text-white
+        `}
+      >
         {children}
       </body>
     </html>

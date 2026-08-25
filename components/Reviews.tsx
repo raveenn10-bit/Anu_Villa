@@ -4,9 +4,10 @@ import React, { useRef } from "react";
 import { motion } from "framer-motion";
 import { Star, Quote, ChevronLeft, ChevronRight, Sparkles } from "lucide-react";
 import { VILLA_DATA } from "@/data/villaData";
+import { useAutoScroll } from "@/hooks/useAutoScroll";
 
 export default function Reviews() {
-  const scrollRef = useRef<HTMLDivElement>(null);
+  const scrollRef = useAutoScroll<HTMLDivElement>({ speed: 30, startDelay: 1600, pauseAfterTouch: 3000 });
 
   const handleScroll = (dir: "left" | "right") => {
     if (scrollRef.current) {

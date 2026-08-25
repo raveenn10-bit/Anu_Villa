@@ -82,10 +82,10 @@ export default function Navbar({ onOpenBooking }: NavbarProps) {
               />
             </div>
             <div className="flex flex-col">
-              <span className="font-serif text-lg sm:text-[22px] font-semibold tracking-[0.12em] text-charcoal-950 leading-none group-hover:text-gold-600 transition-colors">
+              <span className="font-cinzel text-base sm:text-lg font-semibold tracking-[0.18em] text-charcoal-950 leading-none group-hover:text-gold-600 transition-colors">
                 ANU VILLA
               </span>
-              <span className="text-[9px] sm:text-[10px] tracking-[0.24em] uppercase text-gold-600 font-semibold mt-1 font-sans">
+              <span className="font-ui text-[9px] sm:text-[10px] tracking-[0.28em] uppercase text-gold-600 font-semibold mt-1">
                 UNAWATUNA • GALLE
               </span>
             </div>
@@ -99,7 +99,7 @@ export default function Navbar({ onOpenBooking }: NavbarProps) {
                 <Link
                   key={link.id}
                   href={link.href}
-                  className={`px-3.5 py-2 text-xs font-semibold tracking-[0.12em] uppercase transition-all relative rounded-full ${
+                  className={`px-3.5 py-2 text-nav font-ui font-semibold tracking-widest uppercase transition-all relative rounded-full ${
                     isActive
                       ? "text-gold-700 font-bold"
                       : "text-charcoal-700 hover:text-gold-600 hover:bg-gold-50/50"

@@ -88,7 +88,7 @@ export default function Hero({ onOpenBooking, onExplore }: HeroProps) {
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 onClick={onOpenBooking}
-                className="bg-gold-500 hover:bg-gold-600 text-white px-5 sm:px-7 py-3 sm:py-3.5 rounded-xl font-semibold text-xs sm:text-sm tracking-wider uppercase shadow-xl shadow-gold-500/20 transition-all flex items-center gap-2"
+              className="bg-gold-500 hover:bg-gold-600 text-white px-5 sm:px-7 py-3 sm:py-3.5 rounded-xl font-ui font-bold text-btn tracking-[0.2em] uppercase shadow-xl shadow-gold-500/20 transition-all flex items-center gap-2"
               >
                 <Calendar className="w-4 h-4" />
                 <span>Reserve Villa ($140/nt)</span>
