@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import {
   MapPin,
   Palmtree,
@@ -102,6 +102,32 @@ const AREA_INFO_DATA: AttractionCategory[] = [
   },
 ];
 
+const categoryContainerVariants: Variants = {
+  hidden: { opacity: 0, y: 25 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.5,
+      staggerChildren: 0.07,
+      ease: [0.25, 0.1, 0.25, 1],
+    },
+  },
+};
+
+const textItemVariants: Variants = {
+  hidden: { opacity: 0, x: -12, filter: "blur(4px)" },
+  visible: {
+    opacity: 1,
+    x: 0,
+    filter: "blur(0px)",
+    transition: {
+      duration: 0.4,
+      ease: "easeOut",
+    },
+  },
+};
+
 export default function AreaInfo() {
   const scrollToAvailability = () => {
     const el = document.getElementById("rates");
@@ -117,8 +143,14 @@ export default function AreaInfo() {
     <section id="area-info" className="py-16 sm:py-20 lg:py-24 bg-white border-y border-sand-200 relative overflow-hidden font-sans">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 sm:space-y-10">
         
-        {/* Section Header */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-sand-200">
+        {/* Section Header with Scroll Fade In/Out */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, amount: 0.3 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-sand-200"
+        >
           <div>
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-charcoal-950 tracking-tight">
               Area info
@@ -146,7 +178,7 @@ export default function AreaInfo() {
           >
             <span>See availability</span>
           </button>
-        </div>
+        </motion.div>
 
         {/* 3-Column Booking.com Area Info Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
@@ -180,13 +212,28 @@ function CategoryBlock({ category }: { category: AttractionCategory }) {
   const Icon = category.icon;
 
   return (
-    <div className="space-y-3.5">
+    <motion.div
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: false, amount: 0.2 }}
+      variants={categoryContainerVariants}
+      className="space-y-3.5"
+    >
       
       {/* Category Header with Animated Micro-Interaction */}
-      <div className="flex items-center gap-2.5 group">
+      <motion.div
+        variants={textItemVariants}
+        className="flex items-center gap-2.5 group cursor-default"
+      >
         <motion.div
           whileHover={{ scale: 1.15, rotate: 6 }}
-          transition={{ type: "spring", stiffness: 400, damping: 15 }}
+          animate={{
+            y: [0, -2, 0],
+          }}
+          transition={{
+            y: { duration: 3, repeat: Infinity, ease: "easeInOut" },
+            scale: { type: "spring", stiffness: 400, damping: 15 },
+          }}
           className={`w-8 h-8 rounded-lg flex items-center justify-center border shadow-2xs ${category.iconBg} ${category.accentColor}`}
         >
           <Icon className="w-4 h-4" />
@@ -194,14 +241,15 @@ function CategoryBlock({ category }: { category: AttractionCategory }) {
         <h3 className="font-bold text-sm sm:text-base text-charcoal-950">
           {category.title}
         </h3>
-      </div>
+      </motion.div>
 
-      {/* Place Items List */}
+      {/* Place Items List with Scroll Fade In & Stagger */}
       <div className="space-y-2.5">
         {category.items.map((item, idx) => (
           <motion.div
             key={idx}
-            whileHover={{ x: 3 }}
+            variants={textItemVariants}
+            whileHover={{ x: 4 }}
             className="flex items-baseline justify-between gap-4 text-xs sm:text-sm text-charcoal-700 hover:text-charcoal-950 transition-colors py-0.5"
           >
             <div className="flex items-baseline gap-1.5 min-w-0 pr-2">
@@ -219,6 +267,6 @@ function CategoryBlock({ category }: { category: AttractionCategory }) {
         ))}
       </div>
 
-    </div>
+    </motion.div>
   );
 }
