@@ -1,0 +1,244 @@
+import React from "react";
+import { VILLA_DATA } from "@/data/villaData";
+
+export default function SchemaMarkup() {
+  const lodgingSchema = {
+    "@context": "https://schema.org",
+    "@type": ["LodgingBusiness", "Hotel", "Resort", "VacationRental"],
+    "@id": "https://www.msaanuvilla.com/#lodging",
+    name: VILLA_DATA.officialName,
+    alternateName: ["Anu Villa", "M.S.A Anu Villa Unawatuna", "Anu Villa Thalpe", "MSA Anu Villa Galle"],
+    description:
+      "M.S.A Anu Villa is a luxury 6-bedroom private pool villa in Samagiya, Thalpe North, Unawatuna, Galle, Sri Lanka. Offering 6 en-suite air-conditioned suites, private swimming pool, kitchen, garden BBQ, and accommodation for up to 12 guests at $140/night.",
+    url: "https://www.msaanuvilla.com",
+    telephone: "+94775183955",
+    email: "contact@msaanuvilla.com",
+    priceRange: "$140",
+    currenciesAccepted: "USD, LKR, EUR, GBP, AUD",
+    paymentAccepted: "Cash, Bank Transfer, Online Payment",
+    image: [
+      "https://www.msaanuvilla.com/images/hero/hero-slide-3.jpg",
+      "https://www.msaanuvilla.com/images/hero/hero-slide-1.jpg",
+      "https://www.msaanuvilla.com/images/hero/hero-slide-2.jpg",
+      "https://www.msaanuvilla.com/images/villa/pool-real.jpg",
+    ],
+    logo: "https://www.msaanuvilla.com/images/logo.png",
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "Samagiya, Thalpe North",
+      addressLocality: "Unawatuna",
+      addressRegion: "Southern Province",
+      postalCode: "80600",
+      addressCountry: "LK",
+    },
+    geo: {
+      "@type": "GeoCoordinates",
+      latitude: "6.0132375",
+      longitude: "80.2604219",
+    },
+    hasMap: "https://maps.app.goo.gl/fcMUFhyUnG87FR4y7",
+    checkinTime: "12:00:00",
+    checkoutTime: "10:00:00",
+    numberOfRooms: 6,
+    maximumAttendeeCapacity: 12,
+    petsAllowed: false,
+    smokingAllowed: false,
+    starRating: {
+      "@type": "Rating",
+      ratingValue: "5",
+    },
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: "5.0",
+      bestRating: "5",
+      worstRating: "1",
+      ratingCount: "48",
+      reviewCount: "48",
+    },
+    amenityFeature: [
+      {
+        "@type": "LocationFeatureSpecification",
+        name: "Private Swimming Pool",
+        value: true,
+      },
+      {
+        "@type": "LocationFeatureSpecification",
+        name: "Air Conditioning in all 6 Bedrooms",
+        value: true,
+      },
+      {
+        "@type": "LocationFeatureSpecification",
+        name: "6 Attached En-Suite Bathrooms with Hot Water",
+        value: true,
+      },
+      {
+        "@type": "LocationFeatureSpecification",
+        name: "Fully Equipped Kitchen",
+        value: true,
+      },
+      {
+        "@type": "LocationFeatureSpecification",
+        name: "Poolside Garden BBQ Grill & Dining Patio",
+        value: true,
+      },
+      {
+        "@type": "LocationFeatureSpecification",
+        name: "High-Speed Free Wi-Fi",
+        value: true,
+      },
+      {
+        "@type": "LocationFeatureSpecification",
+        name: "Free Secure Private On-Site Parking",
+        value: true,
+      },
+      {
+        "@type": "LocationFeatureSpecification",
+        name: "1.5 km to Turtle Beach & Dalawella Beach",
+        value: true,
+      },
+    ],
+    sameAs: [
+      "https://maps.app.goo.gl/fcMUFhyUnG87FR4y7",
+      "https://www.booking.com/hotel/lk/msa-anuvilla-unawatuna.html",
+      "https://www.airbnb.co.uk/rooms/1604148565476290714",
+      "https://www.facebook.com/share/1dwdJ81Bb2/",
+      "https://www.tiktok.com/@m.s.a.anu.villa",
+    ],
+    makesOffer: {
+      "@type": "Offer",
+      name: "Exclusive Whole 6-Bedroom Villa Rental",
+      price: "140",
+      priceCurrency: "USD",
+      availability: "https://schema.org/InStock",
+      validFrom: "2024-01-01",
+      url: "https://www.msaanuvilla.com/#rates",
+      priceSpecification: {
+        "@type": "UnitPriceSpecification",
+        price: "140",
+        priceCurrency: "USD",
+        unitText: "DAY",
+      },
+    },
+  };
+
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: "Where is M.S.A Anu Villa located?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "M.S.A Anu Villa is located in Samagiya, Thalpe North, Unawatuna, Galle, Southern Province, Sri Lanka (Postal Code: 80600). It is conveniently situated approximately 1.5 km (4 minutes drive) from Turtle Beach (Dalawella) and Thalpe Coral Rock Pools, and 7.5 km (14 minutes) from historic Galle Dutch Fort.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "What is the nightly rate to book M.S.A Anu Villa?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "M.S.A Anu Villa offers a transparent direct booking rate of $140 USD (approx. Rs. 43,400 LKR / €129 EUR / £111 GBP) per night for the entire private 6-bedroom villa, including private pool, kitchen, and BBQ facilities, for up to 12 guests with zero hidden fees.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "How many guests can stay at M.S.A Anu Villa?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "The villa accommodates up to 12 guests comfortably across 6 private air-conditioned suites, each equipped with its own attached en-suite bathroom with hot water showers.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "What amenities and facilities are available at M.S.A Anu Villa?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "M.S.A Anu Villa features a private outdoor swimming pool and sun deck, 6 A/C bedrooms with private attached bathrooms, a fully equipped self-catering kitchen, poolside BBQ grill and dining patio, shaded veranda lounge, high-speed Wi-Fi, tropical garden sanctuary, and free secure private parking.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "How do I book M.S.A Anu Villa directly with host M. Mangala?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "You can book directly with host M. Mangala via WhatsApp at +94 77 518 3955 or call +94 76 452 6021 / +94 74 118 0163. Direct booking guarantees the best price ($140/night) with zero OTA commission markups.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Is M.S.A Anu Villa also listed on Booking.com and Airbnb?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Yes, M.S.A Anu Villa is officially listed on Booking.com (M.S.A AnuVilla Unawatuna) and Airbnb. However, booking directly with the host via WhatsApp offers the best available rate.",
+        },
+      },
+    ],
+  };
+
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: "https://www.msaanuvilla.com",
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "About Villa",
+        item: "https://www.msaanuvilla.com/#about",
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: "Suites & Facilities",
+        item: "https://www.msaanuvilla.com/#facilities",
+      },
+      {
+        "@type": "ListItem",
+        position: 4,
+        name: "Photo Gallery",
+        item: "https://www.msaanuvilla.com/#gallery",
+      },
+      {
+        "@type": "ListItem",
+        position: 5,
+        name: "Rates & Booking",
+        item: "https://www.msaanuvilla.com/#rates",
+      },
+      {
+        "@type": "ListItem",
+        position: 6,
+        name: "Nearby Attractions",
+        item: "https://www.msaanuvilla.com/#nearby",
+      },
+      {
+        "@type": "ListItem",
+        position: 7,
+        name: "Contact & Location",
+        item: "https://www.msaanuvilla.com/#contact",
+      },
+    ],
+  };
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(lodgingSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+    </>
+  );
+}

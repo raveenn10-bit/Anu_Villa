@@ -33,6 +33,7 @@ export interface VillaData {
     about: string;
     longAbout: string;
   };
+  website: string;
   social: {
     facebook: string;
     tiktok: string;
@@ -133,10 +134,11 @@ export const VILLA_DATA: VillaData = {
     about: "Escape the busy city life and enjoy a peaceful, comfortable stay at ANU VILLA. Offering comfortable & private accommodation, peaceful surroundings, spacious rooms, and modern amenities ideal for families & groups.",
     longAbout: "Nestled in the tranquil sanctuary of Samagiya, Thalpe North in Unawatuna, M.S.A Anu Villa offers the quintessential tropical escape. With 6 fully air-conditioned bedrooms featuring private attached bathrooms, an outdoor swimming pool, fully equipped kitchen, BBQ facilities, and peaceful lush gardens, our villa accommodates up to 12 guests in complete comfort and privacy. Just 1.5 km from the beach and minutes from historic Galle Fort, it is the perfect holiday destination for families, group getaways, and friends.",
   },
+  website: "https://www.msaanuvilla.com",
   social: {
     facebook: "https://www.facebook.com/share/1dwdJ81Bb2/",
     tiktok: "https://www.tiktok.com/@m.s.a.anu.villa?_r=1&_t=ZS-999U9uyxsjl",
-    googleMaps: "https://maps.app.goo.gl/dEWkDvk16S6Um1J9A",
+    googleMaps: "https://maps.app.goo.gl/fcMUFhyUnG87FR4y7",
     bookingCom: "https://www.booking.com/hotel/lk/msa-anuvilla-unawatuna.html",
     airbnb: "https://www.airbnb.co.uk/rooms/1604148565476290714?viralityEntryPoint=1&s=76",
   },
