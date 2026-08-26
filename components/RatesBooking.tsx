@@ -29,6 +29,7 @@ import {
   ExternalLink,
   ChevronDown,
   XCircle,
+  CreditCard,
 } from "lucide-react";
 import { VILLA_DATA } from "@/data/villaData";
 
@@ -259,7 +260,7 @@ export default function RatesBooking({ onOpenBookingModal }: RatesBookingProps) 
       bookingSummary = `🏡 Selected Rooms:\n${itemLines}\n💰 Total Guaranteed Rate: ${activeSelection.totalPriceFormatted} (${currency})`;
     }
 
-    const text = `Hello M. Mangala! 🏡\nI'm inquiring to reserve M.S.A Anu Villa in Thalpe, Unawatuna.\n\n📅 Check-in: ${checkIn} (12:00 PM)\n📅 Check-out: ${checkOut} (10:00 AM)\n🌙 Duration: ${nights} ${nights === 1 ? "Night" : "Nights"}\n👥 Guests: ${adults} Adults, ${children} Children\n\n${bookingSummary}\n\n✓ Free 1st Day Sri Lankan Breakfast Included (Whole Villa bookings)\n✓ No prepayment needed – pay at property\n✓ No credit card needed\n\nPlease confirm availability for these dates. Thank you!`;
+    const text = `Hello M. Mangala! 🏡\nI'm inquiring to reserve M.S.A Anu Villa in Thalpe, Unawatuna.\n\n📅 Check-in: ${checkIn} (12:00 PM)\n📅 Check-out: ${checkOut} (10:00 AM)\n🌙 Duration: ${nights} ${nights === 1 ? "Night" : "Nights"}\n👥 Guests: ${adults} Adults, ${children} Children\n\n${bookingSummary}\n\n✓ Free 1st Day Sri Lankan Breakfast Included (Whole Villa bookings)\n✓ Advance payment required 2 days prior to check-in to confirm reservation\n✓ Family & Child Safe Private Sanctuary\n\nPlease confirm availability for these dates. Thank you!`;
     const encoded = encodeURIComponent(text);
     window.open(`https://wa.me/${VILLA_DATA.whatsappNumber}?text=${encoded}`, "_blank");
   };
@@ -276,14 +277,14 @@ export default function RatesBooking({ onOpenBookingModal }: RatesBookingProps) 
       desc: "Authentic homemade Ceylon breakfast on your first morning when reserving the whole villa.",
     },
     {
-      icon: Flame,
-      title: "Complimentary BBQ & Pool Access",
-      desc: "Full private swimming pool & garden barbecue grill equipment.",
+      icon: ShieldCheck,
+      title: "100% Safe for Families & Children",
+      desc: "Fully gated private grounds, single-level ground floor suites, safe for babies & kids.",
     },
     {
-      icon: ShieldCheck,
-      title: "Direct Host Support with M. Mangala",
-      desc: "Instant assistance for scooter rentals, airport transfers & tours.",
+      icon: CreditCard,
+      title: "Advance Payment 2 Days Prior",
+      desc: "Simple confirmation with 2-day advance transfer via Bank or Cash.",
     },
   ];
 
@@ -520,19 +521,19 @@ export default function RatesBooking({ onOpenBookingModal }: RatesBookingProps) 
                       </div>
                     )}
 
-                    <div className="flex items-start gap-2 text-charcoal-800">
-                      <XCircle className="w-4 h-4 text-charcoal-500 shrink-0 mt-0.5" />
-                      <span>Free cancellation up to 48h before arrival</span>
+                    <div className="flex items-start gap-2 text-amber-950 font-bold bg-amber-50/90 p-2 rounded-lg border border-amber-200/90 shadow-2xs">
+                      <CreditCard className="w-4 h-4 text-amber-700 shrink-0 mt-0.5" />
+                      <span>Advance payment required 2 days prior to check-in</span>
                     </div>
 
-                    <div className="flex items-start gap-2 text-[#008009] font-bold">
-                      <Check className="w-4 h-4 text-[#008009] shrink-0 mt-0.5" />
-                      <span>No prepayment needed – pay at property</span>
+                    <div className="flex items-start gap-2 text-emerald-800 font-semibold">
+                      <ShieldCheck className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                      <span>100% Safe, child-friendly &amp; secure environment</span>
                     </div>
 
-                    <div className="flex items-start gap-2 text-[#008009] font-bold">
-                      <Check className="w-4 h-4 text-[#008009] shrink-0 mt-0.5" />
-                      <span>No credit card needed (Cash or Bank Transfer)</span>
+                    <div className="flex items-start gap-2 text-charcoal-700">
+                      <Check className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                      <span>Payment via Bank Transfer, Cash, or Online</span>
                     </div>
                   </div>
 
@@ -608,6 +609,51 @@ export default function RatesBooking({ onOpenBookingModal }: RatesBookingProps) 
             </div>
           </div>
 
+        </div>
+
+        {/* ── Child Safety & Family-Friendly Notice ─────────────────────── */}
+        <div className="bg-gradient-to-br from-emerald-50/95 via-teal-50/60 to-white rounded-2xl p-5 sm:p-6 border border-emerald-200 shadow-sm font-sans">
+          <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-5">
+            <div className="flex items-start gap-4">
+              <div className="w-12 h-12 rounded-2xl bg-emerald-600 text-white flex items-center justify-center shrink-0 shadow-md shadow-emerald-600/20 mt-0.5">
+                <ShieldCheck className="w-6 h-6" />
+              </div>
+              <div className="space-y-1.5">
+                <div className="flex flex-wrap items-center gap-2">
+                  <span className="bg-emerald-100 text-emerald-800 text-[11px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full border border-emerald-300">
+                    Child &amp; Family Safety Notice
+                  </span>
+                  <span className="text-xs font-semibold text-emerald-700">
+                    • 100% Safe &amp; Hazard-Free Environment
+                  </span>
+                </div>
+                <h4 className="font-bold text-base sm:text-lg text-charcoal-950 leading-snug">
+                  Safe &amp; Child-Friendly Environment for Babies and Kids (ළමයින්ට ඉතා ආරක්ෂිත පරිසරය)
+                </h4>
+                <p className="text-xs sm:text-sm text-charcoal-700 leading-relaxed max-w-4xl">
+                  M.S.A Anu Villa is specially tailored to offer a peaceful, hazard-free, and securely enclosed sanctuary for families visiting with babies and young children. Our single-level ground floor architecture, fully fenced perimeter with lockable gates, and safe pool access ensure complete protection and joyful freedom for little ones without danger.
+                </p>
+                <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5 pt-1.5 text-xs text-emerald-900 font-semibold">
+                  <span className="inline-flex items-center gap-1.5">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                    <span>Fully Gated &amp; Fenced Private Grounds</span>
+                  </span>
+                  <span className="inline-flex items-center gap-1.5">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                    <span>Single-Level Toddler-Safe Layout</span>
+                  </span>
+                  <span className="inline-flex items-center gap-1.5">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                    <span>Safe &amp; Monitored Swimming Pool</span>
+                  </span>
+                  <span className="inline-flex items-center gap-1.5">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                    <span>Zero High Drop Hazards</span>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* ── 4 Direct Perks Bento Grid ───────────────────────────────── */}

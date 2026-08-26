@@ -674,6 +674,14 @@ export const VILLA_DATA: VillaData = {
       answer: "Yes! Guests have full access to the equipped kitchen with stove, refrigerator, microwave, kettle, and cookware, as well as an outdoor BBQ grill setup for alfresco dinners.",
     },
     {
+      question: "Is Anu Villa safe and child-friendly for families with babies?",
+      answer: "Yes, absolutely! Anu Villa is a private, securely gated and fully fenced single-level ground-floor property with zero road hazards, toddler-friendly layouts, and safe swimming pool access, providing a 100% safe and danger-free holiday haven for babies and kids.",
+    },
+    {
+      question: "What is the payment and booking confirmation policy?",
+      answer: "To confirm your reservation, an advance payment is required 2 days prior to your check-in date. Payments can be easily made via Bank Transfer, Online Transfer, or Cash upon arrival.",
+    },
+    {
       question: "How do I book or pay?",
       answer: "You can book directly via WhatsApp or phone with host M. Mangala (+94 77 518 3955 / +94 76 452 6021 / +94 74 118 0163) for the guaranteed best direct rate, or via our official Booking.com listing.",
     },

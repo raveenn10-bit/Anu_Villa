@@ -272,6 +272,22 @@ export default function SchemaMarkup() {
       },
       {
         "@type": "Question",
+        name: "Is M.S.A Anu Villa safe and child-friendly for families with babies?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Yes! M.S.A Anu Villa is a securely gated, fully fenced single-level ground floor property with zero road hazards, toddler-friendly layouts, and safe swimming pool access, providing a 100% safe and danger-free holiday haven for babies, toddlers, and young children.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "What is the advance payment and booking policy?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "To confirm your reservation, an advance payment is required 2 days prior to your check-in date. Payment is conveniently accepted via Bank Transfer, Online Transfer, or Cash upon arrival.",
+        },
+      },
+      {
+        "@type": "Question",
         name: "Is M.S.A Anu Villa also listed on Booking.com and Airbnb?",
         acceptedAnswer: {
           "@type": "Answer",
