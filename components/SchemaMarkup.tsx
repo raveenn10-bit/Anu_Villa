@@ -41,6 +41,7 @@ export default function SchemaMarkup() {
     "@type": "VacationRental",
     "@id": "https://www.msaanuvilla.com/#vacationrental",
     identifier: "MSA-ANU-VILLA-001",
+    additionalType: "https://schema.org/House",
     name: VILLA_DATA.officialName,
     alternateName: [
       "Anu Villa",
@@ -154,6 +155,7 @@ export default function SchemaMarkup() {
         "@type": "Accommodation",
         "@id": "https://www.msaanuvilla.com/#entire-villa-unit",
         identifier: "MSA-UNIT-WHOLE-VILLA",
+        additionalType: "https://schema.org/House",
         name: "Entire 6-Bedroom Private Villa",
         description:
           "Exclusive whole villa reservation featuring 6 air-conditioned suites with private en-suite bathrooms, private swimming pool, self-catering kitchen, and garden BBQ facilities.",
