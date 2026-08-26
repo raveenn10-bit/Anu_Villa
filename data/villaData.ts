@@ -152,6 +152,8 @@ export const VILLA_DATA: VillaData = {
     "6 Spacious A/C Rooms with Attached Bathrooms",
     "Private Outdoor Swimming Pool & Sun Deck",
     "Fully Equipped Kitchen & BBQ Facilities",
+    "24/7 CCTV Security Surveillance (Always Working & Active)",
+    "Safe & Gated Environment for Families and Children",
     "High-Speed Wi-Fi & Secure Private Parking",
     "Accommodates up to 12 Guests Comfortably",
     "Peaceful Surroundings Just 1.5 km to the Beach",

@@ -98,6 +98,7 @@ const ACCOMMODATIONS: RoomTier[] = [
       "Air conditioning in all rooms",
       "Free High-Speed Wifi",
       "Free Parking",
+      "24/7 CCTV Security (Always Active)",
       "Free 1st Day Sri Lankan Breakfast",
     ],
     breakfastLKR: 1316,
@@ -122,6 +123,7 @@ const ACCOMMODATIONS: RoomTier[] = [
       "Mountain view",
       "Air conditioning",
       "Free Wifi",
+      "24/7 CCTV Security",
     ],
     breakfastLKR: 1316,
     breakfastUSD: 4,
@@ -143,6 +145,7 @@ const ACCOMMODATIONS: RoomTier[] = [
       "Garden view",
       "Air conditioning",
       "Free Wifi",
+      "24/7 CCTV Security",
     ],
     breakfastLKR: 1316,
     breakfastUSD: 4,
@@ -260,7 +263,7 @@ export default function RatesBooking({ onOpenBookingModal }: RatesBookingProps) 
       bookingSummary = `🏡 Selected Rooms:\n${itemLines}\n💰 Total Guaranteed Rate: ${activeSelection.totalPriceFormatted} (${currency})`;
     }
 
-    const text = `Hello M. Mangala! 🏡\nI'm inquiring to reserve M.S.A Anu Villa in Thalpe, Unawatuna.\n\n📅 Check-in: ${checkIn} (12:00 PM)\n📅 Check-out: ${checkOut} (10:00 AM)\n🌙 Duration: ${nights} ${nights === 1 ? "Night" : "Nights"}\n👥 Guests: ${adults} Adults, ${children} Children\n\n${bookingSummary}\n\n✓ Free 1st Day Sri Lankan Breakfast Included (Whole Villa bookings)\n✓ Advance payment required 2 days prior to check-in to confirm reservation\n✓ Family & Child Safe Private Sanctuary\n\nPlease confirm availability for these dates. Thank you!`;
+    const text = `Hello M. Mangala! 🏡\nI'm inquiring to reserve M.S.A Anu Villa in Thalpe, Unawatuna.\n\n📅 Check-in: ${checkIn} (12:00 PM)\n📅 Check-out: ${checkOut} (10:00 AM)\n🌙 Duration: ${nights} ${nights === 1 ? "Night" : "Nights"}\n👥 Guests: ${adults} Adults, ${children} Children\n\n${bookingSummary}\n\n✓ Free 1st Day Sri Lankan Breakfast Included (Whole Villa bookings)\n✓ Advance payment required 2 days prior to check-in to confirm reservation\n✓ 24/7 CCTV Security Surveillance (Always Active)\n✓ 100% Safe Family & Child Environment\n\nPlease confirm availability for these dates. Thank you!`;
     const encoded = encodeURIComponent(text);
     window.open(`https://wa.me/${VILLA_DATA.whatsappNumber}?text=${encoded}`, "_blank");
   };
@@ -278,8 +281,8 @@ export default function RatesBooking({ onOpenBookingModal }: RatesBookingProps) 
     },
     {
       icon: ShieldCheck,
-      title: "100% Safe for Families & Children",
-      desc: "Fully gated private grounds, single-level ground floor suites, safe for babies & kids.",
+      title: "24/7 CCTV & Family Safe",
+      desc: "Always-working 24/7 CCTV surveillance, fully gated grounds, safe for babies & kids.",
     },
     {
       icon: CreditCard,
@@ -624,16 +627,23 @@ export default function RatesBooking({ onOpenBookingModal }: RatesBookingProps) 
                     Child &amp; Family Safety Notice
                   </span>
                   <span className="text-xs font-semibold text-emerald-700">
-                    • 100% Safe &amp; Hazard-Free Environment
+                    • 24/7 CCTV Always Working &amp; Active
+                  </span>
+                  <span className="text-xs font-semibold text-emerald-700">
+                    • 100% Safe &amp; Hazard-Free
                   </span>
                 </div>
                 <h4 className="font-bold text-base sm:text-lg text-charcoal-950 leading-snug">
-                  Safe &amp; Child-Friendly Environment for Babies and Kids (ළමයින්ට ඉතා ආරක්ෂිත පරිසරය)
+                  Safe &amp; Child-Friendly Environment for Babies and Kids (ළමයින්ට ඉතා ආරක්ෂිත පරිසරය • CCTV ක්‍රියාත්මකයි)
                 </h4>
                 <p className="text-xs sm:text-sm text-charcoal-700 leading-relaxed max-w-4xl">
-                  M.S.A Anu Villa is specially tailored to offer a peaceful, hazard-free, and securely enclosed sanctuary for families visiting with babies and young children. Our single-level ground floor architecture, fully fenced perimeter with lockable gates, and safe pool access ensure complete protection and joyful freedom for little ones without danger.
+                  M.S.A Anu Villa is specially tailored to offer a peaceful, hazard-free, and securely enclosed sanctuary for families visiting with babies and young children. With 24/7 active CCTV security surveillance, single-level ground floor architecture, fully fenced perimeter with lockable gates, and safe pool access, parents can relax with complete round-the-clock peace of mind.
                 </p>
                 <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5 pt-1.5 text-xs text-emerald-900 font-semibold">
+                  <span className="inline-flex items-center gap-1.5 bg-emerald-100/70 px-2.5 py-0.5 rounded-md border border-emerald-300/80">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                    <span>24/7 CCTV Security Surveillance (Always Working)</span>
+                  </span>
                   <span className="inline-flex items-center gap-1.5">
                     <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
                     <span>Fully Gated &amp; Fenced Private Grounds</span>

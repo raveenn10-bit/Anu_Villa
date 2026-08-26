@@ -141,6 +141,11 @@ export default function SchemaMarkup() {
       },
       {
         "@type": "LocationFeatureSpecification",
+        name: "24/7 CCTV Security Surveillance",
+        value: true,
+      },
+      {
+        "@type": "LocationFeatureSpecification",
         name: "Free Secure Private On-Site Parking",
         value: true,
       },
