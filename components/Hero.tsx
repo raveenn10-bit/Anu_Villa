@@ -82,7 +82,7 @@ export default function Hero({ onOpenBooking, onExplore }: HeroProps) {
                 fill
                 priority
                 sizes="100vw"
-                className="object-cover object-center filter brightness-[0.76] contrast-[1.05] saturate-[0.96]"
+                className="object-cover object-center filter brightness-[0.92] contrast-[1.04] saturate-[1.05]"
               />
             </motion.div>
           </AnimatePresence>
@@ -97,16 +97,16 @@ export default function Hero({ onOpenBooking, onExplore }: HeroProps) {
             playsInline
             preload="auto"
             poster="/images/villa/apartment-1/apartment-1-08.webp"
-            className="w-full h-full object-cover object-center scale-[1.02] filter brightness-[0.76] contrast-[1.06] saturate-[0.92]"
+            className="w-full h-full object-cover object-center scale-[1.01] filter brightness-[0.98] contrast-[1.06] saturate-[1.12]"
           >
             <source src="/videos/hero-bg.mp4" type="video/mp4" />
           </video>
         </div>
 
         {/* Filmic Lighting Grading & Gradient Depth for Ultra-Crisp Legibility */}
-        <div className="absolute inset-0 bg-noir-950/40 z-10" />
-        <div className="absolute inset-0 bg-gradient-to-r from-noir-950/95 via-noir-950/75 to-transparent md:w-[70%] lg:w-[60%] z-10" />
-        <div className="absolute inset-x-0 bottom-0 h-36 sm:h-44 bg-gradient-to-t from-sand-50 via-sand-50/70 to-transparent z-10" />
+        <div className="absolute inset-0 bg-noir-950/15 sm:bg-noir-950/25 z-10 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-t from-noir-950/75 via-noir-950/30 to-transparent sm:bg-gradient-to-r sm:from-noir-950/80 sm:via-noir-950/40 sm:to-transparent md:w-[70%] lg:w-[60%] z-10 pointer-events-none" />
+        <div className="absolute inset-x-0 bottom-0 h-24 sm:h-36 bg-gradient-to-t from-sand-50 via-sand-50/50 to-transparent z-10 pointer-events-none" />
       </div>
 
       {/* Main Editorial Hero Content */}
@@ -119,14 +119,14 @@ export default function Hero({ onOpenBooking, onExplore }: HeroProps) {
             className="space-y-3 sm:space-y-5"
           >
             {/* Dramatic Cinematic Headline */}
-            <h1 className="font-editorial text-3xl sm:text-6xl lg:text-[72px] text-white font-light leading-[1.04] tracking-[-0.03em] drop-shadow-md">
+            <h1 className="font-editorial text-3xl sm:text-6xl lg:text-[72px] text-white font-light leading-[1.04] tracking-[-0.03em] drop-shadow-[0_4px_20px_rgba(0,0,0,0.8)]">
               A Private Sanctuary <br />
               in <span className="font-editorial italic font-normal text-gold-400">Unawatuna</span>
             </h1>
 
             {/* Authentic Descriptive Prose */}
-            <p className="text-sand-100/90 text-xs sm:text-base lg:text-lg leading-relaxed max-w-lg font-sans font-light drop-shadow-xs">
-              Escape into tropical tranquility at <span className="text-white font-medium">{VILLA_DATA.officialName}</span>. Six spacious air-conditioned suites with private en-suite baths, swimming pool, full kitchen, and starlit BBQ gardens in peaceful Samagiya.
+            <p className="text-sand-100 text-xs sm:text-base lg:text-lg leading-relaxed max-w-lg font-sans font-normal drop-shadow-[0_2px_12px_rgba(0,0,0,0.85)]">
+              Escape into tropical tranquility at <span className="text-white font-bold">{VILLA_DATA.officialName}</span>. Six spacious air-conditioned suites with private en-suite baths, swimming pool, full kitchen, and starlit BBQ gardens in peaceful Samagiya.
             </p>
           </motion.div>
         </div>
