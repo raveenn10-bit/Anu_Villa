@@ -95,9 +95,15 @@ const AREA_INFO_DATA: AttractionCategory[] = [
     accentColor: "text-rose-600",
     iconBg: "bg-rose-50 border-rose-200",
     items: [
+      { type: "Restaurant", name: "Wijaya Beach Restaurant (Dalawella)", distance: "1.5 km" },
+      { type: "Cafe", name: "SkinnyTom's Deli", distance: "1.9 km" },
+      { type: "Restaurant", name: "The Hideout Unawatuna", distance: "2.0 km" },
+      { type: "Cafe/Lounge", name: "Koha Surf Lounge", distance: "2.1 km" },
       { type: "Restaurant", name: "The Me-NU Restaurant", distance: "1.1 km" },
       { type: "Restaurant", name: "Eterna Guest House & Seafood Restaurant", distance: "1.8 km" },
       { type: "Cafe/Bar", name: "Comaran Bar", distance: "1.8 km" },
+      { type: "Restaurant", name: "Pizza Hut", distance: "3.8 km" },
+      { type: "Restaurant", name: "Domino's Pizza", distance: "4.2 km" },
     ],
   },
 ];
