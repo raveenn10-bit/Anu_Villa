@@ -90,13 +90,14 @@ const ACCOMMODATIONS: RoomTier[] = [
       "280 m²",
       "Private pool",
       "Private kitchen",
-      "6 Attached bathrooms",
+      "6 Attached bathrooms with hot water",
       "Poolside BBQ",
       "Balcony & Patio",
       "Pool view",
-      "Air conditioning",
+      "Air conditioning in all rooms",
       "Free High-Speed Wifi",
       "Free Parking",
+      "Free 1st Day Sri Lankan Breakfast",
     ],
     breakfastLKR: 1316,
     breakfastUSD: 4,
@@ -113,7 +114,7 @@ const ACCOMMODATIONS: RoomTier[] = [
       "Entire villa wing",
       "160 m²",
       "Private kitchen",
-      "2 Attached bathrooms",
+      "2 Attached bathrooms with hot water",
       "Private pool access",
       "Balcony",
       "Pool view",
@@ -135,6 +136,7 @@ const ACCOMMODATIONS: RoomTier[] = [
     amenityTags: [
       "Private Suite",
       "45 m²",
+      "Kitchen facilities available",
       "Attached bathroom with hot water",
       "Private pool access",
       "Garden view",
@@ -257,7 +259,7 @@ export default function RatesBooking({ onOpenBookingModal }: RatesBookingProps) 
       bookingSummary = `🏡 Selected Rooms:\n${itemLines}\n💰 Total Guaranteed Rate: ${activeSelection.totalPriceFormatted} (${currency})`;
     }
 
-    const text = `Hello M. Mangala! 🏡\nI'm inquiring to reserve M.S.A Anu Villa in Thalpe, Unawatuna.\n\n📅 Check-in: ${checkIn} (12:00 PM)\n📅 Check-out: ${checkOut} (10:00 AM)\n🌙 Duration: ${nights} ${nights === 1 ? "Night" : "Nights"}\n👥 Guests: ${adults} Adults, ${children} Children\n\n${bookingSummary}\n\n✓ No prepayment needed – pay at property\n✓ No credit card needed\n\nPlease confirm availability for these dates. Thank you!`;
+    const text = `Hello M. Mangala! 🏡\nI'm inquiring to reserve M.S.A Anu Villa in Thalpe, Unawatuna.\n\n📅 Check-in: ${checkIn} (12:00 PM)\n📅 Check-out: ${checkOut} (10:00 AM)\n🌙 Duration: ${nights} ${nights === 1 ? "Night" : "Nights"}\n👥 Guests: ${adults} Adults, ${children} Children\n\n${bookingSummary}\n\n✓ Free 1st Day Sri Lankan Breakfast Included (Whole Villa bookings)\n✓ No prepayment needed – pay at property\n✓ No credit card needed\n\nPlease confirm availability for these dates. Thank you!`;
     const encoded = encodeURIComponent(text);
     window.open(`https://wa.me/${VILLA_DATA.whatsappNumber}?text=${encoded}`, "_blank");
   };
@@ -269,9 +271,9 @@ export default function RatesBooking({ onOpenBookingModal }: RatesBookingProps) 
       desc: "Save up to 20% compared to third-party OTA commission markups.",
     },
     {
-      icon: Users,
-      title: "Entire 6-Room Villa (Up to 12 Guests)",
-      desc: "Zero extra person fees — exclusive private property access.",
+      icon: Coffee,
+      title: "Free 1st Day Sri Lankan Breakfast",
+      desc: "Authentic homemade Ceylon breakfast on your first morning when reserving the whole villa.",
     },
     {
       icon: Flame,
@@ -500,10 +502,23 @@ export default function RatesBooking({ onOpenBookingModal }: RatesBookingProps) 
 
                   {/* Col 3: Your Choices & Perks */}
                   <div className="lg:col-span-3 lg:px-4 space-y-2 text-xs py-1">
-                    <div className="flex items-start gap-2 text-charcoal-800">
-                      <Coffee className="w-4 h-4 text-charcoal-500 shrink-0 mt-0.5" />
-                      <span>Breakfast {currInfo.symbol}{Math.round(acc.breakfastUSD * currInfo.rate).toLocaleString()} (optional)</span>
-                    </div>
+                    {acc.id === "whole-villa" ? (
+                      <>
+                        <div className="flex items-start gap-2 text-emerald-800 font-bold bg-emerald-50/90 p-2 rounded-lg border border-emerald-200 shadow-2xs">
+                          <Coffee className="w-4 h-4 text-emerald-700 shrink-0 mt-0.5" />
+                          <span>1st Day Breakfast: FREE Authentic Sri Lankan Style (Included with whole villa)</span>
+                        </div>
+                        <div className="flex items-start gap-2 text-charcoal-700">
+                          <Coffee className="w-4 h-4 text-charcoal-500 shrink-0 mt-0.5" />
+                          <span>Subsequent Days Breakfast: {currInfo.symbol}{Math.round(acc.breakfastUSD * currInfo.rate).toLocaleString()} (optional)</span>
+                        </div>
+                      </>
+                    ) : (
+                      <div className="flex items-start gap-2 text-charcoal-800">
+                        <Coffee className="w-4 h-4 text-charcoal-500 shrink-0 mt-0.5" />
+                        <span>Breakfast {currInfo.symbol}{Math.round(acc.breakfastUSD * currInfo.rate).toLocaleString()} (optional)</span>
+                      </div>
+                    )}
 
                     <div className="flex items-start gap-2 text-charcoal-800">
                       <XCircle className="w-4 h-4 text-charcoal-500 shrink-0 mt-0.5" />
