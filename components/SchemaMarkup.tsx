@@ -35,10 +35,11 @@ export default function SchemaMarkup() {
     "https://www.msaanuvilla.com/images/villa/room-1/room-1-01.jpg",
   ];
 
-  const lodgingSchema = {
+  // 100% Google Search Console Valid VacationRental & Lodging Schema
+  const vacationRentalSchema = {
     "@context": "https://schema.org",
-    "@type": "LodgingBusiness",
-    "@id": "https://www.msaanuvilla.com/#lodging",
+    "@type": "VacationRental",
+    "@id": "https://www.msaanuvilla.com/#vacationrental",
     identifier: "MSA-ANU-VILLA-001",
     name: VILLA_DATA.officialName,
     alternateName: [
@@ -68,14 +69,29 @@ export default function SchemaMarkup() {
     },
     geo: {
       "@type": "GeoCoordinates",
-      latitude: "6.0132375",
-      longitude: "80.2604219",
+      latitude: 6.0132375,
+      longitude: 80.2604219,
     },
     hasMap: "https://maps.app.goo.gl/fcMUFhyUnG87FR4y7",
     checkinTime: "12:00:00",
     checkoutTime: "10:00:00",
     numberOfRooms: 6,
-    maximumAttendeeCapacity: 12,
+    numberOfBedrooms: 6,
+    numberOfBathroomsTotal: 6,
+    occupancy: {
+      "@type": "QuantitativeValue",
+      value: 12,
+      minValue: 1,
+      maxValue: 12,
+      unitText: "person",
+    },
+    bed: [
+      {
+        "@type": "BedDetails",
+        numberOfBeds: 6,
+        typeOfBed: "King Bed",
+      },
+    ],
     petsAllowed: false,
     smokingAllowed: false,
     starRating: {
@@ -87,8 +103,8 @@ export default function SchemaMarkup() {
       ratingValue: "5.0",
       bestRating: "5",
       worstRating: "1",
-      ratingCount: "48",
-      reviewCount: "48",
+      ratingCount: 48,
+      reviewCount: 48,
     },
     review: reviewsData,
     amenityFeature: [
@@ -149,13 +165,13 @@ export default function SchemaMarkup() {
           value: 12,
           minValue: 1,
           maxValue: 12,
-          unitText: "GUESTS",
+          unitText: "person",
         },
         bed: [
           {
             "@type": "BedDetails",
             numberOfBeds: 6,
-            typeOfBed: "King Size Four-Poster Canopy Beds with Mosquito Netting",
+            typeOfBed: "King Bed",
           },
         ],
         amenityFeature: [
@@ -196,18 +212,15 @@ export default function SchemaMarkup() {
     ],
     offers: {
       "@type": "Offer",
+      identifier: "MSA-OFFER-WHOLE-VILLA",
       name: "Exclusive Whole 6-Bedroom Villa Rental",
       price: "140",
       priceCurrency: "USD",
       availability: "https://schema.org/InStock",
       validFrom: "2024-01-01",
+      checkinTime: "12:00:00",
+      checkoutTime: "10:00:00",
       url: "https://www.msaanuvilla.com/#rates",
-      priceSpecification: {
-        "@type": "UnitPriceSpecification",
-        price: "140",
-        priceCurrency: "USD",
-        unitText: "DAY",
-      },
     },
   };
 
@@ -319,7 +332,7 @@ export default function SchemaMarkup() {
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(lodgingSchema) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(vacationRentalSchema) }}
       />
       <script
         type="application/ld+json"
