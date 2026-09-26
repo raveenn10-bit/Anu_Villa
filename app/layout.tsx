@@ -14,8 +14,7 @@ import { Analytics } from "@vercel/analytics/next";
 // ─────────────────────────────────────────────────────────────────
 const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600"],
-  style: ["normal", "italic"],
+  weight: ["300", "400", "500", "600", "700"],
   variable: "--font-cormorant",
   display: "swap",
   preload: true,
