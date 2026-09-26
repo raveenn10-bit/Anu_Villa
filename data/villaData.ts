@@ -108,8 +108,8 @@ export const VILLA_DATA: VillaData = {
   addressShort: "Thalpe North, Unawatuna, Galle",
   distanceToBeach: "1.5 km to beach",
   hostName: "M. Mangala",
-  phones: ["+94 77 518 3955", "+94 76 452 6021", "+94 74 118 0163"],
-  rawPhones: ["94775183955", "94764526021", "94741180163"],
+  phones: ["+94 77 518 3955", "+94 76 452 6021", "+94 74 118 0163", "+94 77 842 7584"],
+  rawPhones: ["94775183955", "94764526021", "94741180163", "94778427584"],
   whatsappNumber: "94775183955",
   capacity: {
     bedrooms: 6,
@@ -685,7 +685,7 @@ export const VILLA_DATA: VillaData = {
     },
     {
       question: "How do I book or pay?",
-      answer: "You can book directly via WhatsApp or phone with host M. Mangala (+94 77 518 3955 / +94 76 452 6021 / +94 74 118 0163) for the guaranteed best direct rate, or via our official Booking.com listing.",
+      answer: "You can book directly via WhatsApp or phone with host M. Mangala (+94 77 518 3955 / +94 76 452 6021 / +94 74 118 0163 / +94 77 842 7584) for the guaranteed best direct rate, or via our official Booking.com listing.",
     },
   ],
 };

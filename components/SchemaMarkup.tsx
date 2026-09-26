@@ -272,7 +272,7 @@ export default function SchemaMarkup() {
         name: "How do I book M.S.A Anu Villa directly with host M. Mangala?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "You can book directly with host M. Mangala via WhatsApp at +94 77 518 3955 or call +94 76 452 6021 / +94 74 118 0163. Direct booking guarantees the best price ($140/night) with zero OTA commission markups.",
+          text: "You can book directly with host M. Mangala via WhatsApp at +94 77 518 3955 or call +94 76 452 6021 / +94 74 118 0163 / +94 77 842 7584. Direct booking guarantees the best price ($140/night) with zero OTA commission markups.",
         },
       },
       {
