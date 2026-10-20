@@ -1,257 +1,70 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
-import Image from "next/image";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
-import { MessageCircle, Menu, X, Calendar } from "lucide-react";
-import { VILLA_DATA } from "@/data/villaData";
+import { AnimatePresence, motion } from "framer-motion";
+import { ArrowUpRight, Menu, X } from "lucide-react";
 
-interface NavbarProps {
-  onOpenBooking: () => void;
-}
+interface NavbarProps { onOpenBooking: () => void }
+
+const links = [
+  ["The Villa", "about"],
+  ["Rooms", "facilities"],
+  ["Gallery", "gallery"],
+  ["Rates", "rates"],
+  ["Location", "contact"],
+];
 
 export default function Navbar({ onOpenBooking }: NavbarProps) {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState("home");
+  const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 30) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
-
-      // Active section spy
-      const sections = ["home", "about", "facilities", "gallery", "rates", "nearby", "contact"];
-      const scrollPosition = window.scrollY + 200;
-
-      for (const section of sections) {
-        const el = document.getElementById(section);
-        if (el) {
-          const top = el.offsetTop;
-          const height = el.offsetHeight;
-          if (scrollPosition >= top && scrollPosition < top + height) {
-            setActiveSection(section);
-            break;
-          }
-        }
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    const onScroll = () => setScrolled(window.scrollY > 16);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
-
-  const navLinks = [
-    { name: "Home", href: "#home", id: "home" },
-    { name: "About Us", href: "#about", id: "about" },
-    { name: "Rooms & Facilities", href: "#facilities", id: "facilities" },
-    { name: "Gallery", href: "#gallery", id: "gallery" },
-    { name: "Rates", href: "#rates", id: "rates" },
-    { name: "Nearby Places", href: "#nearby", id: "nearby" },
-    { name: "Contact", href: "#contact", id: "contact" },
-  ];
-
-  const handleWhatsAppClick = () => {
-    const message = encodeURIComponent(`Hello M. Mangala (${VILLA_DATA.officialName})! I'm interested in booking your 6-room villa in Unawatuna. Could you please share availability?`);
-    window.open(`https://wa.me/${VILLA_DATA.whatsappNumber}?text=${message}`, "_blank");
-  };
 
   return (
     <>
-      <header
-        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
-          isScrolled
-            ? "bg-white/95 backdrop-blur-md shadow-xs py-3 border-b border-sand-200/80"
-            : "bg-white/85 backdrop-blur-sm py-4 border-b border-sand-100"
-        }`}
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-          {/* Brand Logo & Professional Typography */}
-          <Link href="#home" className="flex items-center gap-2.5 sm:gap-3 group">
-            <div className="relative w-10 h-10 sm:w-12 sm:h-12 rounded-full overflow-hidden bg-white shadow-xs border border-gold-200/80 p-0.5 transition-transform duration-300 group-hover:scale-105">
-              <Image
-                src="/images/logo.png"
-                alt="M.S.A Anu Villa Logo"
-                fill
-                className="object-contain"
-                priority
-              />
-            </div>
-            <div className="flex flex-col">
-              <span className="font-cinzel text-base sm:text-lg font-semibold tracking-[0.18em] text-charcoal-950 leading-none group-hover:text-gold-600 transition-colors">
-                ANU VILLA
-              </span>
-              <span className="font-ui text-[9px] sm:text-[10px] tracking-[0.28em] uppercase text-gold-600 font-semibold mt-1">
-                UNAWATUNA • GALLE
-              </span>
-            </div>
+      <header className={`fixed inset-x-0 top-0 z-50 h-[76px] border-b transition-all duration-500 lg:h-[88px] ${scrolled ? "border-black/10 bg-[#f5f1e8]/95 backdrop-blur-xl" : "border-black/10 bg-[#f5f1e8]"}`}>
+        <div className="mx-auto flex h-full max-w-[1600px] items-center justify-between px-5 sm:px-8 lg:px-12">
+          <Link href="#home" className="group leading-none">
+            <span className="block font-cinzel text-lg font-medium tracking-[0.26em] text-[#161814] sm:text-xl">M.S.A ANU VILLA</span>
+            <span className="mt-1.5 block font-ui text-[8px] font-medium uppercase tracking-[0.36em] text-[#9c6c32]">Unawatuna · Galle</span>
           </Link>
 
-          {/* Desktop Navigation Links (>= lg) */}
-          <nav className="hidden lg:flex items-center space-x-1 xl:space-x-2">
-            {navLinks.map((link) => {
-              const isActive = activeSection === link.id;
-              return (
-                <Link
-                  key={link.id}
-                  href={link.href}
-                  className={`px-3.5 py-2 text-nav font-ui font-semibold tracking-widest uppercase transition-all relative rounded-full ${
-                    isActive
-                      ? "text-gold-700 font-bold"
-                      : "text-charcoal-700 hover:text-gold-600 hover:bg-gold-50/50"
-                  }`}
-                >
-                  {link.name}
-                  {isActive && (
-                    <motion.div
-                      layoutId="activeNavIndicator"
-                      className="absolute bottom-0.5 left-3.5 right-3.5 h-0.5 bg-gold-500 rounded-full"
-                      transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                    />
-                  )}
-                </Link>
-              );
-            })}
+          <nav className="hidden items-center gap-7 lg:flex xl:gap-10">
+            {links.map(([name, id]) => (
+              <Link key={id} href={`#${id}`} className="font-ui text-[10px] font-medium uppercase tracking-[0.18em] text-[#494c47] transition-colors hover:text-[#9c6c32]">{name}</Link>
+            ))}
           </nav>
 
-          {/* Right Action CTA Buttons (>= lg) */}
-          <div className="hidden lg:flex items-center gap-3">
-            <motion.button
-              whileHover={{ scale: 1.03 }}
-              whileTap={{ scale: 0.97 }}
-              onClick={onOpenBooking}
-              className="bg-gold-500 hover:bg-gold-600 text-white px-5 py-2.5 rounded-xl font-medium text-xs tracking-wide uppercase shadow-xs transition-all flex items-center gap-2"
-            >
-              <Calendar className="w-3.5 h-3.5" />
-              <span>Book Now</span>
-            </motion.button>
+          <button onClick={onOpenBooking} className="group hidden items-center gap-7 bg-[#20221f] px-6 py-3.5 font-ui text-[10px] font-semibold uppercase tracking-[0.2em] text-white transition-colors hover:bg-[#9c6c32] lg:inline-flex">
+            Book your stay <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+          </button>
 
-            <motion.button
-              whileHover={{ scale: 1.08 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={handleWhatsAppClick}
-              title="Chat on WhatsApp"
-              className="w-10 h-10 rounded-full bg-[#25D366] hover:bg-[#20ba59] text-white flex items-center justify-center shadow-xs transition-all"
-            >
-              <MessageCircle className="w-5 h-5 fill-current" />
-            </motion.button>
-          </div>
-
-          {/* Mobile & Tablet Drawer Trigger (< lg) */}
-          <div className="flex items-center gap-2 lg:hidden">
-            <button
-              onClick={onOpenBooking}
-              className="hidden sm:inline-flex bg-gold-500 hover:bg-gold-600 text-white px-3.5 py-1.5 rounded-lg text-xs font-semibold uppercase tracking-wider items-center gap-1.5 shadow-2xs"
-            >
-              <Calendar className="w-3.5 h-3.5" />
-              <span>Book</span>
-            </button>
-            <button
-              onClick={handleWhatsAppClick}
-              className="w-9 h-9 rounded-full bg-[#25D366] text-white flex items-center justify-center shadow-xs"
-              aria-label="Direct WhatsApp"
-            >
-              <MessageCircle className="w-4 h-4 fill-current" />
-            </button>
-            <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 rounded-lg text-charcoal-800 hover:bg-sand-100 transition-colors"
-              aria-label="Toggle menu"
-            >
-              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-            </button>
-          </div>
+          <button onClick={() => setOpen(true)} aria-label="Open menu" className="flex h-11 w-11 items-center justify-center border border-black/15 text-[#20221f] lg:hidden"><Menu className="h-5 w-5" /></button>
         </div>
       </header>
 
-      {/* Mobile Drawer Menu */}
       <AnimatePresence>
-        {mobileMenuOpen && (
-          <>
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setMobileMenuOpen(false)}
-              className="fixed inset-0 bg-black/40 backdrop-blur-sm z-40 lg:hidden"
-            />
-            <motion.div
-              initial={{ x: "100%" }}
-              animate={{ x: 0 }}
-              exit={{ x: "100%" }}
-              transition={{ type: "spring", damping: 25, stiffness: 200 }}
-              className="fixed top-0 right-0 bottom-0 w-4/5 max-w-sm bg-white shadow-2xl z-50 p-6 flex flex-col justify-between lg:hidden"
-            >
-              <div>
-                <div className="flex items-center justify-between pb-6 border-b border-sand-200">
-                  <div className="flex items-center gap-3">
-                    <div className="relative w-10 h-10 rounded-full overflow-hidden border border-gold-300">
-                      <Image
-                        src="/images/logo.png"
-                        alt="M.S.A Anu Villa"
-                        fill
-                        className="object-contain"
-                      />
-                    </div>
-                    <div>
-                      <h4 className="font-serif font-semibold text-charcoal-900 tracking-wider">ANU VILLA</h4>
-                      <p className="text-[10px] text-gold-600 uppercase tracking-widest font-semibold font-sans">Unawatuna • Galle</p>
-                    </div>
-                  </div>
-                  <button
-                    onClick={() => setMobileMenuOpen(false)}
-                    className="p-2 rounded-full hover:bg-sand-100 text-charcoal-600"
-                  >
-                    <X className="w-5 h-5" />
-                  </button>
-                </div>
-
-                <div className="py-6 flex flex-col space-y-2">
-                  {navLinks.map((link) => (
-                    <Link
-                      key={link.id}
-                      href={link.href}
-                      onClick={() => setMobileMenuOpen(false)}
-                      className={`text-sm font-semibold tracking-wide py-2.5 px-3 rounded-lg transition-colors ${
-                        activeSection === link.id
-                          ? "bg-gold-50 text-gold-700 font-bold"
-                          : "text-charcoal-700 hover:bg-sand-50"
-                      }`}
-                    >
-                      {link.name}
-                    </Link>
-                  ))}
-                </div>
-              </div>
-
-              <div className="pt-6 border-t border-sand-200 space-y-3">
-                <button
-                  onClick={() => {
-                    setMobileMenuOpen(false);
-                    onOpenBooking();
-                  }}
-                  className="w-full bg-gold-500 hover:bg-gold-600 text-white py-3 rounded-xl font-medium text-xs tracking-wider uppercase flex items-center justify-center gap-2 shadow-md"
-                >
-                  <Calendar className="w-4 h-4" />
-                  <span>Book Your Stay</span>
-                </button>
-                <button
-                  onClick={() => {
-                    setMobileMenuOpen(false);
-                    handleWhatsAppClick();
-                  }}
-                  className="w-full bg-[#25D366] hover:bg-[#20ba59] text-white py-3 rounded-xl font-medium text-xs tracking-wider uppercase flex items-center justify-center gap-2 shadow-md"
-                >
-                  <MessageCircle className="w-4 h-4 fill-current" />
-                  <span>Chat on WhatsApp</span>
-                </button>
-              </div>
-            </motion.div>
-          </>
+        {open && (
+          <motion.div initial={{ x: "100%" }} animate={{ x: 0 }} exit={{ x: "100%" }} transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }} className="fixed inset-0 z-[60] flex flex-col bg-[#20221f] p-6 text-white">
+            <div className="flex items-center justify-between border-b border-white/15 pb-6">
+              <div><span className="font-cinzel tracking-[0.24em]">M.S.A ANU VILLA</span><span className="mt-2 block font-ui text-[8px] uppercase tracking-[0.32em] text-[#d4a663]">Unawatuna · Galle</span></div>
+              <button onClick={() => setOpen(false)} aria-label="Close menu" className="flex h-11 w-11 items-center justify-center border border-white/20"><X className="h-5 w-5" /></button>
+            </div>
+            <nav className="flex flex-1 flex-col justify-center gap-3">
+              {links.map(([name, id], index) => (
+                <Link key={id} href={`#${id}`} onClick={() => setOpen(false)} className="flex items-end gap-4 border-b border-white/10 py-3 font-display text-[clamp(2.5rem,11vw,4rem)] font-light leading-none">
+                  <span className="mb-1 font-ui text-[9px] text-[#d4a663]">0{index + 1}</span>{name}
+                </Link>
+              ))}
+            </nav>
+            <button onClick={() => { setOpen(false); onOpenBooking(); }} className="flex w-full items-center justify-between border border-[#d4a663] px-5 py-4 font-ui text-[10px] uppercase tracking-[0.22em] text-[#e6c28d]">Book your stay <ArrowUpRight className="h-4 w-4" /></button>
+          </motion.div>
         )}
       </AnimatePresence>
     </>
